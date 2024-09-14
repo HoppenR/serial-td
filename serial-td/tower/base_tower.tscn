@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bj5e5163hxitg"]
+
+[ext_resource type="Script" path="res://tower/base_tower.gd" id="1_5fbmr"]
+[ext_resource type="Texture2D" uid="uid://coyqq0pbf5jox" path="res://icon.svg" id="2_731g5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ax5ei"]
+size = Vector2(16, 16)
+
+[node name="BaseTower" type="RigidBody2D"]
+position = Vector2(32, 32)
+script = ExtResource("1_5fbmr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ax5ei")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0.00399971, 0)
+rotation = 3.14159
+scale = Vector2(0.124937, 0.125)
+texture = ExtResource("2_731g5")
