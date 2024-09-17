@@ -8,14 +8,12 @@ var prevInputDirection: Vector2
 
 var moving: bool = false
 var tileSize: int = 16
+var towerPlacementRange: int = 32
+var tower
+
+var dragging: bool = false
 
 func _physics_process(delta: float) -> void:
-	if Input.is_action_just_pressed("ui_accept") and not moving:
-		var tower = baseTower.instantiate()
-		get_node('/root/World').add_child(tower)
-		# TODO(Ben): Improve ability to choose where tower is placed (i.e maybe in a grid-like circle around kit)
-		tower.global_position = position + prevInputDirection * tileSize
-
 	inputDirection = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	
 	if inputDirection:
@@ -33,7 +31,35 @@ func _physics_process(delta: float) -> void:
 			inputDirection = Vector2.RIGHT
 			_move()
 	move_and_slide()
-	
+
+func _input(event) -> void:
+	if event is InputEventMouseButton and not moving:
+		if not dragging and event.pressed:
+			dragging = true
+			tower = baseTower.instantiate()
+			get_node('/root/World').add_child(tower)
+			_placeTower(tower)
+		if dragging and not event.pressed:
+			dragging = false
+		
+	if event is InputEventMouseMotion and dragging and not moving:
+		_placeTower(tower)
+
+func _placeTower(towerToPlace) -> void:
+	var mousePos: Vector2i = get_global_mouse_position()
+	mousePos = Vector2((mousePos.x - mousePos.x % tileSize) - tileSize / 2,
+					   (mousePos.y - mousePos.y % tileSize) + tileSize / 2)
+	if mousePos.x > position.x + towerPlacementRange:
+		mousePos.x = position.x + towerPlacementRange
+	if mousePos.x < position.x - towerPlacementRange:
+		mousePos.x = position.x - towerPlacementRange
+	if mousePos.y > position.y + towerPlacementRange:
+		mousePos.y = position.y + towerPlacementRange
+	if mousePos.y < position.y - towerPlacementRange:
+		mousePos.y = position.y - towerPlacementRange
+	if mousePos != Vector2i(position):
+		towerToPlace.global_position = mousePos
+
 func _move() -> void:
 	var currentTile: Vector2i = tileMap.local_to_map(global_position)
 	var targetTile: Vector2i = Vector2i(
