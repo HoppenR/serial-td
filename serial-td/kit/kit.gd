@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var baseTower = preload("res://tower/base_tower.tscn")
+var baseTower = preload("res://towers/base/baset1.tscn")
 @onready var tileMap: TileMapLayer = $"../PlayerTraversal"
 
 var inputDirection: Vector2
@@ -37,7 +37,7 @@ func _input(event) -> void:
 		if not dragging and event.pressed:
 			dragging = true
 			tower = baseTower.instantiate()
-			get_node('/root/World').add_child(tower)
+			get_parent().add_child(tower)
 			_placeTower(tower)
 		if dragging and not event.pressed:
 			dragging = false
@@ -46,19 +46,7 @@ func _input(event) -> void:
 		_placeTower(tower)
 
 func _placeTower(towerToPlace) -> void:
-	var mousePos: Vector2i = get_global_mouse_position()
-	mousePos = Vector2((mousePos.x - mousePos.x % tileSize) - tileSize / 2,
-					   (mousePos.y - mousePos.y % tileSize) + tileSize / 2)
-	if mousePos.x > position.x + towerPlacementRange:
-		mousePos.x = position.x + towerPlacementRange
-	if mousePos.x < position.x - towerPlacementRange:
-		mousePos.x = position.x - towerPlacementRange
-	if mousePos.y > position.y + towerPlacementRange:
-		mousePos.y = position.y + towerPlacementRange
-	if mousePos.y < position.y - towerPlacementRange:
-		mousePos.y = position.y - towerPlacementRange
-	if mousePos != Vector2i(position):
-		towerToPlace.global_position = mousePos
+	towerToPlace.global_position = global_position + prevInputDirection * tileSize
 
 func _move() -> void:
 	var currentTile: Vector2i = tileMap.local_to_map(global_position)
