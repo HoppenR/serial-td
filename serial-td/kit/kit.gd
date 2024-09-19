@@ -59,10 +59,20 @@ func _move() -> void:
 	if not tileData.get_custom_data("walkable"):
 		return
 		
+	var moveOffset
+	if inputDirection == Vector2.RIGHT:
+		moveOffset = Vector2(tileSize, tileSize / 2)
+	elif inputDirection == Vector2.UP:
+		moveOffset = Vector2(tileSize, -tileSize / 2)
+	elif inputDirection == Vector2.LEFT:
+		moveOffset = Vector2(-tileSize, -tileSize / 2)
+	elif inputDirection == Vector2.DOWN:
+		moveOffset = Vector2(-tileSize, tileSize / 2)
+		
 	if not moving:
 		moving = true
 		var tween = create_tween()
-		tween.tween_property(self, "position", position + inputDirection * tileSize, 0.1)
+		tween.tween_property(self, "position", position + moveOffset, 0.5)
 		tween.tween_callback(move_false)
 
 func move_false() -> void:

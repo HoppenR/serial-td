@@ -11,20 +11,25 @@
 texture = ExtResource("1_wu2uw")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
+0:0/0/custom_data_0 = true
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4dxi2"]
 texture = ExtResource("2_4n1r7")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
+0:0/0/custom_data_0 = true
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y16ln"]
 texture = ExtResource("3_tjn75")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
+0:0/0/custom_data_0 = true
 
 [sub_resource type="TileSet" id="TileSet_et4lp"]
 tile_shape = 1
 tile_size = Vector2i(32, 16)
+custom_data_layer_0/name = "walkable"
+custom_data_layer_0/type = 1
 sources/0 = SubResource("TileSetAtlasSource_hth1o")
 sources/1 = SubResource("TileSetAtlasSource_4dxi2")
 sources/2 = SubResource("TileSetAtlasSource_y16ln")
@@ -314,7 +319,7 @@ tile_set = SubResource("TileSet_0toc4")
 
 [node name="Kit" parent="." instance=ExtResource("2_7tio3")]
 texture_filter = 1
-position = Vector2(8, 8)
+position = Vector2(0, -8)
 
 [node name="Camera2D" type="Camera2D" parent="Kit"]
 position = Vector2(-8, -8)
