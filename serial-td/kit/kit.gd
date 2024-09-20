@@ -46,7 +46,16 @@ func _input(event) -> void:
 		_placeTower(tower)
 
 func _placeTower(towerToPlace) -> void:
-	towerToPlace.global_position = global_position + prevInputDirection * tileSize
+	var placeOffset
+	if prevInputDirection == Vector2.RIGHT:
+		placeOffset = Vector2(tileSize, tileSize / 2)
+	elif prevInputDirection == Vector2.UP:
+		placeOffset = Vector2(tileSize, -tileSize / 2)
+	elif prevInputDirection == Vector2.LEFT:
+		placeOffset = Vector2(-tileSize, -tileSize / 2)
+	elif prevInputDirection == Vector2.DOWN:
+		placeOffset = Vector2(-tileSize, tileSize / 2)
+	towerToPlace.global_position = position + placeOffset
 
 func _move() -> void:
 	var currentTile: Vector2i = tileMap.local_to_map(global_position)
@@ -72,7 +81,7 @@ func _move() -> void:
 	if not moving:
 		moving = true
 		var tween = create_tween()
-		tween.tween_property(self, "position", position + moveOffset, 0.5)
+		tween.tween_property(self, "position", position + moveOffset, 0.1)
 		tween.tween_callback(move_false)
 
 func move_false() -> void:
