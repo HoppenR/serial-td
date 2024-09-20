@@ -46,7 +46,7 @@ func _input(event) -> void:
 		_place_tower(tower)
 
 func _place_tower(towerToPlace) -> void:
-	var placeOffset = _get_next_tile(inputDirection)
+	var placeOffset: Vector2 = _get_next_tile(prevInputDirection)
 	towerToPlace.global_position = position + placeOffset
 
 func _move() -> void:
@@ -63,7 +63,7 @@ func _move() -> void:
 	if not tileData or not tileData.get_custom_data("walkable"):
 		return
 	
-	var moveOffset = _get_next_tile(inputDirection)
+	var moveOffset: Vector2 = _get_next_tile(inputDirection)
 	
 	moving = true
 	print(currentTile)
