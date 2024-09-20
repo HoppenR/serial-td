@@ -52,21 +52,16 @@ func _place_tower(towerToPlace) -> void:
 func _move() -> void:
 	if moving:
 		return
+
+	var moveOffset: Vector2 = _get_next_tile(inputDirection)	
+	var nextTile: Vector2i = tileMap.local_to_map(Vector2(global_position.x + moveOffset.x, global_position.y + moveOffset.y + tileSize / 2))
 	
-	var currentTile: Vector2i = tileMap.local_to_map(global_position)
-	var targetTile: Vector2i = Vector2i(
-		currentTile.x + inputDirection.x,
-		currentTile.y + inputDirection.y,
-	)
-	var tileData: TileData = tileMap.get_cell_tile_data(targetTile)
+	var tileData: TileData = tileMap.get_cell_tile_data(nextTile)
 	
 	if not tileData or not tileData.get_custom_data("walkable"):
 		return
 	
-	var moveOffset: Vector2 = _get_next_tile(inputDirection)
-	
 	moving = true
-	print(currentTile)
 	var tween = create_tween()
 	tween.tween_property(self, "position", position + moveOffset, 0.1)
 	tween.connect("finished", move_false)
