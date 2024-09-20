@@ -38,26 +38,21 @@ func _input(event) -> void:
 			dragging = true
 			tower = baseTower.instantiate()
 			get_parent().add_child(tower)
-			_placeTower(tower)
+			_place_tower(tower)
 		if dragging and not event.pressed:
 			dragging = false
 		
 	if event is InputEventMouseMotion and dragging and not moving:
-		_placeTower(tower)
+		_place_tower(tower)
 
-func _placeTower(towerToPlace) -> void:
-	var placeOffset
-	if prevInputDirection == Vector2.RIGHT:
-		placeOffset = Vector2(tileSize, tileSize / 2)
-	elif prevInputDirection == Vector2.UP:
-		placeOffset = Vector2(tileSize, -tileSize / 2)
-	elif prevInputDirection == Vector2.LEFT:
-		placeOffset = Vector2(-tileSize, -tileSize / 2)
-	elif prevInputDirection == Vector2.DOWN:
-		placeOffset = Vector2(-tileSize, tileSize / 2)
+func _place_tower(towerToPlace) -> void:
+	var placeOffset = _get_next_tile(inputDirection)
 	towerToPlace.global_position = position + placeOffset
 
 func _move() -> void:
+	if moving:
+		return
+	
 	var currentTile: Vector2i = tileMap.local_to_map(global_position)
 	var targetTile: Vector2i = Vector2i(
 		currentTile.x + inputDirection.x,
@@ -65,24 +60,28 @@ func _move() -> void:
 	)
 	var tileData: TileData = tileMap.get_cell_tile_data(targetTile)
 	
-	if not tileData.get_custom_data("walkable"):
+	if not tileData or not tileData.get_custom_data("walkable"):
 		return
-		
-	var moveOffset
-	if inputDirection == Vector2.RIGHT:
-		moveOffset = Vector2(tileSize, tileSize / 2)
-	elif inputDirection == Vector2.UP:
-		moveOffset = Vector2(tileSize, -tileSize / 2)
-	elif inputDirection == Vector2.LEFT:
-		moveOffset = Vector2(-tileSize, -tileSize / 2)
-	elif inputDirection == Vector2.DOWN:
-		moveOffset = Vector2(-tileSize, tileSize / 2)
-		
-	if not moving:
-		moving = true
-		var tween = create_tween()
-		tween.tween_property(self, "position", position + moveOffset, 0.1)
-		tween.tween_callback(move_false)
+	
+	var moveOffset = _get_next_tile(inputDirection)
+	
+	moving = true
+	print(currentTile)
+	var tween = create_tween()
+	tween.tween_property(self, "position", position + moveOffset, 0.1)
+	tween.connect("finished", move_false)
 
 func move_false() -> void:
 	moving = false
+
+func _get_next_tile(direction: Vector2) -> Vector2:
+	var offset
+	if direction == Vector2.RIGHT:
+		offset = Vector2(tileSize, tileSize / 2)
+	elif direction == Vector2.UP:
+		offset = Vector2(tileSize, -tileSize / 2)
+	elif direction == Vector2.LEFT:
+		offset = Vector2(-tileSize, -tileSize / 2)
+	elif direction == Vector2.DOWN:
+		offset = Vector2(-tileSize, tileSize / 2)
+	return offset;
