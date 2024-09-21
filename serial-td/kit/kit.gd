@@ -4,7 +4,7 @@ var baseTower = preload("res://towers/base/baset1.tscn")
 @onready var tileMap: TileMapLayer = $"../PlayerTraversal"
 
 var inputDirection: Vector2
-var prevInputDirection: Vector2
+var prevInputDirection: Vector2 = Vector2.UP
 
 var moving: bool = false
 var tileSize: int = 16
