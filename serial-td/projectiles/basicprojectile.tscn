@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://dobxqlxpeykqw"]
+[gd_scene load_steps=4 format=3 uid="uid://dobxqlxpeykqw"]
 
 [ext_resource type="Script" path="res://projectiles/basicprojectile.gd" id="1_5pa1d"]
 [ext_resource type="Texture2D" uid="uid://da3ct1y0eykid" path="res://assets/projectile.png" id="2_wvtg2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i0ure"]
+size = Vector2(20, 16)
 
 [node name="BasicProjectile" type="Node2D"]
 script = ExtResource("1_5pa1d")
@@ -9,3 +12,12 @@ script = ExtResource("1_5pa1d")
 [node name="Sprite" type="Sprite2D" parent="."]
 texture_filter = 1
 texture = ExtResource("2_wvtg2")
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0.5, 0)
+scale = Vector2(0.25, 0.25)
+shape = SubResource("RectangleShape2D_i0ure")
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
