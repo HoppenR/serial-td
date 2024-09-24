@@ -1,7 +1,7 @@
 extends Node2D
 
 var projectileload = preload("res://projectiles/basicprojectile.tscn")
-var shootSpeed: float = 0.4
+var shootSpeed: float = 0.1
 var isReady: bool = true
 
 var targetPosition: Vector2
@@ -28,6 +28,11 @@ func _shoot() -> void:
 	add_child(projectile)
 	projectile.look_at(targetPosition)
 	projectile.global_position = global_position
+
+	projectile.damage = 3
+	projectile.pierce = 3
+	projectile.speed = 15.0
+	projectile.lifeTime = 1.0
 
 	var timer = Timer.new()
 	add_child(timer)
