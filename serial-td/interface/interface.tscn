@@ -1,4 +1,7 @@
-[gd_scene format=3 uid="uid://crkju7uebsnej"]
+[gd_scene load_steps=3 format=3 uid="uid://crkju7uebsnej"]
+
+[ext_resource type="Script" path="res://interface/ui_control.gd" id="1_idbcy"]
+[ext_resource type="Texture2D" uid="uid://coyqq0pbf5jox" path="res://icon.svg" id="2_ybxe0"]
 
 [node name="Interface" type="Control"]
 layout_mode = 3
@@ -13,3 +16,15 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 text = "500 gold"
+
+[node name="Control" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_idbcy")
+
+[node name="SelectedTower" type="Sprite2D" parent="Control"]
+texture_filter = 1
+position = Vector2(814, 437)
+scale = Vector2(10, 10)
+texture = ExtResource("2_ybxe0")
