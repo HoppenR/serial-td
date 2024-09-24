@@ -6,43 +6,32 @@ var baseTowers = [
 ]
 @onready var tileMap: TileMapLayer = $"../PlayerTraversal"
 
-var currentTower: int = 0
-var gold: int = 500
-
-# NOTE: Intended to signal to `res://interface/ui_control.gd` about
-#       which sprite to represent the currently selected tower
-signal tower_changed(new_tower: int)
-
-# NOTE: Intended for `res://interface/interface.tscn->Interface->GoldLabel`
-#       but the signal can have multiple listeners if needed.
-signal gold_changed(new_gold: int)
-
-var inputDirection: Vector2
-var prevInputDirection: Vector2 = Vector2.UP
+var input_direction: Vector2
+var prev_input_direction: Vector2 = Vector2.UP
 
 var moving: bool = false
 var tileSize: int = 16
-var towerPlacementRange: int = 32
+var tower_placement_range: int = 32
 var tower
 
 var dragging: bool = false
 
 func _physics_process(delta: float) -> void:
-	inputDirection = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	input_direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	
-	if inputDirection:
-		prevInputDirection = inputDirection
+	if input_direction:
+		prev_input_direction = input_direction
 		if Input.is_action_pressed("ui_down"):
-			inputDirection = Vector2.DOWN
+			input_direction = Vector2.DOWN
 			_move()
-		elif Input.is_action_pressed("ui_up"):
-			inputDirection = Vector2.UP
+		if Input.is_action_pressed("ui_up"):
+			input_direction = Vector2.UP
 			_move()
-		elif Input.is_action_pressed("ui_left"):
-			inputDirection = Vector2.LEFT
+		if Input.is_action_pressed("ui_left"):
+			input_direction = Vector2.LEFT
 			_move()
-		elif Input.is_action_pressed("ui_right"):
-			inputDirection = Vector2.RIGHT
+		if Input.is_action_pressed("ui_right"):
+			input_direction = Vector2.RIGHT
 			_move()
 		elif Input.is_action_pressed("ui_select"):
 			pass
@@ -66,28 +55,38 @@ func _input(event) -> void:
 	if event is InputEventMouseMotion and dragging and not moving:
 		_place_tower(tower)
 
+# Make exclusive tile type placements for towers,
+# i.e, make some towers have the ability to be placed
+# on water, while others not
 func _place_tower(towerToPlace) -> void:
-	var placeOffset: Vector2 = _get_next_tile(prevInputDirection)
+	var placeOffset: Vector2 = _get_next_tile(prev_input_direction)
+	var next_tile: Vector2i = tileMap.local_to_map(Vector2(global_position.x + placeOffset.x, global_position.y + placeOffset.y + tileSize / 2))
+	var tile_data: TileData = tileMap.get_cell_tile_data(next_tile)
+
+	# Change to placeable
+	if not tile_data or not tile_data.get_custom_data("walkable"):
+		return
+	
 	towerToPlace.global_position = position + placeOffset
 
 func _move() -> void:
 	if moving:
 		return
 
-	var moveOffset: Vector2 = _get_next_tile(inputDirection)	
-	var nextTile: Vector2i = tileMap.local_to_map(Vector2(global_position.x + moveOffset.x, global_position.y + moveOffset.y + tileSize / 2))
+	var move_offset: Vector2 = _get_next_tile(input_direction)	
+	var next_tile: Vector2i = tileMap.local_to_map(Vector2(global_position.x + move_offset.x, global_position.y + move_offset.y + tileSize / 2))
 	
-	var tileData: TileData = tileMap.get_cell_tile_data(nextTile)
+	var tile_data: TileData = tileMap.get_cell_tile_data(next_tile)
 	
-	if not tileData or not tileData.get_custom_data("walkable"):
+	if not tile_data or not tile_data.get_custom_data("walkable"):
 		return
 	
 	moving = true
 	var tween = create_tween()
-	tween.tween_property(self, "position", position + moveOffset, 0.1)
-	tween.connect("finished", move_false)
+	tween.tween_property(self, "position", position + move_offset, 0.1)
+	tween.connect("finished", _move_false)
 
-func move_false() -> void:
+func _move_false() -> void:
 	moving = false
 
 func _get_next_tile(direction: Vector2) -> Vector2:

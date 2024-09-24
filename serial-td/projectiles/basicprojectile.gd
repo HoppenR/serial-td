@@ -1,9 +1,9 @@
 extends Node2D
 
-var speed: float = 15
-var lifeTime: float = 2.0
-var damage: int = 3
-var pierce: int = 5
+var lifeTime: float = 1.0 
+var speed: float = 1.0
+var damage: int = 1
+var pierce: int = 1
 
 var clockTicking: bool = false
 
