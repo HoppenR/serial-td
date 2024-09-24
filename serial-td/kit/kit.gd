@@ -1,7 +1,16 @@
 extends CharacterBody2D
 
-var baseTower = preload("res://towers/base/baset1.tscn")
+var baseTowers = [
+	preload("res://towers/base/baset0.tscn"),
+	preload("res://towers/base/baset1.tscn"),
+]
 @onready var tileMap: TileMapLayer = $"../PlayerTraversal"
+
+var currentTower: int = 0
+
+# NOTE: Intended to signal to `res://interface/ui_control.gd` about
+#       which sprite to represent the currently selected tower
+signal tower_changed(new_tower: int)
 
 var inputDirection: Vector2
 var prevInputDirection: Vector2 = Vector2.UP
@@ -21,22 +30,27 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_pressed("ui_down"):
 			inputDirection = Vector2.DOWN
 			_move()
-		if Input.is_action_pressed("ui_up"):
+		elif Input.is_action_pressed("ui_up"):
 			inputDirection = Vector2.UP
 			_move()
-		if Input.is_action_pressed("ui_left"):
+		elif Input.is_action_pressed("ui_left"):
 			inputDirection = Vector2.LEFT
 			_move()
-		if Input.is_action_pressed("ui_right"):
+		elif Input.is_action_pressed("ui_right"):
 			inputDirection = Vector2.RIGHT
 			_move()
+		elif Input.is_action_pressed("ui_select"):
+			pass
+	if Input.is_action_just_pressed("ui_accept"):
+		currentTower = (currentTower + 1) % len(baseTowers)
+		emit_signal("tower_changed", currentTower)
 	move_and_slide()
 
 func _input(event) -> void:
 	if event is InputEventMouseButton and not moving:
 		if not dragging and event.pressed:
 			dragging = true
-			tower = baseTower.instantiate()
+			tower = baseTowers[currentTower].instantiate()
 			get_parent().add_child(tower)
 			_place_tower(tower)
 		if dragging and not event.pressed:
