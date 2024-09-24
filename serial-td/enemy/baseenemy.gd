@@ -14,4 +14,5 @@ func _move(delta: float) -> void:
 func take_damage(amount: int) -> void:
 	hp -= amount
 	if hp < 1:
+		get_parent().enemiesAlive.erase(self)
 		queue_free()
