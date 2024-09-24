@@ -14,4 +14,10 @@ func _move(delta: float) -> void:
 func take_damage(amount: int) -> void:
 	hp -= amount
 	if hp < 1:
+		emit_signal("enemy_died")
 		queue_free()
+
+func _ready() -> void:
+	# Use Kit's `_enemy_dead` handler
+	var kit_node = get_tree().get_root().get_node("World/Kit")
+	connect("tree_exiting", kit_node._enemy_dead)

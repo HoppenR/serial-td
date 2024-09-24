@@ -7,10 +7,15 @@ var baseTowers = [
 @onready var tileMap: TileMapLayer = $"../PlayerTraversal"
 
 var currentTower: int = 0
+var gold: int = 500
 
 # NOTE: Intended to signal to `res://interface/ui_control.gd` about
 #       which sprite to represent the currently selected tower
 signal tower_changed(new_tower: int)
+
+# NOTE: Intended for `res://interface/interface.tscn->Interface->GoldLabel`
+#       but the signal can have multiple listeners if needed.
+signal gold_changed(new_gold: int)
 
 var inputDirection: Vector2
 var prevInputDirection: Vector2 = Vector2.UP
@@ -51,8 +56,10 @@ func _input(event) -> void:
 		if not dragging and event.pressed:
 			dragging = true
 			tower = baseTowers[currentTower].instantiate()
-			get_parent().add_child(tower)
-			_place_tower(tower)
+			if gold > 200:
+				_set_gold(gold - 200)
+				get_parent().add_child(tower)
+				_place_tower(tower)
 		if dragging and not event.pressed:
 			dragging = false
 		
@@ -93,4 +100,14 @@ func _get_next_tile(direction: Vector2) -> Vector2:
 		offset = Vector2(-tileSize, -tileSize / 2)
 	elif direction == Vector2.DOWN:
 		offset = Vector2(-tileSize, tileSize / 2)
-	return offset;
+	return offset
+
+func _set_gold(new_gold: int) -> void:
+	if gold != new_gold:
+		gold = new_gold
+		emit_signal("gold_changed", gold)
+
+# This is connected to `res://enemy/baseenemy.tscn->BaseEnemy` on tree_exiting
+# event, via the corresponding .gd script.
+func _enemy_dead() -> void:
+	_set_gold(gold + 20)
