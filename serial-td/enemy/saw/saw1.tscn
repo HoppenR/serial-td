@@ -1,19 +1,23 @@
 [gd_scene load_steps=4 format=3 uid="uid://04umrdjkuf2o"]
 
-[ext_resource type="Script" path="res://enemy/baseenemy.gd" id="1_6bfa8"]
-[ext_resource type="Texture2D" uid="uid://bolrslqwfmv44" path="res://assets/saw.png" id="2_1ui3w"]
+[ext_resource type="Script" path="res://enemy/saw/saw1.gd" id="1_t2voo"]
+[ext_resource type="Texture2D" uid="uid://bolrslqwfmv44" path="res://assets/saw.png" id="2_g1grt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_me7oi"]
+size = Vector2(14, 8)
 
-[node name="BaseEnemy" type="PathFollow2D"]
+[node name="Saw1" type="PathFollow2D"]
 texture_filter = 1
-script = ExtResource("1_6bfa8")
+rotates = false
+loop = false
+script = ExtResource("1_t2voo")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-texture = ExtResource("2_1ui3w")
+texture = ExtResource("2_g1grt")
 
 [node name="Hitbox" type="CharacterBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_me7oi")
 one_way_collision_margin = 0.0

@@ -1,24 +1,111 @@
 extends Node
 
+var saw1 = preload("res://enemy/saw/saw1.tscn")
+var saw2 = preload("res://enemy/saw/saw2.tscn")
+var saw3 = preload("res://enemy/saw/saw3.tscn")
+var saw4 = preload("res://enemy/saw/saw4.tscn")
+
+var enemies_from_string = {
+	"saw1": saw1,
+	"saw2": saw2,
+	"saw3": saw3,
+	"saw4": saw4,
+}
+
 # Towers need so much more depth than this
 var tower_data = {
 	"baset0": {
 		"damage": 1,
-		"speed": 1,
-		"range": 200
+		"range": 200,
+	},
+	"baset1": {
+		"damage": 3,
+		"range": 100,
 	},
 	"baset2": {
 		"damage": 3,
-		"speed": 0.9,
 		"range": 270
 	},
 }
 
-# Is this a good way to handle rounds?
-var round_data = {
-	"round_1": {
+var enemy_data = {
+	"saw1": {
+		"hp": 10,
 		"speed": 100,
-		"enemies": 5,
-		"heat": 1,
+	},
+	"saw2": {
+		"hp": 5,
+		"speed": 300,
+	},
+	"saw3": {
+		"hp": 15,
+		"speed": 200,
+	},
+	"saw4": {
+		"hp": 31,
+		"speed": 150,
+	},
+}
+
+var wave_data = {
+	1: {
+		"enemies": ["saw1"],
+		"hp_multiplier": 1,
+		"speed_multiplier": 1,
+		"spawn_speed": 3,
+	},
+	2: {
+		"enemies": ["saw1", "saw1"],
+		"hp_multiplier": 1.2,
+		"speed_multiplier": 1.4,
+		"spawn_speed": 1,
+	},
+	3: {
+		"enemies": ["saw1", "saw1", "saw1"],
+		"hp_multiplier": 1.4,
+		"speed_multiplier": 1.4,
+		"spawn_speed": 1,
+	},
+	4: {
+		"enemies": ["saw1", "saw1", "saw1", "saw1"],
+		"hp_multiplier": 2,
+		"speed_multiplier": 1.5,
+		"spawn_speed": 2,
+	},
+	5: {
+		"enemies": ["saw1", "saw1", "saw2", "saw2", "saw1"],
+		"hp_multiplier": 1,
+		"speed_multiplier": 1,
+		"spawn_speed": 1.5,
+	},
+	6: {
+		"enemies": ["saw1", "saw1", "saw1", "saw1", "saw1", "saw1", "saw1", "saw1", "saw1",],
+		"hp_multiplier": 1,
+		"speed_multiplier": 1,
+		"spawn_speed": 0.2,
+	},
+	7: {
+		"enemies": ["saw3"],
+		"hp_multiplier": 1,
+		"speed_multiplier": 0.4,
+		"spawn_speed": 2,
+	},
+	8: {
+		"enemies": ["saw2", "saw2", "saw2", "saw2", "saw2", "saw2", "saw2", "saw2", "saw2"],
+		"hp_multiplier": 0.8,
+		"speed_multiplier": 1,
+		"spawn_speed": 0.2,
+	},
+	9: {
+		"enemies": ["saw1", "saw1", "saw3", "saw1", "saw1"],
+		"hp_multiplier": 1,
+		"speed_multiplier": 0.6,
+		"spawn_speed": 0.1,
+	},
+	10: {
+		"enemies": ["saw3", "saw2", "saw3", "saw2", "saw3"],
+		"hp_multiplier": 1.2,
+		"speed_multiplier": 1,
+		"spawn_speed": 1,
 	}
 }

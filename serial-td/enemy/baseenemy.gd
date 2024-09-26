@@ -1,12 +1,14 @@
 extends PathFollow2D
 
-var speed = 150
-var hp = 2
+var speed: int = 150
+var hp: int = 2
 
 func _physics_process(delta: float) -> void:
 	_move(delta)
-	if get_progress() == 1:
-		get_parent().queue_free()
+	if progress_ratio == 1:
+		# take damage here?
+		get_parent().enemiesAlive.erase(self)
+		queue_free()
 
 func _move(delta: float) -> void:
 	set_progress(get_progress() + speed * delta)
@@ -14,6 +16,7 @@ func _move(delta: float) -> void:
 func take_damage(amount: int) -> void:
 	hp -= amount
 	if hp < 1:
+		#emit_signal("enemy_died")
 		get_parent().enemiesAlive.erase(self)
 		queue_free()
 
