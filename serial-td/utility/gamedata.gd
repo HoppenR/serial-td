@@ -25,21 +25,21 @@ var towers_from_string = {
 # Towers need so much more depth than this
 var tower_data = {
 	"baset0": {
-		"damage": 1,
+		"damage": 3,
 		"cost": 100,
 		"range": 200,
 		"reload_time": 0.3,
 		"bullet_speed": 10,
 	},
 	"baset1": {
-		"damage": 3,
+		"damage": 7,
 		"cost": 200,
 		"range": 100,
 		"reload_time": 0.2,
 		"bullet_speed": 20,
 	},
 	"baset2": {
-		"damage": 7,
+		"damage": 14,
 		"cost": 350,
 		"range": 270,
 		"reload_time": 0.1,
