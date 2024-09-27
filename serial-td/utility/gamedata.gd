@@ -1,9 +1,14 @@
 extends Node
 
+#Enemies
 var saw1 = preload("res://enemy/saw/saw1.tscn")
 var saw2 = preload("res://enemy/saw/saw2.tscn")
 var saw3 = preload("res://enemy/saw/saw3.tscn")
 var saw4 = preload("res://enemy/saw/saw4.tscn")
+
+#Towers
+var baset0 = preload("res://towers/base/baset0.tscn")
+var baset1 = preload("res://towers/base/baset1.tscn")
 
 var enemies_from_string = {
 	"saw1": saw1,
@@ -12,19 +17,33 @@ var enemies_from_string = {
 	"saw4": saw4,
 }
 
+var towers_from_string = {
+	"baset1": baset0,
+	"baset0": baset1,
+}
+
 # Towers need so much more depth than this
 var tower_data = {
 	"baset0": {
 		"damage": 1,
+		"cost": 100,
 		"range": 200,
+		"reload_time": 0.3,
+		"bullet_speed": 10,
 	},
 	"baset1": {
 		"damage": 3,
+		"cost": 200,
 		"range": 100,
+		"reload_time": 0.2,
+		"bullet_speed": 20,
 	},
 	"baset2": {
-		"damage": 3,
-		"range": 270
+		"damage": 7,
+		"cost": 350,
+		"range": 270,
+		"reload_time": 0.1,
+		"bullet_speed": 40,
 	},
 }
 

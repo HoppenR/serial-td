@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
 var baseTowers = [
-	preload("res://towers/base/baset0.tscn"),
-	preload("res://towers/base/baset1.tscn"),
+	"baset0",
+	"baset1",
 ]
 @onready var tileMap: TileMapLayer = $"../PlayerTraversal"
 
@@ -13,8 +13,6 @@ var moving: bool = false
 var tileSize: int = 16
 var tower_placement_range: int = 32
 var tower
-
-var dragging: bool = false
 
 func _physics_process(delta: float) -> void:
 	input_direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
@@ -42,18 +40,16 @@ func _physics_process(delta: float) -> void:
 
 func _input(event) -> void:
 	if event is InputEventMouseButton and not moving:
-		if not dragging and event.pressed:
-			dragging = true
-			tower = baseTowers[currentTower].instantiate()
-			if gold > 200:
-				_set_gold(gold - 200)
-				get_parent().add_child(tower)
-				_place_tower(tower)
-		if dragging and not event.pressed:
-			dragging = false
-		
-	if event is InputEventMouseMotion and dragging and not moving:
-		_place_tower(tower)
+		var towerName = baseTowers[currentTower]
+		var cost = gamedata.tower_data[towerName]["cost"]
+		if gold >= cost:
+			tower = gamedata.towers_from_string[baseTowers[currentTower]].instantiate()
+			_set_gold(gold - cost)
+			get_parent().add_child(tower)
+			tower.reload_time = gamedata.tower_data[towerName]["reload_time"]
+			tower.damage = gamedata.tower_data[towerName]["damage"]
+			tower.bullet_speed = gamedata.tower_data[towerName]["bullet_speed"]
+			_place_tower(tower)
 
 # Make exclusive tile type placements for towers,
 # i.e, make some towers have the ability to be placed
