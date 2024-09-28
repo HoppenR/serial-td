@@ -4,6 +4,7 @@ var baseTowers = [
 	"baset0",
 	"baset1",
 ]
+
 @onready var tileMap: TileMapLayer = $"../PlayerTraversal"
 
 var input_direction: Vector2
@@ -45,10 +46,13 @@ func _input(event) -> void:
 		if gold >= cost:
 			tower = gamedata.towers_from_string[baseTowers[currentTower]].instantiate()
 			_set_gold(gold - cost)
-			get_parent().add_child(tower)
 			tower.reload_time = gamedata.tower_data[towerName]["reload_time"]
 			tower.damage = gamedata.tower_data[towerName]["damage"]
 			tower.bullet_speed = gamedata.tower_data[towerName]["bullet_speed"]
+			tower.pierce = gamedata.tower_data[towerName]["pierce"]
+			tower.range = gamedata.tower_data[towerName]["range"]
+			tower.bullet_lifetime = gamedata.tower_data[towerName]["bullet_lifetime"]
+			get_parent().add_child(tower)
 			_place_tower(tower)
 
 # Make exclusive tile type placements for towers,
