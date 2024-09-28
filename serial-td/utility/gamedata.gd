@@ -12,7 +12,7 @@ var baset1 = preload("res://towers/base/baset1.tscn")
 
 var firet0 = preload("res://towers/flame/flamet0.tscn")
 
-enum projectile_types {
+enum damage_type {
 	STANDARD,
 	FIRE,
 	ICE,
@@ -36,7 +36,7 @@ var towers_from_string = {
 # Towers need so much more depth than this
 var tower_data = {
 	"baset0": {
-		"damage": 3,
+		"damage": 6,
 		"cost": 100,
 		"range": 10,
 		"pierce": 1,
@@ -45,7 +45,7 @@ var tower_data = {
 		"bullet_lifetime": 0.5,
 	},
 	"baset1": {
-		"damage": 7,
+		"damage": 14,
 		"cost": 200,
 		"range": 15,
 		"pierce": 2,
@@ -54,7 +54,7 @@ var tower_data = {
 		"bullet_lifetime": 0.8,
 	},
 	"baset2": {
-		"damage": 14,
+		"damage": 28,
 		"cost": 350,
 		"range": 23,
 		"pierce": 3,
@@ -75,22 +75,22 @@ var tower_data = {
 
 var enemy_data = {
 	"saw1": {
-		"hp": 10,
+		"hp": 20,
 		"speed": 100,
 		"value": 10,
 	},
 	"saw2": {
-		"hp": 5,
+		"hp": 10,
 		"speed": 300,
 		"value": 30,
 	},
 	"saw3": {
-		"hp": 15,
+		"hp": 30,
 		"speed": 200,
 		"value": 50,
 	},
 	"saw4": {
-		"hp": 31,
+		"hp": 62,
 		"speed": 150,
 		"value": 100,
 	},
