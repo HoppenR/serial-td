@@ -3,6 +3,7 @@ extends CharacterBody2D
 var baseTowers = [
 	"baset0",
 	"baset1",
+	"firet0",
 ]
 
 @onready var tileMap: TileMapLayer = $"../PlayerTraversal"

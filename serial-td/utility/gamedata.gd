@@ -10,6 +10,8 @@ var saw4 = preload("res://enemy/saw/saw4.tscn")
 var baset0 = preload("res://towers/base/baset0.tscn")
 var baset1 = preload("res://towers/base/baset1.tscn")
 
+var firet0 = preload("res://towers/flame/flamet0.tscn")
+
 enum projectile_types {
 	STANDARD,
 	FIRE,
@@ -28,6 +30,7 @@ var enemies_from_string = {
 var towers_from_string = {
 	"baset0": baset0,
 	"baset1": baset1,
+	"firet0": firet0,
 }
 
 # Towers need so much more depth than this
@@ -38,7 +41,7 @@ var tower_data = {
 		"range": 10,
 		"pierce": 1,
 		"reload_time": 0.3,
-		"bullet_speed": 10,
+		"bullet_speed": 15,
 		"bullet_lifetime": 0.5,
 	},
 	"baset1": {
@@ -47,7 +50,7 @@ var tower_data = {
 		"range": 15,
 		"pierce": 2,
 		"reload_time": 0.2,
-		"bullet_speed": 20,
+		"bullet_speed": 25,
 		"bullet_lifetime": 0.8,
 	},
 	"baset2": {
@@ -58,6 +61,15 @@ var tower_data = {
 		"reload_time": 0.1,
 		"bullet_speed": 40,
 		"bullet_lifetime": 1.0,
+	},
+	"firet0": {
+		"damage": 1,
+		"cost": 300,
+		"range": 10,
+		"pierce": 10,
+		"reload_time": 0.008,
+		"bullet_speed": 15,
+		"bullet_lifetime": 2.0,
 	},
 }
 

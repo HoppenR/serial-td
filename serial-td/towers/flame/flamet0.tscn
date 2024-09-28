@@ -1,18 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://2fowwtmyyn5l"]
+[gd_scene load_steps=4 format=3 uid="uid://w2b0iuua58qj"]
 
-[ext_resource type="Script" path="res://towers/base/baset1.gd" id="1_0ky5f"]
-[ext_resource type="Texture2D" uid="uid://cr47motrs67d2" path="res://assets/gun2.png" id="2_x2wwc"]
+[ext_resource type="Script" path="res://towers/flame/flamet0.gd" id="1_ioaqx"]
+[ext_resource type="Texture2D" uid="uid://bqcmy4e1ynene" path="res://assets/flamet0.png" id="2_3u5r1"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_4gkwq"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_34apt"]
 
-[node name="BaseT1" type="Node2D"]
+[node name="FlameT0" type="Node2D"]
 texture_filter = 1
 scale = Vector2(0.5, 0.5)
-script = ExtResource("1_0ky5f")
+script = ExtResource("1_ioaqx")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 scale = Vector2(2, 2)
-texture = ExtResource("2_x2wwc")
+texture = ExtResource("2_3u5r1")
 
 [node name="Range" type="Area2D" parent="."]
 scale = Vector2(5, 5)
@@ -21,7 +21,7 @@ scale = Vector2(5, 5)
 rotation = 0.785398
 scale = Vector2(1.25, 1.25)
 skew = 0.436332
-shape = SubResource("CircleShape2D_4gkwq")
+shape = SubResource("CircleShape2D_34apt")
 
 [connection signal="body_entered" from="Range" to="." method="_on_range_body_entered"]
 [connection signal="body_exited" from="Range" to="." method="_on_range_body_exited"]
