@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bqcmy4e1ynene"
-path="res://.godot/imported/flamet0.png-974092bdbcf6a9dcab65e1aefd07af4f.ctex"
+uid="uid://bttqibk68afj4"
+path="res://.godot/imported/cookie_tile1.png-2923f952cc8abc5236c19ce319f0ca44.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/flamet0.png"
-dest_files=["res://.godot/imported/flamet0.png-974092bdbcf6a9dcab65e1aefd07af4f.ctex"]
+source_file="res://assets/tiles/cookie_tile1.png"
+dest_files=["res://.godot/imported/cookie_tile1.png-2923f952cc8abc5236c19ce319f0ca44.ctex"]
 
 [params]
 

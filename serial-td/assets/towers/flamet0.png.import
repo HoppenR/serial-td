@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bli7tgqrdpmr7"
-path="res://.godot/imported/cookie_tile2.png-0139b92eec1cfe82fa9efed35c62a460.ctex"
+uid="uid://bqcmy4e1ynene"
+path="res://.godot/imported/flamet0.png-31e8eb42908e1b345df5d96552041bdd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/cookie_tile2.png"
-dest_files=["res://.godot/imported/cookie_tile2.png-0139b92eec1cfe82fa9efed35c62a460.ctex"]
+source_file="res://assets/towers/flamet0.png"
+dest_files=["res://.godot/imported/flamet0.png-31e8eb42908e1b345df5d96552041bdd.ctex"]
 
 [params]
 

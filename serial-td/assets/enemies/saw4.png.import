@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://x2aerfhe2jmg"
-path="res://.godot/imported/cat_right.webp-c9663e080a02c9af252e0739202a13dd.ctex"
+uid="uid://de17drtinro73"
+path="res://.godot/imported/saw4.png-dc3b2e025831d0bac0b50f1a9313c91a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/cat_right.webp"
-dest_files=["res://.godot/imported/cat_right.webp-c9663e080a02c9af252e0739202a13dd.ctex"]
+source_file="res://assets/enemies/saw4.png"
+dest_files=["res://.godot/imported/saw4.png-dc3b2e025831d0bac0b50f1a9313c91a.ctex"]
 
 [params]
 

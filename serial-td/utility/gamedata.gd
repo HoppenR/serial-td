@@ -12,6 +12,8 @@ var baset1 = preload("res://towers/base/baset1.tscn")
 
 var firet0 = preload("res://towers/flame/flamet0.tscn")
 
+var icet0 = preload("res://towers/ice/icet0.tscn")
+
 enum damage_type {
 	STANDARD,
 	FIRE,
@@ -31,6 +33,7 @@ var towers_from_string = {
 	"baset0": baset0,
 	"baset1": baset1,
 	"firet0": firet0,
+	"icet0": icet0,
 }
 
 # Towers need so much more depth than this
@@ -59,7 +62,7 @@ var tower_data = {
 		"range": 23,
 		"pierce": 3,
 		"reload_time": 0.1,
-		"bullet_speed": 40,
+		"bullet_speed": 30,
 		"bullet_lifetime": 1.0,
 	},
 	"firet0": {
@@ -70,6 +73,15 @@ var tower_data = {
 		"reload_time": 0.008,
 		"bullet_speed": 15,
 		"bullet_lifetime": 2.0,
+	},
+	"icet0": {
+		"damage": 61,
+		"cost": 100,
+		"range": 50,
+		"pierce": 30,
+		"reload_time": 4.25,
+		"bullet_speed": 40,
+		"bullet_lifetime": 1.0,
 	},
 }
 

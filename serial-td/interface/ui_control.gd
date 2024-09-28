@@ -5,9 +5,10 @@ extends Control
 @onready var goldText = $GoldLabel
 
 var tower_textures = [
-	preload("res://assets/gun.png"),
-	preload("res://assets/gun2.png"),
-	preload("res://assets/flamet0.png"),
+	preload("res://assets/towers/gun.png"),
+	preload("res://assets/towers/gun2.png"),
+	preload("res://assets/towers/flamet0.png"),
+	preload("res://assets/towers/icet0.png"),
 ]
 
 # NOTE: Indended to be called via signals from `res://kit/kit.gd`

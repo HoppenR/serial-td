@@ -4,6 +4,7 @@ var baseTowers = [
 	"baset0",
 	"baset1",
 	"firet0",
+	"icet0",
 ]
 
 @onready var tileMap: TileMapLayer = $"../PlayerTraversal"
