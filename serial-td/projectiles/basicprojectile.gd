@@ -5,4 +5,4 @@ func _init() -> void:
 	speed = 1.0
 	damage = 1
 	pierce = 1
-	projectile_type = gamedata.projectile_types.STANDARD
+	projectile_type = gamedata.damage_type.STANDARD
