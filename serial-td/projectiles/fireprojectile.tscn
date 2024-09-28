@@ -1,17 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://xvdx0nfblbd0"]
+[gd_scene load_steps=4 format=3 uid="uid://bkom84l1ogvvq"]
 
-[ext_resource type="Script" path="res://projectiles/fireprojectile.gd" id="1_au5rw"]
-[ext_resource type="Texture2D" uid="uid://da3ct1y0eykid" path="res://assets/projectile.png" id="2_wvtg2"]
+[ext_resource type="Script" path="res://projectiles/fireprojectile.gd" id="1_0o2uq"]
+[ext_resource type="Texture2D" uid="uid://4hmfskbekvah" path="res://assets/fireprojectile.png" id="2_vnjo7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i0ure"]
-size = Vector2(20, 16)
+size = Vector2(28, 24)
 
-[node name="BasicProjectile" type="Node2D"]
-script = ExtResource("1_au5rw")
+[node name="FireProjectile" type="Node2D"]
+script = ExtResource("1_0o2uq")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("2_wvtg2")
+texture = ExtResource("2_vnjo7")
 
 [node name="Hitbox" type="Area2D" parent="."]
 

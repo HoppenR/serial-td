@@ -1,9 +1,9 @@
 extends "res://towers/turret.gd"
 
-# Base T1
+#Flame T0
 
 func _init() -> void:
-	projectileload = preload("res://projectiles/basicprojectile.tscn")
+	projectileload = preload("res://projectiles/fireprojectile.tscn")
 	reload_time = 0.1
 	bullet_speed = 100
 	damage = 1

@@ -7,6 +7,7 @@ extends Control
 var tower_textures = [
 	preload("res://assets/gun.png"),
 	preload("res://assets/gun2.png"),
+	preload("res://assets/flamet0.png"),
 ]
 
 # NOTE: Indended to be called via signals from `res://kit/kit.gd`

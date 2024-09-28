@@ -1,15 +1,15 @@
 extends Node2D
 
-var projectileload = preload("res://projectiles/basicprojectile.tscn")
+var projectileload
 
-var reload_time: float = 0.1
-var bullet_speed: int = 100
-var damage: int = 1
+var reload_time: float
+var bullet_speed: int
+var damage: int
+var range: int
+var pierce: int 
+var bullet_lifetime: float
+
 var is_ready: bool = true
-var range: int = 10
-var pierce: int = 1 
-var bullet_lifetime: float = 1.0
-
 var target_position: Vector2
 
 var enemy_array = []
