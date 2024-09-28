@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://towers/base/baset0.gd" id="1_g0dr6"]
 [ext_resource type="Texture2D" uid="uid://cr47motrs67d2" path="res://assets/gun2.png" id="2_x2wwc"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_iidsp"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_4gkwq"]
 
 [node name="BaseT1" type="Node2D"]
 texture_filter = 1
@@ -18,8 +18,10 @@ texture = ExtResource("2_x2wwc")
 scale = Vector2(5, 5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Range"]
+rotation = 0.785398
 scale = Vector2(1.25, 1.25)
-shape = SubResource("RectangleShape2D_iidsp")
+skew = 0.436332
+shape = SubResource("CircleShape2D_4gkwq")
 
 [connection signal="body_entered" from="Range" to="." method="_on_range_body_entered"]
 [connection signal="body_exited" from="Range" to="." method="_on_range_body_exited"]

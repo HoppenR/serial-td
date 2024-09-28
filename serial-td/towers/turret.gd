@@ -1,40 +1,50 @@
 extends Node2D
 
 var projectileload = preload("res://projectiles/basicprojectile.tscn")
+
 var reload_time: float = 0.1
 var bullet_speed: int = 100
 var damage: int = 1
-var isReady: bool = true
+var is_ready: bool = true
+var range: int = 10
+var pierce: int = 1 
+var bullet_lifetime: float = 1.0
 
-var targetPosition: Vector2
+var target_position: Vector2
 
-var enemyArray = []
+var enemy_array = []
+
+func _ready() -> void:
+	$Range/CollisionShape2D.shape.radius = range 
 
 func _physics_process(delta: float) -> void:
 	_turn()
-	if isReady and not enemyArray.is_empty():
+	if is_ready and not enemy_array.is_empty():
 		_shoot()
 
 func _turn() -> void:
-	if not enemyArray.is_empty():
-		targetPosition = enemyArray[0].global_position
+	if not enemy_array.is_empty():
+		target_position = enemy_array[0].global_position
 	
-	get_node("Sprite").look_at(targetPosition)
+	get_node("Sprite").look_at(target_position)
 
 func _shoot() -> void:
-	isReady = false
-	if not enemyArray.is_empty():
-		targetPosition = enemyArray[0].global_position
+	is_ready = false
+	if not enemy_array.is_empty():
+		target_position = enemy_array[0].global_position
 		
 	var projectile = projectileload.instantiate()
+
 	add_child(projectile)
-	projectile.look_at(targetPosition)
-	projectile.global_position = global_position
 
 	projectile.damage = damage
-	projectile.pierce = 3
+	projectile.pierce = pierce
 	projectile.speed = bullet_speed
-	projectile.lifeTime = 1.0
+	projectile.lifetime = bullet_lifetime
+
+	projectile.look_at(target_position)
+	projectile.global_position = global_position
+
 
 	var timer = Timer.new()
 	add_child(timer)
@@ -43,11 +53,12 @@ func _shoot() -> void:
 	timer.start(reload_time)
 	
 func _become_ready() -> void:
-	isReady = true
+	is_ready = true
 
-func _on_range_body_entered(body) -> void:
-	if body.name != "Kit":
-		enemyArray.append(body.get_parent())
+func _on_range_body_entered(body: Node2D) -> void:
+	#If not kit
+	if body != get_tree().get_root().get_node("World/Kit"):
+		enemy_array.append(body.get_parent())
 
 func _on_range_body_exited(body) -> void:
-	enemyArray.erase(body.get_parent())
+	enemy_array.erase(body.get_parent())
