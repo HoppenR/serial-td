@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://4hmfskbekvah"
-path="res://.godot/imported/fireprojectile.png-0b8ef5df983e434fac17a7b60de9b7ca.ctex"
+uid="uid://cjqx4gujri8y8"
+path="res://.godot/imported/saw2.png-3d2ed92d62e64c3d19f4384c03e35ab8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/fireprojectile.png"
-dest_files=["res://.godot/imported/fireprojectile.png-0b8ef5df983e434fac17a7b60de9b7ca.ctex"]
+source_file="res://assets/enemies/saw2.png"
+dest_files=["res://.godot/imported/saw2.png-3d2ed92d62e64c3d19f4384c03e35ab8.ctex"]
 
 [params]
 

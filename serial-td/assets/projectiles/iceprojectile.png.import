@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxu2j4r8io6k1"
-path="res://.godot/imported/meow.png-fc6a56ef5b4247f32e81aa2206f1e566.ctex"
+uid="uid://b8ui82ls3sxhp"
+path="res://.godot/imported/iceprojectile.png-0c2e978e0da88e311114201ea2023bd6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/meow.png"
-dest_files=["res://.godot/imported/meow.png-fc6a56ef5b4247f32e81aa2206f1e566.ctex"]
+source_file="res://assets/projectiles/iceprojectile.png"
+dest_files=["res://.godot/imported/iceprojectile.png-0c2e978e0da88e311114201ea2023bd6.ctex"]
 
 [params]
 

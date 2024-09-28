@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dyd4tduxl7eed"
-path="res://.godot/imported/fleg.png-c63bb8c376cb42eeebf11fa10386f19a.ctex"
+uid="uid://bolrslqwfmv44"
+path="res://.godot/imported/saw.png-9b0bafd76d72f51fa49f7f9776a40cc6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/fleg.png"
-dest_files=["res://.godot/imported/fleg.png-c63bb8c376cb42eeebf11fa10386f19a.ctex"]
+source_file="res://assets/enemies/saw.png"
+dest_files=["res://.godot/imported/saw.png-9b0bafd76d72f51fa49f7f9776a40cc6.ctex"]
 
 [params]
 

@@ -1,18 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://bo075tjgom5t0"]
+[gd_scene load_steps=4 format=3 uid="uid://d2aq0unj5cxxg"]
 
-[ext_resource type="Script" path="res://towers/base/baset0.gd" id="1_d08o4"]
-[ext_resource type="Texture2D" uid="uid://c57l7fltp4lfp" path="res://assets/towers/gun.png" id="2_g7y3t"]
+[ext_resource type="Script" path="res://towers/ice/icet0.gd" id="1_81ado"]
+[ext_resource type="Texture2D" uid="uid://d2co3h8h1dtsu" path="res://assets/towers/icet0.png" id="2_6s26i"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_34apt"]
 
-[node name="BaseT0" type="Node2D"]
+[node name="IceT0" type="Node2D"]
 texture_filter = 1
 scale = Vector2(0.5, 0.5)
-script = ExtResource("1_d08o4")
+script = ExtResource("1_81ado")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 scale = Vector2(2, 2)
-texture = ExtResource("2_g7y3t")
+texture = ExtResource("2_6s26i")
 
 [node name="Range" type="Area2D" parent="."]
 scale = Vector2(5, 5)

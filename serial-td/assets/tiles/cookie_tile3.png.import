@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cjqx4gujri8y8"
-path="res://.godot/imported/saw2.png-cd46e3c50caf414a06bac0e2f822241b.ctex"
+uid="uid://cmw0tv33vpqgq"
+path="res://.godot/imported/cookie_tile3.png-b726e392246b06d400249412871760d0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/saw2.png"
-dest_files=["res://.godot/imported/saw2.png-cd46e3c50caf414a06bac0e2f822241b.ctex"]
+source_file="res://assets/tiles/cookie_tile3.png"
+dest_files=["res://.godot/imported/cookie_tile3.png-b726e392246b06d400249412871760d0.ctex"]
 
 [params]
 

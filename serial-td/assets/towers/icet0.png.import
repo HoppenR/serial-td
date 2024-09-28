@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bttqibk68afj4"
-path="res://.godot/imported/cookie_tile1.png-d6b4b96a03b5d50cd66856da28e77db1.ctex"
+uid="uid://d2co3h8h1dtsu"
+path="res://.godot/imported/icet0.png-ced4d31433ad08a5651b343189e821ea.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/cookie_tile1.png"
-dest_files=["res://.godot/imported/cookie_tile1.png-d6b4b96a03b5d50cd66856da28e77db1.ctex"]
+source_file="res://assets/towers/icet0.png"
+dest_files=["res://.godot/imported/icet0.png-ced4d31433ad08a5651b343189e821ea.ctex"]
 
 [params]
 

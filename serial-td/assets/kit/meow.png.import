@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://de17drtinro73"
-path="res://.godot/imported/saw4.png-bf8ec5c2bcaf8de8f84a236459138271.ctex"
+uid="uid://bxu2j4r8io6k1"
+path="res://.godot/imported/meow.png-e890849d3e4d8f6c41dc271aeae42ba5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/saw4.png"
-dest_files=["res://.godot/imported/saw4.png-bf8ec5c2bcaf8de8f84a236459138271.ctex"]
+source_file="res://assets/kit/meow.png"
+dest_files=["res://.godot/imported/meow.png-e890849d3e4d8f6c41dc271aeae42ba5.ctex"]
 
 [params]
 

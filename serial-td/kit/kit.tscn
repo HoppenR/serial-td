@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dq8hn04occ7x5"]
 
 [ext_resource type="Script" path="res://kit/kit.gd" id="1_k5qee"]
-[ext_resource type="Texture2D" uid="uid://bxu2j4r8io6k1" path="res://assets/meow.png" id="2_sk31h"]
+[ext_resource type="Texture2D" uid="uid://bxu2j4r8io6k1" path="res://assets/kit/meow.png" id="2_77736"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2s37y"]
 size = Vector2(16, 16)
@@ -16,4 +16,4 @@ shape = SubResource("RectangleShape2D_2s37y")
 [node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
 texture_filter = 1
 position = Vector2(0, 1)
-texture = ExtResource("2_sk31h")
+texture = ExtResource("2_77736")
