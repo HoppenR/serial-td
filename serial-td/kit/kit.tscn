@@ -15,4 +15,5 @@ shape = SubResource("RectangleShape2D_2s37y")
 
 [node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
 texture_filter = 1
+position = Vector2(0, 1)
 texture = ExtResource("2_sk31h")
