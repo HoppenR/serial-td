@@ -16,6 +16,8 @@ script = ExtResource("1_tpbyc")
 texture = ExtResource("2_vjghr")
 
 [node name="Hitbox" type="CharacterBody2D" parent="."]
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(0, -1)

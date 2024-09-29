@@ -36,7 +36,7 @@ func _spawn_enemy() -> void:
 		return
 	var enemyName = enemies_to_spawn.pop_front()
 	var enemy = gamedata.enemies_from_string[enemyName].instantiate()
-	enemy.hp = gamedata.enemy_data[enemyName]["hp"] * gamedata.wave_data[current_wave]["hp_multiplier"] * heat
+	enemy.hp = gamedata.enemy_data[enemyName]["hp"] * heat
 	enemy.speed = gamedata.enemy_data[enemyName]["speed"] * gamedata.wave_data[current_wave]["speed_multiplier"] * heat
 	add_child(enemy)
 	enemies_alive.append(enemy)
