@@ -1,6 +1,6 @@
 extends Node2D
 
-var lifetime: float 
+var lifetime: float
 var speed: float
 var damage: int
 var pierce: int
@@ -21,7 +21,7 @@ func _start_life() -> void:
 
 func _shoot() -> void:
 	position += transform.x * speed
-	
+
 func _kill_self() -> void:
 	queue_free()
 

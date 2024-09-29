@@ -3,6 +3,7 @@ extends PathFollow2D
 var speed: int = 150
 var hp: int = 2
 
+signal enemy_dead(deal_damage: bool)
 
 # Use for elemental interractions?
 var on_fire: bool = false
@@ -15,7 +16,7 @@ func _ready() -> void:
 	# Use Kit's `_enemy_dead` handler
 	var kit_node = get_tree().get_root().get_node("World/Kit")
 	$Hitbox.add_collision_exception_with(kit_node)
-	connect("tree_exiting", kit_node._enemy_dead)
+	connect("enemy_dead", kit_node._enemy_dead)
 	fire_timer = Timer.new()
 	freeze_timer = Timer.new()
 	fire_timer.one_shot = true
@@ -28,7 +29,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	_move(delta)
 	if progress_ratio == 1:
-		# take damage here?
+		emit_signal("enemy_dead", true)
 		get_parent().enemies_alive.erase(self)
 		queue_free()
 
@@ -55,14 +56,14 @@ func take_damage(amount: int, damage_type) -> void:
 
 	hp -= amount
 	if hp < 1:
-		#emit_signal("enemy_died")
+		emit_signal("enemy_dead", false)
 		get_parent().enemies_alive.erase(self)
 		queue_free()
 		return
 
 func _extinquish() -> void:
 	on_fire = false
-	
+
 func _thaw() -> void:
 	frozen = false
 	speed *= 4
