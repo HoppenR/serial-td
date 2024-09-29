@@ -6,7 +6,7 @@ var reload_time: float
 var bullet_speed: int
 var damage: int
 var range: int
-var pierce: int 
+var pierce: int
 var bullet_lifetime: float
 
 var is_ready: bool = true
@@ -15,7 +15,7 @@ var target_position: Vector2
 var enemy_array = []
 
 func _ready() -> void:
-	$Range/RangeCollision.shape.radius = range 
+	$Range/RangeCollision.shape.radius = range
 
 func _physics_process(delta: float) -> void:
 	_turn()
@@ -25,14 +25,13 @@ func _physics_process(delta: float) -> void:
 func _turn() -> void:
 	if not enemy_array.is_empty():
 		target_position = enemy_array[0].global_position
-	
 	get_node("Sprite").look_at(target_position)
 
 func _shoot() -> void:
 	is_ready = false
 	if not enemy_array.is_empty():
 		target_position = enemy_array[0].global_position
-		
+
 	var projectile = projectileload.instantiate()
 
 	add_child(projectile)
@@ -51,7 +50,7 @@ func _shoot() -> void:
 	timer.one_shot = true
 	timer.connect("timeout", _become_ready)
 	timer.start(reload_time)
-	
+
 func _become_ready() -> void:
 	is_ready = true
 
