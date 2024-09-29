@@ -11,6 +11,7 @@ texture = ExtResource("1_wu2uw")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 0:0/0/custom_data_0 = true
+0:0/0/custom_data_1 = true
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4dxi2"]
 texture = ExtResource("3_tjn75")
@@ -29,6 +30,8 @@ tile_shape = 1
 tile_size = Vector2i(32, 16)
 custom_data_layer_0/name = "walkable"
 custom_data_layer_0/type = 1
+custom_data_layer_1/name = "placeable"
+custom_data_layer_1/type = 1
 sources/0 = SubResource("TileSetAtlasSource_hth1o")
 sources/1 = SubResource("TileSetAtlasSource_4dxi2")
 sources/2 = SubResource("TileSetAtlasSource_y16ln")

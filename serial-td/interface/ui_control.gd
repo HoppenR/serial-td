@@ -10,6 +10,7 @@ var tower_textures = [
 	preload("res://assets/towers/gun2.png"),
 	preload("res://assets/towers/flamet0.png"),
 	preload("res://assets/towers/icet0.png"),
+	preload("res://assets/towers/electrict0.png"),
 ]
 
 # NOTE: Indended to be called via signals from `res://kit/kit.gd`

@@ -1,15 +1,17 @@
 extends CharacterBody2D
 
-var baseTowers = [
+var base_towers = [
 	"baset0",
 	"baset1",
 	"firet0",
 	"icet0",
+	"electrict0",
 ]
 
 var health: int = 3
 
-@onready var tileMap: TileMapLayer = $"../PlayerTraversal"
+@onready var tilemap: TileMapLayer = $"../PlayerTraversal"
+
 var raycast
 
 var current_tower: int = 0
@@ -20,8 +22,8 @@ signal tower_changed(new_tower: int)
 signal gold_changed(new_gold: int)
 signal health_changed(new_health: int)
 
-var inputDirection: Vector2
-var prevInputDirection: Vector2 = Vector2.UP
+var input_direction: Vector2
+var previous_input_direction: Vector2 = Vector2.UP
 
 var moving: bool = false
 var tile_size: int = 16
@@ -32,72 +34,78 @@ func _ready() -> void:
 	raycast = $Raycast
 
 func _physics_process(delta: float) -> void:
-	inputDirection = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	input_direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 
-	if inputDirection:
-		prevInputDirection = inputDirection
+	if input_direction:
+		previous_input_direction = input_direction
+
+	input_direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	
+	if input_direction:
+		previous_input_direction = input_direction
 		if Input.is_action_pressed("ui_down"):
 			input_direction = Vector2.DOWN
 			_move()
-		if Input.is_action_pressed("ui_up"):
+		elif Input.is_action_pressed("ui_up"):
 			input_direction = Vector2.UP
 			_move()
-		if Input.is_action_pressed("ui_left"):
+		elif Input.is_action_pressed("ui_left"):
 			input_direction = Vector2.LEFT
 			_move()
-		if Input.is_action_pressed("ui_right"):
+		elif Input.is_action_pressed("ui_right"):
 			input_direction = Vector2.RIGHT
 			_move()
 		elif Input.is_action_pressed("ui_select"):
 			pass
 	if Input.is_action_just_pressed("ui_accept"):
-		current_tower = (current_tower + 1) % len(baseTowers)
+		current_tower = (current_tower + 1) % len(base_towers)
 		emit_signal("tower_changed", current_tower)
 	move_and_slide()
 
 func _input(event) -> void:
 	if event is InputEventMouseButton and event.is_pressed() and not moving:
-		var towerName = baseTowers[current_tower]
-		var cost = gamedata.tower_data[towerName]["cost"]
+		var tower_name = base_towers[current_tower]
+		var cost = gamedata.tower_data[tower_name]["cost"]
 		if gold >= cost:
-			tower = gamedata.towers_from_string[baseTowers[current_tower]].instantiate()
+			tower = gamedata.towers_from_string[base_towers[current_tower]].instantiate()
 			if not _place_tower(tower):
 				tower.queue_free()
 				return
 			_set_gold(gold - cost)
-			tower.reload_time = gamedata.tower_data[towerName]["reload_time"]
-			tower.damage = gamedata.tower_data[towerName]["damage"]
-			tower.bullet_speed = gamedata.tower_data[towerName]["bullet_speed"]
-			tower.pierce = gamedata.tower_data[towerName]["pierce"]
-			tower.range = gamedata.tower_data[towerName]["range"]
-			tower.bullet_lifetime = gamedata.tower_data[towerName]["bullet_lifetime"]
+			tower.reload_time = gamedata.tower_data[tower_name]["reload_time"]
+			tower.damage = gamedata.tower_data[tower_name]["damage"]
+			tower.bullet_speed = gamedata.tower_data[tower_name]["bullet_speed"]
+			tower.pierce = gamedata.tower_data[tower_name]["pierce"]
+			tower.range = gamedata.tower_data[tower_name]["range"]
+			tower.bullet_lifetime = gamedata.tower_data[tower_name]["bullet_lifetime"]
 			get_parent().add_child(tower)
 
 # Make exclusive tile type placements for towers,
 # i.e, make some towers have the ability to be placed
 # on water, while others not
-func _place_tower(towerToPlace) -> bool:
-	var place_offset: Vector2 = _get_next_tile(prevInputDirection)
-	var next_tile: Vector2i = tileMap.local_to_map(Vector2(global_position.x + place_offset.x, global_position.y + place_offset.y + tile_size / 2))
-	var tile_data: TileData = tileMap.get_cell_tile_data(next_tile)
+func _place_tower(tower_to_place) -> bool:
+	var place_offset: Vector2 = _get_next_tile(previous_input_direction)
+	var next_tile: Vector2i = tilemap.local_to_map(Vector2(global_position.x + place_offset.x, global_position.y + place_offset.y + tile_size / 2))
+	var tile_data: TileData = tilemap.get_cell_tile_data(next_tile)
 
 	raycast.target_position = Vector2(place_offset.x, place_offset.y + tile_size / 2)
 	raycast.force_raycast_update()
 
 	# Change to placeable
-	if not tile_data or not tile_data.get_custom_data("walkable") or raycast.is_colliding():
+	if not tile_data or not tile_data.get_custom_data("placeable") or raycast.is_colliding():
 		return false
-
-	towerToPlace.global_position = position + place_offset
+	
+	tower_to_place.global_position = position + place_offset
 	return true
 
 func _move() -> void:
 	if moving:
 		return
 
-	var move_offset: Vector2 = _get_next_tile(inputDirection)
-	var next_tile: Vector2i = tileMap.local_to_map(Vector2(global_position.x + move_offset.x, global_position.y + move_offset.y + tile_size / 2))
-	var tile_data: TileData = tileMap.get_cell_tile_data(next_tile)
+	var move_offset: Vector2 = _get_next_tile(input_direction)
+	var next_tile: Vector2i = tilemap.local_to_map(Vector2(global_position.x + move_offset.x, global_position.y + move_offset.y + tile_size / 2))
+	
+	var tile_data: TileData = tilemap.get_cell_tile_data(next_tile)
 
 	raycast.target_position = Vector2(move_offset.x, move_offset.y + tile_size / 2)
 	raycast.force_raycast_update()
