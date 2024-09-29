@@ -4,16 +4,19 @@
 [ext_resource type="Texture2D" uid="uid://bxu2j4r8io6k1" path="res://assets/kit/meow.png" id="2_77736"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2s37y"]
-size = Vector2(16, 16)
+size = Vector2(8, 8)
 
 [node name="Kit" type="CharacterBody2D"]
 position = Vector2(32, -16)
 script = ExtResource("1_k5qee")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_2s37y")
-
-[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(0, 1)
 texture = ExtResource("2_77736")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_2s37y")
+
+[node name="Raycast" type="RayCast2D" parent="."]
+target_position = Vector2(16, 16)

@@ -15,7 +15,7 @@ var target_position: Vector2
 var enemy_array = []
 
 func _ready() -> void:
-	$Range/CollisionShape2D.shape.radius = range 
+	$Range/RangeCollision.shape.radius = range 
 
 func _physics_process(delta: float) -> void:
 	_turn()

@@ -76,7 +76,7 @@ var tower_data = {
 	},
 	"icet0": {
 		"damage": 61,
-		"cost": 100,
+		"cost": 800,
 		"range": 50,
 		"pierce": 30,
 		"reload_time": 4.25,
@@ -111,61 +111,51 @@ var enemy_data = {
 var wave_data = {
 	1: {
 		"enemies": ["saw1"],
-		"hp_multiplier": 1,
 		"speed_multiplier": 1,
 		"spawn_speed": 3,
 	},
 	2: {
 		"enemies": ["saw1", "saw1"],
-		"hp_multiplier": 1.2,
 		"speed_multiplier": 1.4,
 		"spawn_speed": 1,
 	},
 	3: {
 		"enemies": ["saw1", "saw1", "saw1"],
-		"hp_multiplier": 1.4,
 		"speed_multiplier": 1.4,
 		"spawn_speed": 1,
 	},
 	4: {
 		"enemies": ["saw1", "saw1", "saw1", "saw1"],
-		"hp_multiplier": 2,
 		"speed_multiplier": 1.5,
 		"spawn_speed": 2,
 	},
 	5: {
 		"enemies": ["saw1", "saw1", "saw2", "saw2", "saw1"],
-		"hp_multiplier": 1,
 		"speed_multiplier": 1,
 		"spawn_speed": 1.5,
 	},
 	6: {
 		"enemies": ["saw1", "saw1", "saw1", "saw1", "saw1", "saw1", "saw1", "saw1", "saw1",],
-		"hp_multiplier": 1,
 		"speed_multiplier": 1,
 		"spawn_speed": 0.2,
 	},
 	7: {
 		"enemies": ["saw3"],
-		"hp_multiplier": 1,
 		"speed_multiplier": 0.4,
 		"spawn_speed": 2,
 	},
 	8: {
 		"enemies": ["saw2", "saw2", "saw2", "saw2", "saw2", "saw2", "saw2", "saw2", "saw2"],
-		"hp_multiplier": 0.8,
 		"speed_multiplier": 1,
 		"spawn_speed": 0.2,
 	},
 	9: {
 		"enemies": ["saw1", "saw1", "saw3", "saw1", "saw1"],
-		"hp_multiplier": 1,
 		"speed_multiplier": 0.6,
 		"spawn_speed": 0.1,
 	},
 	10: {
 		"enemies": ["saw3", "saw2", "saw3", "saw2", "saw3"],
-		"hp_multiplier": 1.2,
 		"speed_multiplier": 1,
 		"spawn_speed": 1,
 	}

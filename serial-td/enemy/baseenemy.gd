@@ -44,6 +44,9 @@ func take_damage(amount: int, damage_type) -> void:
 			if not on_fire:
 				on_fire = true
 				fire_timer.start(0.3)
+				if frozen:
+					freeze_timer.stop()
+					_thaw()
 		gamedata.damage_type.ICE:
 			if not frozen and not on_fire:
 				frozen = true

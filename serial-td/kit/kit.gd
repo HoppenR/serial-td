@@ -8,14 +8,18 @@ var baseTowers = [
 ]
 
 @onready var tileMap: TileMapLayer = $"../PlayerTraversal"
+var raycast
 
 var input_direction: Vector2
 var prev_input_direction: Vector2 = Vector2.UP
 
 var moving: bool = false
-var tileSize: int = 16
+var tile_size: int = 16
 var tower_placement_range: int = 32
 var tower
+
+func _ready() -> void:
+	raycast = $Raycast
 
 func _physics_process(delta: float) -> void:
 	input_direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
@@ -42,11 +46,14 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func _input(event) -> void:
-	if event is InputEventMouseButton and not moving:
+	if event is InputEventMouseButton and event.is_pressed() and not moving:
 		var towerName = baseTowers[currentTower]
 		var cost = gamedata.tower_data[towerName]["cost"]
 		if gold >= cost:
 			tower = gamedata.towers_from_string[baseTowers[currentTower]].instantiate()
+			if not _place_tower(tower):
+				tower.queue_free()
+				return
 			_set_gold(gold - cost)
 			tower.reload_time = gamedata.tower_data[towerName]["reload_time"]
 			tower.damage = gamedata.tower_data[towerName]["damage"]
@@ -55,32 +62,38 @@ func _input(event) -> void:
 			tower.range = gamedata.tower_data[towerName]["range"]
 			tower.bullet_lifetime = gamedata.tower_data[towerName]["bullet_lifetime"]
 			get_parent().add_child(tower)
-			_place_tower(tower)
 
 # Make exclusive tile type placements for towers,
 # i.e, make some towers have the ability to be placed
 # on water, while others not
-func _place_tower(towerToPlace) -> void:
-	var placeOffset: Vector2 = _get_next_tile(prev_input_direction)
-	var next_tile: Vector2i = tileMap.local_to_map(Vector2(global_position.x + placeOffset.x, global_position.y + placeOffset.y + tileSize / 2))
+func _place_tower(towerToPlace) -> bool:
+	var place_offset: Vector2 = _get_next_tile(prevInputDirection)
+	var next_tile: Vector2i = tileMap.local_to_map(Vector2(global_position.x + place_offset.x, global_position.y + place_offset.y + tile_size / 2))
 	var tile_data: TileData = tileMap.get_cell_tile_data(next_tile)
 
+	raycast.target_position = Vector2(place_offset.x, place_offset.y + tile_size / 2)
+	raycast.force_raycast_update()
+
 	# Change to placeable
-	if not tile_data or not tile_data.get_custom_data("walkable"):
-		return
+	if not tile_data or not tile_data.get_custom_data("walkable") or raycast.is_colliding():
+		return false
 	
-	towerToPlace.global_position = position + placeOffset
+	towerToPlace.global_position = position + place_offset
+	return true
 
 func _move() -> void:
 	if moving:
 		return
 
-	var move_offset: Vector2 = _get_next_tile(input_direction)	
-	var next_tile: Vector2i = tileMap.local_to_map(Vector2(global_position.x + move_offset.x, global_position.y + move_offset.y + tileSize / 2))
+	var move_offset: Vector2 = _get_next_tile(inputDirection)
+	var next_tile: Vector2i = tileMap.local_to_map(Vector2(global_position.x + move_offset.x, global_position.y + move_offset.y + tile_size / 2))
 	
 	var tile_data: TileData = tileMap.get_cell_tile_data(next_tile)
+
+	raycast.target_position = Vector2(move_offset.x, move_offset.y + tile_size / 2)
+	raycast.force_raycast_update()
 	
-	if not tile_data or not tile_data.get_custom_data("walkable"):
+	if not tile_data or not tile_data.get_custom_data("walkable") or raycast.is_colliding():
 		return
 	
 	moving = true
@@ -94,13 +107,13 @@ func _move_false() -> void:
 func _get_next_tile(direction: Vector2) -> Vector2:
 	var offset
 	if direction == Vector2.RIGHT:
-		offset = Vector2(tileSize, tileSize / 2)
+		offset = Vector2(tile_size, tile_size / 2)
 	elif direction == Vector2.UP:
-		offset = Vector2(tileSize, -tileSize / 2)
+		offset = Vector2(tile_size, -tile_size / 2)
 	elif direction == Vector2.LEFT:
-		offset = Vector2(-tileSize, -tileSize / 2)
+		offset = Vector2(-tile_size, -tile_size / 2)
 	elif direction == Vector2.DOWN:
-		offset = Vector2(-tileSize, tileSize / 2)
+		offset = Vector2(-tile_size, tile_size / 2)
 	return offset
 
 func _set_gold(new_gold: int) -> void:
