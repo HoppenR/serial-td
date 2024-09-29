@@ -21,6 +21,8 @@ var gold: int = 500
 signal tower_changed(new_tower: int)
 signal gold_changed(new_gold: int)
 signal health_changed(new_health: int)
+# NOTE: `res://path/tilemap.gd`
+signal select_tile(position: Vector2)
 
 var input_direction: Vector2
 var previous_input_direction: Vector2 = Vector2.UP
@@ -55,12 +57,14 @@ func _physics_process(delta: float) -> void:
 		elif Input.is_action_pressed("ui_right"):
 			input_direction = Vector2.RIGHT
 			_move()
-		elif Input.is_action_pressed("ui_select"):
-			pass
+		
 	if Input.is_action_just_pressed("ui_accept"):
 		current_tower = (current_tower + 1) % len(base_towers)
 		emit_signal("tower_changed", current_tower)
 	move_and_slide()
+	var highlight_offset: Vector2 = _get_next_tile(previous_input_direction)
+	var highlight_tile: Vector2i = tilemap.local_to_map(Vector2(global_position.x + highlight_offset.x, global_position.y + highlight_offset.y + tile_size / 2))
+	emit_signal("select_tile", highlight_tile)
 
 func _input(event) -> void:
 	if event is InputEventMouseButton and event.is_pressed() and not moving:
@@ -104,7 +108,6 @@ func _move() -> void:
 
 	var move_offset: Vector2 = _get_next_tile(input_direction)
 	var next_tile: Vector2i = tilemap.local_to_map(Vector2(global_position.x + move_offset.x, global_position.y + move_offset.y + tile_size / 2))
-	
 	var tile_data: TileData = tilemap.get_cell_tile_data(next_tile)
 
 	raycast.target_position = Vector2(move_offset.x, move_offset.y + tile_size / 2)
@@ -116,22 +119,20 @@ func _move() -> void:
 	moving = true
 	var tween = create_tween()
 	tween.tween_property(self, "position", position + move_offset, 0.1)
-	tween.connect("finished", _move_false)
-
-func _move_false() -> void:
-	moving = false
+	tween.connect("finished", func(): moving = false)
 
 func _get_next_tile(direction: Vector2) -> Vector2:
-	var offset
 	if direction == Vector2.RIGHT:
-		offset = Vector2(tile_size, tile_size / 2)
+		return Vector2(tile_size, tile_size / 2)
 	elif direction == Vector2.UP:
-		offset = Vector2(tile_size, -tile_size / 2)
+		return Vector2(tile_size, -tile_size / 2)
 	elif direction == Vector2.LEFT:
-		offset = Vector2(-tile_size, -tile_size / 2)
+		return Vector2(-tile_size, -tile_size / 2)
 	elif direction == Vector2.DOWN:
-		offset = Vector2(-tile_size, tile_size / 2)
-	return offset
+		return Vector2(-tile_size, tile_size / 2)
+	else:
+		print("Bad direction", direction)
+		return Vector2(0, 0)
 
 func _set_gold(new_gold: int) -> void:
 	if gold != new_gold:
