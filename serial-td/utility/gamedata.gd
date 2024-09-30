@@ -127,53 +127,97 @@ var enemy_data = {
 
 var wave_data = {
 	1: {
-		"enemies": ["saw1"],
-		"speed_multiplier": 1,
-		"spawn_speed": 3,
+		"enemies": [ 
+					 ["saw1", 10]
+				   ],
 	},
 	2: {
-		"enemies": ["saw1", "saw1"],
-		"speed_multiplier": 1.4,
-		"spawn_speed": 1,
+		"enemies": [ 
+					 ["saw1", 0.5], 
+					 ["saw1", 0.5],
+					 ["saw1", 0.5],
+					 ["saw1", 0.5],
+					 ["saw1", 0.5],
+				   ],
 	},
 	3: {
-		"enemies": ["saw1", "saw1", "saw1"],
-		"speed_multiplier": 1.4,
-		"spawn_speed": 1,
+		"enemies": [ 
+					 ["saw1", 0.3],
+					 ["saw1", 0.3], 
+					 ["saw1", 0.3],
+					 ["saw3", 0.3],
+					 ["saw1", 0.3],
+					 ["saw1", 0.3],
+					 ["saw1", 0.3],
+				   ],
 	},
 	4: {
-		"enemies": ["saw1", "saw1", "saw1", "saw1"],
-		"speed_multiplier": 1.5,
-		"spawn_speed": 2,
+		"enemies": [ 
+					 ["saw3", 0.5],
+					 ["saw3", 0.2],
+					 ["saw3", 0.5],
+					 ["saw3", 0.2],
+				   ],
 	},
 	5: {
-		"enemies": ["saw1", "saw1", "saw2", "saw2", "saw1"],
-		"speed_multiplier": 1,
-		"spawn_speed": 1.5,
+		"enemies": [ 
+					 ["saw3", 0.2],
+					 ["saw3", 0.2],
+					 ["saw3", 0.2],
+					 ["saw3", 0.2],
+					 ["saw3", 0.2],
+					 ["saw3", 0.2],
+				   ],
 	},
 	6: {
-		"enemies": ["saw1", "saw1", "saw1", "saw1", "saw1", "saw1", "saw1", "saw1", "saw1",],
-		"speed_multiplier": 1,
-		"spawn_speed": 0.2,
+		"enemies": [ 
+					 ["saw2", 0.5],
+					 ["saw2", 0.5],
+					 ["saw2", 0.5],
+					 ["saw2", 0.5],
+					 ["saw2", 0.5],
+					 ["saw2", 0.5],
+				   ],
 	},
+
 	7: {
-		"enemies": ["saw3"],
-		"speed_multiplier": 0.4,
-		"spawn_speed": 2,
+		"enemies": [ 
+					 ["saw1", 0.5],
+					 ["saw1", 0.5],
+					 ["saw4", 0.5],
+					 ["saw1", 0.5],
+					 ["saw1", 0.5],
+				   ],
 	},
+
 	8: {
-		"enemies": ["saw2", "saw2", "saw2", "saw2", "saw2", "saw2", "saw2", "saw2", "saw2"],
-		"speed_multiplier": 1,
-		"spawn_speed": 0.2,
+		"enemies": [ 
+					 ["saw3", 0.5],
+					 ["saw2", 0.5],
+					 ["saw4", 0.5],
+					 ["saw2", 0.5],
+					 ["saw3", 0.5],
+				   ],
 	},
 	9: {
-		"enemies": ["saw1", "saw1", "saw3", "saw1", "saw1"],
-		"speed_multiplier": 0.6,
-		"spawn_speed": 0.1,
+		"enemies": [ 
+					 ["saw4", 0.5],
+					 ["saw4", 0.5],
+					 ["saw4", 0.5],
+				   ],
 	},
 	10: {
-		"enemies": ["saw3", "saw2", "saw3", "saw2", "saw3"],
-		"speed_multiplier": 1,
-		"spawn_speed": 1,
-	}
+		"enemies": [ 
+					 ["saw2", 0.1],
+					 ["saw2", 0.1],
+					 ["saw2", 0.1],
+					 ["saw2", 0.1],
+					 ["saw2", 0.1],
+					 ["saw2", 0.1],
+					 ["saw4", 0.5],
+					 ["saw4", 0.5],
+					 ["saw4", 0.5],
+					 ["saw4", 0.5],
+				   ],
+	},
 }
