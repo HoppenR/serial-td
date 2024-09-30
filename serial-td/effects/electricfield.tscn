@@ -1,8 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://bw12iqksmcox0"]
+[gd_scene load_steps=4 format=3 uid="uid://bw12iqksmcox0"]
 
 [ext_resource type="Script" path="res://effects/electricfield.gd" id="1_u8l71"]
+[ext_resource type="Texture2D" uid="uid://w0y6wmbisjqi" path="res://assets/effects/electricfieldeffect.png" id="2_oan5t"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_w1nof"]
+radius = 25.0
 
 [node name="Range" type="Area2D"]
 rotation = 0.785398
@@ -12,7 +14,16 @@ collision_mask = 2
 script = ExtResource("1_u8l71")
 
 [node name="RangeCollision" type="CollisionShape2D" parent="."]
+position = Vector2(0.377378, -0.780206)
 shape = SubResource("CircleShape2D_w1nof")
+
+[node name="Sprite2D" type="Sprite2D" parent="RangeCollision"]
+auto_translate_mode = 1
+texture_filter = 1
+position = Vector2(-8.9407e-08, 0)
+rotation = 0.436332
+scale = Vector2(3.00742, 2.81944)
+texture = ExtResource("2_oan5t")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

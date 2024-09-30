@@ -19,6 +19,7 @@ var electrict0 = preload("res://towers/electric/electrict0.tscn")
 #Effects
 var electricfield = preload("res://effects/electricfield.tscn")
 var fire = preload("res://effects/fire.tscn")
+var frozen = preload("res://effects/frozen.tscn")
 
 enum damage_type {
 	STANDARD,

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3gepjwu3di3k"]
+
+[ext_resource type="Texture2D" uid="uid://c71jibe4e8mjq" path="res://assets/effects/frozeneffect.png" id="1_ffnnw"]
+
+[node name="Frozen" type="Sprite2D"]
+texture_filter = 1
+texture = ExtResource("1_ffnnw")

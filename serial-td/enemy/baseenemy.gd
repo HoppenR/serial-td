@@ -12,6 +12,8 @@ var fire_timer
 var frozen: bool = false
 var freeze_timer
 
+var shocked: bool = false
+
 func _ready() -> void:
 	# Use Kit's `_enemy_dead` handler
 	var kit_node = get_tree().get_root().get_node("World/Kit")
@@ -52,11 +54,15 @@ func take_damage(amount: int, damage_type) -> void:
 			if not frozen and not on_fire:
 				frozen = true
 				freeze_timer.start(4.5)
+				var ice = gamedata.frozen.instantiate()
+				call_deferred("add_child", ice)
 				speed /= 4
 		gamedata.damage_type.ELECTRICITY:
-			var field = gamedata.electricfield.instantiate()
-			field.damage = amount
-			call_deferred("add_child", field)
+			if not shocked:
+				shocked = true
+				var field = gamedata.electricfield.instantiate()
+				field.damage = amount
+				call_deferred("add_child", field)
 			
 	hp -= amount
 	if hp < 1:
@@ -72,3 +78,4 @@ func _extinquish() -> void:
 func _thaw() -> void:
 	frozen = false
 	speed *= 4
+	$Frozen.queue_free()
