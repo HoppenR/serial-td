@@ -8,7 +8,7 @@ var base_towers = [
 	"electrict0",
 ]
 
-var health: int = 3
+var health: int = 100
 
 @onready var tilemap: TileMapLayer = $"../PlayerTraversal"
 
@@ -140,7 +140,7 @@ func _set_gold(new_gold: int) -> void:
 		emit_signal("gold_changed", gold)
 
 func _set_health(new_health: int) -> void:
-	if new_health == 0:
+	if new_health < 1:
 		# TODO: Death screen
 		get_tree().quit()
 	else:
@@ -149,8 +149,8 @@ func _set_health(new_health: int) -> void:
 
 # This is connected to `res://enemy/baseenemy.tscn->BaseEnemy` on tree_exiting
 # event, via the corresponding .gd script.
-func _enemy_dead(take_damage: bool) -> void:
+func _enemy_dead(take_damage: bool, enemy_hp: int) -> void:
 	if take_damage:
-		_set_health(health - 1)
+		_set_health(health - enemy_hp)
 	else:
 		_set_gold(gold + 20)

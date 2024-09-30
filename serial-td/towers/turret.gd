@@ -44,7 +44,6 @@ func _shoot() -> void:
 	projectile.look_at(target_position)
 	projectile.global_position = global_position
 
-
 	var timer = Timer.new()
 	add_child(timer)
 	timer.one_shot = true
@@ -55,9 +54,7 @@ func _become_ready() -> void:
 	is_ready = true
 
 func _on_range_body_entered(body: Node2D) -> void:
-	#If not kit
-	if body != get_tree().get_root().get_node("World/Kit"):
-		enemy_array.append(body.get_parent())
+	enemy_array.append(body.get_parent())
 
 func _on_range_body_exited(body) -> void:
 	enemy_array.erase(body.get_parent())

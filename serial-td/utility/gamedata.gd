@@ -16,6 +16,10 @@ var icet0 = preload("res://towers/ice/icet0.tscn")
 
 var electrict0 = preload("res://towers/electric/electrict0.tscn")
 
+#Effects
+var electricfield = preload("res://effects/electricfield.tscn")
+var fire = preload("res://effects/fire.tscn")
+
 enum damage_type {
 	STANDARD,
 	FIRE,
@@ -87,7 +91,7 @@ var tower_data = {
 		"bullet_lifetime": 1.0,
 	},
 	"electrict0": {
-		"damage": 10,
+		"damage": 3,
 		"cost": 100,
 		"range": 10,
 		"pierce": 1,
