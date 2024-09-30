@@ -3,7 +3,7 @@ extends PathFollow2D
 var speed: int = 150
 var hp: int = 2
 
-signal enemy_dead(deal_damage: bool)
+signal enemy_dead(deal_damage: bool, enemy_hp: int)
 
 # Use for elemental interractions?
 var on_fire: bool = false
@@ -29,7 +29,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	_move(delta)
 	if progress_ratio == 1:
-		emit_signal("enemy_dead", true)
+		emit_signal("enemy_dead", true, hp)
 		get_parent().enemies_alive.erase(self)
 		queue_free()
 
@@ -37,14 +37,14 @@ func _move(delta: float) -> void:
 	set_progress(get_progress() + speed * delta)
 
 func take_damage(amount: int, damage_type) -> void:
-	if on_fire:
-		amount *= 2
-
 	match damage_type:
 		gamedata.damage_type.FIRE:
 			if not on_fire:
 				on_fire = true
 				fire_timer.start(0.3)
+				var fire = gamedata.fire.instantiate()
+				fire.damage = amount
+				call_deferred("add_child", fire)
 				if frozen:
 					freeze_timer.stop()
 					_thaw()
@@ -53,16 +53,21 @@ func take_damage(amount: int, damage_type) -> void:
 				frozen = true
 				freeze_timer.start(4.5)
 				speed /= 4
-
+		gamedata.damage_type.ELECTRICITY:
+			var field = gamedata.electricfield.instantiate()
+			field.damage = amount
+			call_deferred("add_child", field)
+			
 	hp -= amount
 	if hp < 1:
-		emit_signal("enemy_dead", false)
+		emit_signal("enemy_dead", false, 0)
 		get_parent().enemies_alive.erase(self)
 		queue_free()
 		return
 
 func _extinquish() -> void:
 	on_fire = false
+	$Fire.queue_free()
 
 func _thaw() -> void:
 	frozen = false

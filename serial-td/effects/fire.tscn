@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bff4hjkqqadri"]
+
+[ext_resource type="Texture2D" uid="uid://djp6xh0fbala0" path="res://assets/effects/fireeffect.png" id="1_gvgrf"]
+[ext_resource type="Script" path="res://effects/fire.gd" id="2_kutc5"]
+
+[node name="Fire" type="Sprite2D"]
+texture_filter = 1
+texture = ExtResource("1_gvgrf")
+script = ExtResource("2_kutc5")

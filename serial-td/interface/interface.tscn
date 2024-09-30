@@ -41,7 +41,7 @@ offset_bottom = 29.0
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
-text = "Life: 3"
+text = "Life: 100  "
 
 [node name="GoldLabel" type="Label" parent="InfoPanel"]
 layout_mode = 0
