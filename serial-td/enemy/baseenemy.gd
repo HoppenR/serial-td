@@ -56,13 +56,14 @@ func take_damage(amount: int, damage_type) -> void:
 				freeze_timer.start(4.5)
 				var ice = gamedata.frozen.instantiate()
 				call_deferred("add_child", ice)
-				speed /= 4
+				speed *= 0.25
 		gamedata.damage_type.ELECTRICITY:
 			if not shocked:
 				shocked = true
 				var field = gamedata.electricfield.instantiate()
 				field.damage = amount
 				call_deferred("add_child", field)
+				speed *= 0.7
 			
 	hp -= amount
 	if hp < 1:
