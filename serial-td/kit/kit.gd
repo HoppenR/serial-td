@@ -24,7 +24,7 @@ signal health_changed(new_health: int)
 # NOTE: `res://path/tilemap.gd`
 signal select_tile(position: Vector2)
 
-var input_direction: Vector2
+var input_direction: Vector2 = Vector2.UP
 var previous_input_direction: Vector2 = Vector2.UP
 
 var moving: bool = false
@@ -35,27 +35,19 @@ var tower
 func _ready() -> void:
 	raycast = $Raycast
 
-func _physics_process(delta: float) -> void:
-	input_direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-
-	if input_direction:
-		previous_input_direction = input_direction
-
-	input_direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("ui_down"):
+		input_direction = Vector2.DOWN
+	elif Input.is_action_just_pressed("ui_up"):
+		input_direction = Vector2.UP
+	elif Input.is_action_just_pressed("ui_left"):
+		input_direction = Vector2.LEFT
+	elif Input.is_action_just_pressed("ui_right"):
+		input_direction = Vector2.RIGHT
 	
-	if input_direction:
-		previous_input_direction = input_direction
-		if Input.is_action_pressed("ui_down"):
-			input_direction = Vector2.DOWN
-			_move()
-		elif Input.is_action_pressed("ui_up"):
-			input_direction = Vector2.UP
-			_move()
-		elif Input.is_action_pressed("ui_left"):
-			input_direction = Vector2.LEFT
-			_move()
-		elif Input.is_action_pressed("ui_right"):
-			input_direction = Vector2.RIGHT
+	if Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down"):
+		previous_input_direction = input_direction;
+		if not Input.is_action_pressed("ui_control"):
 			_move()
 		
 	if Input.is_action_just_pressed("ui_accept"):
