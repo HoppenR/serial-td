@@ -8,19 +8,14 @@ var base_towers = [
 	"electrict0",
 ]
 
-var health: int = 100
-
 @onready var tilemap: TileMapLayer = $"../PlayerTraversal"
 
 var raycast
 
 var current_tower: int = 0
-var gold: int = 500
 
 # NOTE: `res://interface/ui_control.gd`
 signal tower_changed(new_tower: int)
-signal gold_changed(new_gold: int)
-signal health_changed(new_health: int)
 # NOTE: `res://path/tilemap.gd`
 signal select_tile(position: Vector2)
 
@@ -62,12 +57,12 @@ func _input(event) -> void:
 	if event is InputEventMouseButton and event.is_pressed() and not moving:
 		var tower_name = base_towers[current_tower]
 		var cost = gamedata.tower_data[tower_name]["cost"]
-		if gold >= cost:
+		if Global.gold >= cost:
 			tower = gamedata.towers_from_string[base_towers[current_tower]].instantiate()
 			if not _place_tower(tower):
 				tower.queue_free()
 				return
-			_set_gold(gold - cost)
+			Global.set_gold(Global.gold - cost)
 			tower.reload_time = gamedata.tower_data[tower_name]["reload_time"]
 			tower.damage = gamedata.tower_data[tower_name]["damage"]
 			tower.bullet_speed = gamedata.tower_data[tower_name]["bullet_speed"]
@@ -126,23 +121,10 @@ func _get_next_tile(direction: Vector2) -> Vector2:
 		print("Bad direction", direction)
 		return Vector2(0, 0)
 
-func _set_gold(new_gold: int) -> void:
-	if gold != new_gold:
-		gold = new_gold
-		emit_signal("gold_changed", gold)
-
-func _set_health(new_health: int) -> void:
-	if new_health < 1:
-		# TODO: Death screen
-		get_tree().quit()
-	else:
-		health = new_health
-		emit_signal("health_changed", health)
-
 # This is connected to `res://enemy/baseenemy.tscn->BaseEnemy` on tree_exiting
 # event, via the corresponding .gd script.
 func _enemy_dead(take_damage: bool, enemy_hp: int) -> void:
 	if take_damage:
-		_set_health(health - enemy_hp)
+		Global.set_health(Global.health - enemy_hp)
 	else:
-		_set_gold(gold + 20)
+		Global.set_gold(Global.gold + 20)
