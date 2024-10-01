@@ -22,9 +22,10 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if enemies_alive.is_empty() and enemies_to_spawn.is_empty():
 		current_wave += 1
-		if current_wave > 10:
+		if current_wave > 2:
 			current_wave = 1
-			heat += 0.1
+			#heat += 0.1
+			get_tree().change_scene_to_file("res://level2.tscn")
 		print("Current wave: ", current_wave)
 		print("Heat: ", heat)
 		enemies_to_spawn = gamedata.wave_data[current_wave].enemies.duplicate()

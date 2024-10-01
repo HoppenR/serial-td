@@ -18,7 +18,7 @@ func _update_selected_tower(currentTower: int):
 	tower.texture = tower_textures[currentTower]
 
 func _update_gold_count(new_amount: int):
-	gold_text.text = "Gold: " + str(new_amount)
+	gold_text.text = "Gold: " + str(Global.gold)
 
 func _update_health_amount(new_health: int):
 	health_text.text = "Life: " + str(new_health)
@@ -28,8 +28,10 @@ func _ready() -> void:
 	# Selected tower preview
 	var kit_node = get_tree().get_root().get_node("World/Kit")
 	kit_node.connect("tower_changed", _update_selected_tower)
-	kit_node.connect("gold_changed", _update_gold_count)
-	kit_node.connect("health_changed", _update_health_amount)
+	Global.connect("gold_changed", _update_gold_count)
+	Global.connect("health_changed", _update_health_amount)
+	_update_gold_count(Global.gold)
+	_update_health_amount(Global.health)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
