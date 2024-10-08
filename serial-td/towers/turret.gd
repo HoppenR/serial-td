@@ -17,7 +17,7 @@ var enemy_array = []
 func _ready() -> void:
 	$Range/RangeCollision.shape.radius = range
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	_turn()
 	if is_ready and not enemy_array.is_empty():
 		_shoot()

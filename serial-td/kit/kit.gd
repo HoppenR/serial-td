@@ -8,6 +8,8 @@ var base_towers = [
 	"electrict0",
 ]
 
+var upgrade_interface = preload("res://interface/upgradeselection.tscn")
+
 @onready var tilemap: TileMapLayer = $"../PlayerTraversal"
 
 var raycast
@@ -28,6 +30,8 @@ var tower_placement_range: int = 32
 var tower
 
 func _ready() -> void:
+	var path_node = get_tree().get_root().get_node("World/EnemyPath")
+	path_node.connect("stage_changed", _stage_changed)
 	raycast = $Raycast
 
 func _process(delta: float) -> void:
@@ -128,3 +132,11 @@ func _enemy_dead(take_damage: bool, enemy_hp: int) -> void:
 		Global.set_health(Global.health - enemy_hp)
 	else:
 		Global.set_gold(Global.gold + 20)
+
+func _stage_changed() -> void:
+	var next_upgrade = upgrade_interface.instantiate()
+	add_child(next_upgrade);
+
+func _upgrade_applied() -> void:
+	var path_node = get_tree().get_root().get_node("World/EnemyPath")
+	path_node._next_stage()

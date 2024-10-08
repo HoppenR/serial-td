@@ -29,6 +29,28 @@ enum damage_type {
 	WATER,
 }
 
+var damage_data = {
+	damage_type.FIRE:  {
+		"damage": 2,
+		"duration": 1, 
+	},
+	damage_type.ICE:  {
+		"damage": 0,
+		"duration": 10, 
+	},
+	damage_type.ELECTRICITY:  {
+		"damage": 1,
+		"duration": 0, 
+		"range": 50, 
+	},
+}
+
+var upgrades = [
+	[preload("res://upgrades/firebuff.tscn"), 
+	 preload("res://assets/effects/fireeffect.png"),
+	 "Increases fire damage"],
+]
+
 var enemies_from_string = {
 	"saw1": saw1,
 	"saw2": saw2,
