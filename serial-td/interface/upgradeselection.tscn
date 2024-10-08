@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dkccdvgj6btga"]
+
+[ext_resource type="Script" path="res://interface/upgradeselection.gd" id="1_g22an"]
+
+[node name="UpgradeSelection" type="CanvasLayer"]
+script = ExtResource("1_g22an")

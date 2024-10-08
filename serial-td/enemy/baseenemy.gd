@@ -43,9 +43,9 @@ func take_damage(amount: int, damage_type) -> void:
 		gamedata.damage_type.FIRE:
 			if not on_fire:
 				on_fire = true
-				fire_timer.start(0.3)
+				fire_timer.start(gamedata.damage_data[damage_type]["duration"])
 				var fire = gamedata.fire.instantiate()
-				fire.damage = amount
+				fire.damage = gamedata.damage_data[damage_type]["damage"]
 				call_deferred("add_child", fire)
 				if frozen:
 					freeze_timer.stop()
@@ -53,7 +53,7 @@ func take_damage(amount: int, damage_type) -> void:
 		gamedata.damage_type.ICE:
 			if not frozen and not on_fire:
 				frozen = true
-				freeze_timer.start(4.5)
+				freeze_timer.start(gamedata.damage_data[damage_type]["duration"])
 				var ice = gamedata.frozen.instantiate()
 				call_deferred("add_child", ice)
 				speed *= 0.25
@@ -61,7 +61,7 @@ func take_damage(amount: int, damage_type) -> void:
 			if not shocked:
 				shocked = true
 				var field = gamedata.electricfield.instantiate()
-				field.damage = amount
+				field.damage = gamedata.damage_data[damage_type]["damage"]
 				call_deferred("add_child", field)
 				speed *= 0.7
 			

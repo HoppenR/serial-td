@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://drvsaj545am4f"]
+
+[ext_resource type="Script" path="res://interface/upgradecard.gd" id="1_lo1ou"]
+[ext_resource type="Texture2D" uid="uid://djp6xh0fbala0" path="res://assets/effects/fireeffect.png" id="2_iiu1o"]
+
+[node name="UpgradeCard" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_lo1ou")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_top = 2.0
+offset_right = 152.0
+offset_bottom = 50.0
+color = Color(0.162066, 0.162066, 0.162066, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 4.0
+offset_top = 6.0
+offset_right = 44.0
+offset_bottom = 46.0
+texture = ExtResource("2_iiu1o")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 50.0
+offset_right = 151.0
+offset_bottom = 49.0
+text = "Increase fire damage"
+autowrap_mode = 3
+justification_flags = 233

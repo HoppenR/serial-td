@@ -7,7 +7,7 @@ func _ready() -> void:
 	timer.one_shot = false
 	timer.connect("timeout", _deal_damage)
 	add_child(timer)
-	timer.start(0.5)
+	timer.start(0.25)
 
 func _deal_damage() -> void:
 	get_parent().take_damage(damage, gamedata.damage_type.FIRE)

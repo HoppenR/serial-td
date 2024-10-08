@@ -1,6 +1,5 @@
 extends Control
 
-
 @onready var tower = $SelectedTower
 @onready var gold_text = $InfoPanel/GoldLabel
 @onready var health_text = $InfoPanel/HealthLabel
