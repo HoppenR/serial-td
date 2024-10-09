@@ -2,9 +2,8 @@ extends CharacterBody2D
 
 var upgrade_interface = preload("res://interface/upgradeselection.tscn")
 
-@onready var tilemap: TileMapLayer = $"../PlayerTraversal"
-
-var raycast
+var raycast: RayCast2D
+var world: Node2D
 
 var current_tower: int = 0
 
@@ -29,9 +28,9 @@ var tower_placement_range: int = 32
 var tower
 
 func _ready() -> void:
-	var path_node = get_tree().get_root().get_node("World/EnemyPath")
-	path_node.connect("stage_changed", _stage_changed)
-	raycast = $Raycast
+	world = get_tree().root.get_node("World")
+	world.connect("stage_changed", _stage_changed)
+	raycast = get_node("Raycast")
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_down"):
@@ -55,7 +54,7 @@ func _process(delta: float) -> void:
 		emit_signal("tower_changed", tower, cost)
 	move_and_slide()
 	var highlight_offset: Vector2 = _get_next_tile(previous_input_direction)
-	var highlight_tile: Vector2i = tilemap.local_to_map(Vector2(global_position.x + highlight_offset.x, global_position.y + highlight_offset.y + tile_size / 2))
+	var highlight_tile: Vector2i = world.get_node("Highlight").local_to_map(Vector2(global_position.x + highlight_offset.x, global_position.y + highlight_offset.y + tile_size / 2))
 	emit_signal("select_tile", highlight_tile)
 
 func _input(event) -> void:
@@ -67,13 +66,13 @@ func _input(event) -> void:
 			if not _place_tower(tower):
 				tower.queue_free()
 				return
-			Global.set_gold(Global.gold - cost)
-			tower.reload_time = gamedata.tower_data[tower_var]["reload_time"]
-			tower.damage = gamedata.tower_data[tower_var]["damage"]
-			tower.bullet_speed = gamedata.tower_data[tower_var]["bullet_speed"]
-			tower.pierce = gamedata.tower_data[tower_var]["pierce"]
-			tower.range = gamedata.tower_data[tower_var]["range"]
-			tower.bullet_lifetime = gamedata.tower_data[tower_var]["bullet_lifetime"]
+			Global.gold -= cost
+			tower.reload_time = gamedata.tower_data[tower_name]["reload_time"]
+			tower.damage = gamedata.tower_data[tower_name]["damage"]
+			tower.bullet_speed = gamedata.tower_data[tower_name]["bullet_speed"]
+			tower.pierce = gamedata.tower_data[tower_name]["pierce"]
+			tower.range = gamedata.tower_data[tower_name]["range"]
+			tower.bullet_lifetime = gamedata.tower_data[tower_name]["bullet_lifetime"]
 			get_parent().add_child(tower)
 
 # Make exclusive tile type placements for towers,
@@ -81,14 +80,13 @@ func _input(event) -> void:
 # on water, while others not
 func _place_tower(tower_to_place) -> bool:
 	var place_offset: Vector2 = _get_next_tile(previous_input_direction)
-	var next_tile: Vector2i = tilemap.local_to_map(Vector2(global_position.x + place_offset.x, global_position.y + place_offset.y + tile_size / 2))
-	var tile_data: TileData = tilemap.get_cell_tile_data(next_tile)
+	var tile_data: TileData = world.get_cell_tile_data(Vector2(global_position.x + place_offset.x, global_position.y + place_offset.y + tile_size / 2))
 
 	raycast.target_position = Vector2(place_offset.x, place_offset.y + tile_size / 2)
 	raycast.force_raycast_update()
 
 	# Change to placeable
-	if not tile_data or not tile_data.get_custom_data("placeable") or raycast.is_colliding():
+	if not tile_data or not tile_data.get_custom_data("placeable") or $Raycast.is_colliding():
 		return false
 	
 	tower_to_place.global_position = position + place_offset
@@ -99,8 +97,7 @@ func _move() -> void:
 		return
 
 	var move_offset: Vector2 = _get_next_tile(input_direction)
-	var next_tile: Vector2i = tilemap.local_to_map(Vector2(global_position.x + move_offset.x, global_position.y + move_offset.y + tile_size / 2))
-	var tile_data: TileData = tilemap.get_cell_tile_data(next_tile)
+	var tile_data: TileData = world.get_cell_tile_data(Vector2(global_position.x + move_offset.x, global_position.y + move_offset.y + tile_size / 2))
 
 	raycast.target_position = Vector2(move_offset.x, move_offset.y + tile_size / 2)
 	raycast.force_raycast_update()
@@ -130,14 +127,13 @@ func _get_next_tile(direction: Vector2) -> Vector2:
 # event, via the corresponding .gd script.
 func _enemy_dead(take_damage: bool, enemy_hp: int) -> void:
 	if take_damage:
-		Global.set_health(Global.health - enemy_hp)
+		Global.health -= enemy_hp
 	else:
-		Global.set_gold(Global.gold + 20)
+		Global.gold += 20
 
 func _stage_changed() -> void:
 	var next_upgrade = upgrade_interface.instantiate()
 	add_child(next_upgrade);
 
-func _upgrade_applied() -> void:
-	var path_node = get_tree().get_root().get_node("World/EnemyPath")
-	path_node._next_stage()
+# func _upgrade_applied() -> void:
+# 	world._next_level()

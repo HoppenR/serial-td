@@ -1,0 +1,39 @@
+[gd_scene load_steps=8 format=3 uid="uid://ccsnccn5rdtx6"]
+
+[ext_resource type="Script" path="res://world/world.gd" id="1_j5y6i"]
+[ext_resource type="Texture2D" uid="uid://d18btduuf1ib" path="res://assets/tiles/cookie_selected.png" id="1_tup2o"]
+[ext_resource type="Script" path="res://path/highlightmap.gd" id="2_2t0cg"]
+[ext_resource type="PackedScene" uid="uid://dq8hn04occ7x5" path="res://kit/kit.tscn" id="3_32iba"]
+[ext_resource type="PackedScene" uid="uid://crkju7uebsnej" path="res://interface/interface.tscn" id="4_j75m7"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y5htk"]
+texture = ExtResource("1_tup2o")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_6w0fv"]
+tile_shape = 1
+tile_size = Vector2i(32, 16)
+sources/0 = SubResource("TileSetAtlasSource_y5htk")
+
+[node name="World" type="Node2D"]
+texture_filter = 2
+script = ExtResource("1_j5y6i")
+
+[node name="Highlight" type="TileMapLayer" parent="."]
+z_index = 1
+y_sort_enabled = true
+tile_set = SubResource("TileSet_6w0fv")
+script = ExtResource("2_2t0cg")
+
+[node name="Kit" parent="." instance=ExtResource("3_32iba")]
+texture_filter = 1
+position = Vector2(0, -8)
+
+[node name="Camera2D" type="Camera2D" parent="Kit"]
+position = Vector2(0, 8)
+zoom = Vector2(5, 5)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Interface" parent="CanvasLayer" instance=ExtResource("4_j75m7")]

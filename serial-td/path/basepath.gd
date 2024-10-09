@@ -2,18 +2,16 @@ extends Path2D
 
 var timer
 
+@onready var world = get_tree().root.get_node("World")
+
 # Send next wave when everything is dead
 var enemies_alive = []
 var enemies_to_spawn = []
 var waitForEnemies = false
 
 var current_wave: int = 1
-var current_level: int = 1
-var heat: float = 1
 
-var waiting = false
-
-signal stage_changed()
+var is_active = true
 
 func _ready() -> void:
 	enemies_to_spawn = gamedata.wave_data[current_wave]["enemies"]
@@ -23,38 +21,36 @@ func _ready() -> void:
 	timer.connect("timeout", _spawn_enemy)
 	timer.start(5.0)
 
+# Probably inefficient to check every frame?
+# Can use enemy dying event instead of _physics_process,
+# won't need `is_active` then, either
 func _physics_process(delta: float) -> void:
-	if enemies_alive.is_empty() and enemies_to_spawn.is_empty() and not waiting:
+	if not is_active:
+		return
+	# Check for next wave continuously…
+	if enemies_alive.is_empty() and enemies_to_spawn.is_empty():
 		current_wave += 1
-		if current_wave > 10:
-			heat += 0.2
-			current_wave = 0
-			current_level += 1
-			emit_signal("stage_changed")
+		if current_wave > 3:
 			timer.stop()
-			waiting = true
+			is_active = false
+			world.emit_signal("stage_changed")
+			current_wave = 1
 			return
-		print("Current wave: ", current_wave)
-		print("Heat: ", heat)
 		enemies_to_spawn = gamedata.wave_data[current_wave].enemies.duplicate()
 		timer.start(5.0)
-
 
 func _spawn_enemy() -> void:
 	if enemies_to_spawn.is_empty():
 		timer.stop()
 		return
-	var enemy_info = enemies_to_spawn.pop_front()
-	var enemy_var = enemy_info[0]
-	var enemy = gamedata.enemy_data[enemy_var]["node"].instantiate()
-	enemy.hp = gamedata.enemy_data[enemy_var]["hp"] * heat
-	enemy.speed = gamedata.enemy_data[enemy_var]["speed"] * heat
+	var enemyInfo = enemies_to_spawn.pop_front()
+	var enemyName = enemyInfo[0]
+	var enemy = gamedata.enemies_from_string[enemyName].instantiate()
+	enemy.z_index = 1
+	enemy.hp = gamedata.enemy_data[enemyName]["hp"] * Global.heat
+	enemy.speed = gamedata.enemy_data[enemyName]["speed"] * Global.heat
 	if enemy.speed > 550:
 		enemy.speed = 550
 	add_child(enemy)
 	enemies_alive.append(enemy)
-	timer.start(enemy_info[1])
-
-func _next_stage():
-	waiting = false
-	get_tree().change_scene_to_file("res://level" + str(current_level) + ".tscn")
+	timer.start(enemyInfo[1])
