@@ -9,12 +9,14 @@ anchors_preset = 0
 script = ExtResource("1_lo1ou")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
 offset_top = 2.0
 offset_right = 152.0
 offset_bottom = 50.0
 color = Color(0.162066, 0.162066, 0.162066, 1)
 
 [node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
 offset_left = 4.0
 offset_top = 6.0
 offset_right = 44.0
@@ -22,6 +24,7 @@ offset_bottom = 46.0
 texture = ExtResource("2_iiu1o")
 
 [node name="Label" type="Label" parent="."]
+layout_mode = 0
 offset_left = 50.0
 offset_right = 151.0
 offset_bottom = 49.0
