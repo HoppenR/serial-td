@@ -12,6 +12,7 @@ func _ready() -> void:
 		current_card.global_position = Vector2(get_viewport().size.x / 2, (get_viewport().size.y / 2) + i * 50)
 		cards.append(current_card)
 		add_child(current_card)
+	cards[selectedIndex]._select()
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ui_up"):

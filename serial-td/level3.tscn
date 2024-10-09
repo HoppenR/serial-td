@@ -49,6 +49,7 @@ tile_set = SubResource("TileSet_et4lp")
 
 [node name="Highlight" type="TileMapLayer" parent="."]
 y_sort_enabled = true
+texture_filter = 1
 tile_set = SubResource("TileSet_6w0fv")
 script = ExtResource("4_7u2sq")
 
