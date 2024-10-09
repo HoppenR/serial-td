@@ -32,23 +32,46 @@ enum damage_type {
 var damage_data = {
 	damage_type.FIRE:  {
 		"damage": 2,
-		"duration": 1, 
+		"damage_frequency": 0.25,
+		"duration": 1.0, 
+		"range": 0, 
+		"speed_debuff": 1,
 	},
 	damage_type.ICE:  {
 		"damage": 0,
-		"duration": 10, 
+		"damage_frequency": 1,
+		"duration": 10.0, 
+		"range": 0, 
+		"speed_debuff": 0.25,
 	},
 	damage_type.ELECTRICITY:  {
 		"damage": 1,
-		"duration": 0, 
-		"range": 50, 
+		"damage_frequency": 0.5,
+		"duration": 100.0, 
+		"range": 25, 
+		"speed_debuff": 0.9,
 	},
 }
 
 var upgrades = [
-	[preload("res://upgrades/firebuff.tscn"), 
+	[preload("res://upgrades/firedamagebuff.tscn"), 
 	 preload("res://assets/effects/fireeffect.png"),
-	 "Increases fire damage"],
+	 "Increases Fire damage"],
+	[preload("res://upgrades/firefrequencybuff.gd"), 
+	 preload("res://assets/effects/fireeffect.png"),
+	 "Increases Fire damage Frequency"],
+	[preload("res://upgrades/firedurationbuff.tscn"), 
+	 preload("res://assets/effects/fireeffect.png"),
+	 "Increases Fire duration"],
+	[preload("res://upgrades/electricdamagebuff.tscn"), 
+	 preload("res://assets/effects/electriceffect.png"),
+	 "Increases Electric damage"],
+	[preload("res://upgrades/electricfrequencybuff.tscn"), 
+	 preload("res://assets/effects/electriceffect.png"),
+	 "Increases Electric damage Frequency"],
+	[preload("res://upgrades/electricdurationbuff.tscn"), 
+	 preload("res://assets/effects/electriceffect.png"),
+	 "Increases Electric duration"],
 ]
 
 var enemies_from_string = {

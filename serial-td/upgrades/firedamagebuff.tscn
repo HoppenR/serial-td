@@ -1,12 +1,12 @@
 [gd_scene load_steps=2 format=3 uid="uid://dxvac370r2xw8"]
 
-[ext_resource type="Script" path="res://upgrades/firebuff.gd" id="1_ilpjm"]
+[ext_resource type="Script" path="res://upgrades/firedamagebuff.gd" id="1_7wwkf"]
 
-[node name="Firebuff" type="Control"]
+[node name="Firedamagebuff" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_ilpjm")
+script = ExtResource("1_7wwkf")
