@@ -12,21 +12,31 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_idbcy")
 
-[node name="SelectedTower" type="Sprite2D" parent="."]
+[node name="TowerPanel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 782.0
+offset_right = 200.0
+offset_bottom = 962.0
+
+[node name="SelectedTower" type="Sprite2D" parent="TowerPanel"]
 texture_filter = 1
-position = Vector2(82, 820)
+position = Vector2(90, 80)
 scale = Vector2(10, 10)
 texture = ExtResource("2_mmdrl")
 
-[node name="TowerPanel" type="Panel" parent="."]
+[node name="CostLabel" type="Label" parent="TowerPanel"]
 layout_mode = 0
-offset_top = 782.0
-offset_right = 160.0
-offset_bottom = 912.0
+offset_left = 5.0
+offset_top = 155.0
+offset_right = 64.0
+offset_bottom = 178.0
+text = "[Cost]"
 
 [node name="ButtonLabel" type="Label" parent="TowerPanel"]
 layout_mode = 0
-offset_right = 40.0
+offset_left = 5.0
+offset_right = 64.0
 offset_bottom = 23.0
 text = "[SPACE]"
 

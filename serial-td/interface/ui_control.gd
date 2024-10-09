@@ -1,6 +1,7 @@
 extends Control
 
-@onready var tower = $SelectedTower
+@onready var tower = $TowerPanel/SelectedTower
+@onready var tower_cost = $TowerPanel/CostLabel
 @onready var gold_text = $InfoPanel/GoldLabel
 @onready var health_text = $InfoPanel/HealthLabel
 
@@ -13,8 +14,10 @@ var tower_textures = [
 ]
 
 # NOTE: Indended to be called via signals from `res://kit/kit.gd`
-func _update_selected_tower(currentTower: int):
+func _update_selected_tower(currentTower: int, cost: int):
 	tower.texture = tower_textures[currentTower]
+	tower_cost.text = "Cost: " + str(cost) + " gold"
+	
 
 func _update_gold_count(new_amount: int):
 	gold_text.text = "Gold: " + str(Global.gold)
