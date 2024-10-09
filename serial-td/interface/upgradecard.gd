@@ -14,7 +14,7 @@ func _ready() -> void:
 	$ColorRect.color = Color.BLACK
 
 func _select() -> void:
-	$ColorRect.color = Color.ANTIQUE_WHITE
+	$ColorRect.color = Color.DARK_SALMON
 
 func _deselect() -> void:
 	$ColorRect.color = Color.BLACK

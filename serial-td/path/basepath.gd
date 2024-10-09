@@ -26,7 +26,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if enemies_alive.is_empty() and enemies_to_spawn.is_empty() and not waiting:
 		current_wave += 1
-		if current_wave > 10:
+		if current_wave > 2:
 			heat += 0.2
 			current_wave = 0
 			current_level += 1

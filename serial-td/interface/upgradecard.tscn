@@ -16,18 +16,22 @@ offset_bottom = 50.0
 color = Color(0.162066, 0.162066, 0.162066, 1)
 
 [node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
 layout_mode = 0
-offset_left = 4.0
-offset_top = 6.0
-offset_right = 44.0
-offset_bottom = 46.0
+offset_left = 6.0
+offset_top = 5.0
+offset_right = 46.0
+offset_bottom = 45.0
 texture = ExtResource("2_iiu1o")
 
 [node name="Label" type="Label" parent="."]
+texture_filter = 1
 layout_mode = 0
-offset_left = 50.0
-offset_right = 151.0
-offset_bottom = 49.0
+offset_left = 56.0
+offset_top = 6.0
+offset_right = 149.0
+offset_bottom = 46.0
+theme_override_font_sizes/font_size = 10
 text = "Increase fire damage"
 autowrap_mode = 3
 justification_flags = 233

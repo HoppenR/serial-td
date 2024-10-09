@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dxvac370r2xw8"]
 
-[ext_resource type="Script" path="res://upgrades/firedamagebuff.gd" id="1_7wwkf"]
+[ext_resource type="Script" path="res://upgrades/firebuffs/firedamagebuff.gd" id="1_7wwkf"]
 
 [node name="Firedamagebuff" type="Control"]
 layout_mode = 3

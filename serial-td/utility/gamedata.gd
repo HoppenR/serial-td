@@ -54,24 +54,27 @@ var damage_data = {
 }
 
 var upgrades = [
-	[preload("res://upgrades/firedamagebuff.tscn"), 
+	[preload("res://upgrades/firebuffs/firedamagebuff.tscn"), 
 	 preload("res://assets/effects/fireeffect.png"),
 	 "Increases Fire damage"],
-	[preload("res://upgrades/firefrequencybuff.gd"), 
+	[preload("res://upgrades/firebuffs/firefrequencybuff.tscn"), 
 	 preload("res://assets/effects/fireeffect.png"),
 	 "Increases Fire damage Frequency"],
-	[preload("res://upgrades/firedurationbuff.tscn"), 
+	[preload("res://upgrades/firebuffs/firedurationbuff.tscn"), 
 	 preload("res://assets/effects/fireeffect.png"),
 	 "Increases Fire duration"],
-	[preload("res://upgrades/electricdamagebuff.tscn"), 
+	[preload("res://upgrades/electricbuffs/electricdamagebuff.tscn"), 
 	 preload("res://assets/effects/electriceffect.png"),
 	 "Increases Electric damage"],
-	[preload("res://upgrades/electricfrequencybuff.tscn"), 
+	[preload("res://upgrades/electricbuffs/electricfrequencybuff.tscn"), 
 	 preload("res://assets/effects/electriceffect.png"),
 	 "Increases Electric damage Frequency"],
-	[preload("res://upgrades/electricdurationbuff.tscn"), 
+	[preload("res://upgrades/electricbuffs/electricdurationbuff.tscn"), 
 	 preload("res://assets/effects/electriceffect.png"),
 	 "Increases Electric duration"],
+	[preload("res://upgrades/electricbuffs/electricslowbuff.tscn"), 
+	 preload("res://assets/effects/electriceffect.png"),
+	 "Increases the slow effect of Electric"],
 ]
 
 var enemies_from_string = {
