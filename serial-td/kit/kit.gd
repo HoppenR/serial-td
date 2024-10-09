@@ -51,7 +51,9 @@ func _process(delta: float) -> void:
 		
 	if Input.is_action_just_pressed("ui_accept"):
 		current_tower = (current_tower + 1) % len(base_towers)
-		emit_signal("tower_changed", current_tower)
+		var tower_name = base_towers[current_tower]
+		var cost = gamedata.tower_data[tower_name]["cost"]
+		emit_signal("tower_changed", current_tower, cost)
 	move_and_slide()
 	var highlight_offset: Vector2 = _get_next_tile(previous_input_direction)
 	var highlight_tile: Vector2i = tilemap.local_to_map(Vector2(global_position.x + highlight_offset.x, global_position.y + highlight_offset.y + tile_size / 2))
