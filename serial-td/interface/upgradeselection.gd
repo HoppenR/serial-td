@@ -30,5 +30,5 @@ func _process(_delta: float) -> void:
 
 	if Input.is_action_just_pressed("ui_accept"):
 		cards[selectedIndex]._pick()
-		get_parent()._upgrade_applied()
+		#get_parent()._upgrade_applied()
 		queue_free()
