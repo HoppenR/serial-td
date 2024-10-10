@@ -5,17 +5,9 @@ extends Control
 @onready var gold_text = $InfoPanel/GoldLabel
 @onready var health_text = $InfoPanel/HealthLabel
 
-var tower_textures = [
-	preload("res://assets/towers/gun.png"),
-	preload("res://assets/towers/gun2.png"),
-	preload("res://assets/towers/flamet0.png"),
-	preload("res://assets/towers/icet0.png"),
-	preload("res://assets/towers/electrict0.png"),
-]
-
 # NOTE: Indended to be called via signals from `res://kit/kit.gd`
-func _update_selected_tower(currentTower: int, cost: int):
-	tower.texture = tower_textures[currentTower]
+func _update_selected_tower(currentTower, cost: int):
+	tower.texture = gamedata.tower_data[currentTower]["texture"]
 	tower_cost.text = "Cost: " + str(cost) + " gold"
 	
 

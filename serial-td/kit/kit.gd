@@ -1,13 +1,5 @@
 extends CharacterBody2D
 
-var base_towers = [
-	"baset0",
-	"baset1",
-	"firet0",
-	"icet0",
-	"electrict0",
-]
-
 var upgrade_interface = preload("res://interface/upgradeselection.tscn")
 
 @onready var tilemap: TileMapLayer = $"../PlayerTraversal"
@@ -15,6 +7,13 @@ var upgrade_interface = preload("res://interface/upgradeselection.tscn")
 var raycast
 
 var current_tower: int = 0
+
+var base_towers = [
+	gamedata.towers.BASE_T0,
+	gamedata.towers.FLAME_T0,
+	gamedata.towers.ELECTRIC_T0,
+	gamedata.towers.ICE_T0,
+]
 
 # NOTE: `res://interface/ui_control.gd`
 signal tower_changed(new_tower: int)
@@ -51,9 +50,9 @@ func _process(delta: float) -> void:
 		
 	if Input.is_action_just_pressed("ui_accept"):
 		current_tower = (current_tower + 1) % len(base_towers)
-		var tower_name = base_towers[current_tower]
-		var cost = gamedata.tower_data[tower_name]["cost"]
-		emit_signal("tower_changed", current_tower, cost)
+		var tower = base_towers[current_tower]
+		var cost = gamedata.tower_data[tower]["cost"]
+		emit_signal("tower_changed", tower, cost)
 	move_and_slide()
 	var highlight_offset: Vector2 = _get_next_tile(previous_input_direction)
 	var highlight_tile: Vector2i = tilemap.local_to_map(Vector2(global_position.x + highlight_offset.x, global_position.y + highlight_offset.y + tile_size / 2))
@@ -61,20 +60,20 @@ func _process(delta: float) -> void:
 
 func _input(event) -> void:
 	if event is InputEventMouseButton and event.is_pressed() and not moving:
-		var tower_name = base_towers[current_tower]
-		var cost = gamedata.tower_data[tower_name]["cost"]
+		var tower_var = base_towers[current_tower]
+		var cost = gamedata.tower_data[tower_var]["cost"]
 		if Global.gold >= cost:
-			tower = gamedata.towers_from_string[base_towers[current_tower]].instantiate()
+			tower = gamedata.tower_data[base_towers[current_tower]]["node"].instantiate()
 			if not _place_tower(tower):
 				tower.queue_free()
 				return
 			Global.set_gold(Global.gold - cost)
-			tower.reload_time = gamedata.tower_data[tower_name]["reload_time"]
-			tower.damage = gamedata.tower_data[tower_name]["damage"]
-			tower.bullet_speed = gamedata.tower_data[tower_name]["bullet_speed"]
-			tower.pierce = gamedata.tower_data[tower_name]["pierce"]
-			tower.range = gamedata.tower_data[tower_name]["range"]
-			tower.bullet_lifetime = gamedata.tower_data[tower_name]["bullet_lifetime"]
+			tower.reload_time = gamedata.tower_data[tower_var]["reload_time"]
+			tower.damage = gamedata.tower_data[tower_var]["damage"]
+			tower.bullet_speed = gamedata.tower_data[tower_var]["bullet_speed"]
+			tower.pierce = gamedata.tower_data[tower_var]["pierce"]
+			tower.range = gamedata.tower_data[tower_var]["range"]
+			tower.bullet_lifetime = gamedata.tower_data[tower_var]["bullet_lifetime"]
 			get_parent().add_child(tower)
 
 # Make exclusive tile type placements for towers,
