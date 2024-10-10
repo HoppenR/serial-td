@@ -44,16 +44,16 @@ func _spawn_enemy() -> void:
 	if enemies_to_spawn.is_empty():
 		timer.stop()
 		return
-	var enemyInfo = enemies_to_spawn.pop_front()
-	var enemyName = enemyInfo[0]
-	var enemy = gamedata.enemies_from_string[enemyName].instantiate()
-	enemy.hp = gamedata.enemy_data[enemyName]["hp"] * heat
-	enemy.speed = gamedata.enemy_data[enemyName]["speed"] * heat
+	var enemy_info = enemies_to_spawn.pop_front()
+	var enemy_var = enemy_info[0]
+	var enemy = gamedata.enemy_data[enemy_var]["node"].instantiate()
+	enemy.hp = gamedata.enemy_data[enemy_var]["hp"] * heat
+	enemy.speed = gamedata.enemy_data[enemy_var]["speed"] * heat
 	if enemy.speed > 550:
 		enemy.speed = 550
 	add_child(enemy)
 	enemies_alive.append(enemy)
-	timer.start(enemyInfo[1])
+	timer.start(enemy_info[1])
 
 func _next_stage():
 	waiting = false

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cg252mx7yg1b1"
-path="res://.godot/imported/Blockmap.png-0d4a4c7b760b04a286a1638289c227d6.ctex"
+uid="uid://cwhfbo15knqvo"
+path="res://.godot/imported/flamet2.png-188067a7274ab3580309bcf7009512ee.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tiles/Blockmap.png"
-dest_files=["res://.godot/imported/Blockmap.png-0d4a4c7b760b04a286a1638289c227d6.ctex"]
+source_file="res://assets/towers/flamet2.png"
+dest_files=["res://.godot/imported/flamet2.png-188067a7274ab3580309bcf7009512ee.ctex"]
 
 [params]
 
