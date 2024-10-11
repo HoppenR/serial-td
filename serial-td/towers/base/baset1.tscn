@@ -29,6 +29,7 @@ skew = 0.436332
 shape = SubResource("CircleShape2D_4gkwq")
 
 [node name="Hitbox" type="CharacterBody2D" parent="."]
+z_index = 2
 scale = Vector2(5, 5)
 
 [node name="HitboxCollision" type="CollisionShape2D" parent="Hitbox"]

@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://crkju7uebsnej"]
+[gd_scene load_steps=6 format=3 uid="uid://crkju7uebsnej"]
 
 [ext_resource type="Script" path="res://interface/ui_control.gd" id="1_idbcy"]
 [ext_resource type="Texture2D" uid="uid://c57l7fltp4lfp" path="res://assets/towers/gun.png" id="2_mmdrl"]
+[ext_resource type="Texture2D" uid="uid://b0ghbxgqyyld3" path="res://assets/interface_icons/gold.png" id="3_dl7ul"]
+[ext_resource type="FontFile" uid="uid://42lo6e7kp1eh" path="res://assets/fonts/MinecraftTen.ttf" id="4_ehfa6"]
+[ext_resource type="Texture2D" uid="uid://dmkvucmh5cubi" path="res://assets/interface_icons/life_heart.png" id="4_jidkx"]
 
 [node name="Interface" type="Control"]
 layout_mode = 3
@@ -31,6 +34,7 @@ offset_left = 5.0
 offset_top = 155.0
 offset_right = 64.0
 offset_bottom = 178.0
+theme_override_fonts/font = ExtResource("4_ehfa6")
 text = "[Cost]"
 
 [node name="ButtonLabel" type="Label" parent="TowerPanel"]
@@ -38,24 +42,51 @@ layout_mode = 0
 offset_left = 5.0
 offset_right = 64.0
 offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("4_ehfa6")
 text = "[SPACE]"
 
 [node name="InfoPanel" type="Panel" parent="."]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 4.0
-offset_right = 162.0
-offset_bottom = 29.0
+offset_right = 233.0
+offset_bottom = 56.0
 
-[node name="HealthLabel" type="Label" parent="InfoPanel"]
+[node name="GoldIcon" type="TextureRect" parent="InfoPanel"]
+texture_filter = 1
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-text = "[LIFE]"
+offset_left = 110.0
+offset_top = 4.0
+offset_right = 153.0
+offset_bottom = 47.0
+texture = ExtResource("3_dl7ul")
 
-[node name="GoldLabel" type="Label" parent="InfoPanel"]
+[node name="GoldLabel" type="Label" parent="InfoPanel/GoldIcon"]
 layout_mode = 0
-offset_left = 84.0
-offset_right = 156.0
-offset_bottom = 23.0
+offset_left = 44.0
+offset_top = 10.0
+offset_right = 130.0
+offset_bottom = 45.0
+theme_override_fonts/font = ExtResource("4_ehfa6")
+theme_override_font_sizes/font_size = 25
 text = "[GOLD]"
+
+[node name="HealthIcon" type="TextureRect" parent="InfoPanel"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 1.0
+offset_top = 2.0
+offset_right = 47.0
+offset_bottom = 48.0
+texture = ExtResource("4_jidkx")
+
+[node name="HealthLabel" type="Label" parent="InfoPanel/HealthIcon"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 46.0
+offset_top = 12.0
+offset_right = 112.0
+offset_bottom = 47.0
+theme_override_fonts/font = ExtResource("4_ehfa6")
+theme_override_font_sizes/font_size = 25
+text = "[LIFE]"

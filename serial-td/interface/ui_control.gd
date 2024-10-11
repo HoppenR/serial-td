@@ -2,20 +2,20 @@ extends Control
 
 @onready var tower = $TowerPanel/SelectedTower
 @onready var tower_cost = $TowerPanel/CostLabel
-@onready var gold_text = $InfoPanel/GoldLabel
-@onready var health_text = $InfoPanel/HealthLabel
+@onready var gold_text = $InfoPanel/GoldIcon/GoldLabel
+@onready var health_text = $InfoPanel/HealthIcon/HealthLabel
 
 # NOTE: Indended to be called via signals from `res://kit/kit.gd`
 func _update_selected_tower(currentTower, cost: int):
 	tower.texture = gamedata.tower_data[currentTower]["texture"]
-	tower_cost.text = "Cost: " + str(cost) + " gold"
+	tower_cost.text = "Cost: " + str(cost)
 	
 
 func _update_gold_count(new_amount: int):
-	gold_text.text = "Gold: " + str(Global.gold)
+	gold_text.text = str(Global.gold)
 
 func _update_health_amount(new_health: int):
-	health_text.text = "Life: " + str(new_health)
+	health_text.text = str(new_health)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

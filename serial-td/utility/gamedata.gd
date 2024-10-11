@@ -66,6 +66,12 @@ var upgrades = [
 	[preload("res://upgrades/towerbuffs/icetowerreloadbuff.tscn"), 
 	 preload("res://assets/towers/icet0.png"),
 	 "Reduces reload time of Ice"],
+	[preload("res://upgrades/general/heatdebuff.tscn"), 
+	 preload("res://assets/upgrade_icons/decrease.png"),
+	 "Reduces Heat"],
+	[preload("res://upgrades/general/healthbuff.tscn"), 
+	 preload("res://assets/interface_icons/life_heart.png"),
+	 "Gain 40 Health"],
 ]
 
 enum towers {
