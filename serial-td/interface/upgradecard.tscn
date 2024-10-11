@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://drvsaj545am4f"]
+[gd_scene load_steps=4 format=3 uid="uid://drvsaj545am4f"]
 
 [ext_resource type="Script" path="res://interface/upgradecard.gd" id="1_lo1ou"]
 [ext_resource type="Texture2D" uid="uid://djp6xh0fbala0" path="res://assets/effects/fireeffect.png" id="2_iiu1o"]
+[ext_resource type="FontFile" uid="uid://42lo6e7kp1eh" path="res://assets/fonts/MinecraftTen.ttf" id="3_76ibu"]
 
 [node name="UpgradeCard" type="Control"]
 layout_mode = 3
@@ -31,6 +32,7 @@ offset_left = 56.0
 offset_top = 6.0
 offset_right = 149.0
 offset_bottom = 46.0
+theme_override_fonts/font = ExtResource("3_76ibu")
 theme_override_font_sizes/font_size = 10
 text = "Increase fire damage"
 autowrap_mode = 3

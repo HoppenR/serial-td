@@ -71,7 +71,7 @@ sources/4 = SubResource("TileSetAtlasSource_txcdm")
 [sub_resource type="Curve2D" id="Curve2D_t7ttj"]
 bake_interval = 1.0
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 164, -51, 0, 0, 0, 0, 96, -16, 0, 0, 0, 0, 32, -49, 0, 0, 0, 0, -96, 15, 0, 0, 0, 0, -52, 37, 0, 0, 0, 0, -1, 63, 0, 0, 0, 0, 47, 88, 0, 0, 0, 0, 166, 28)
+"points": PackedVector2Array(0, 0, 0, 0, 164, -51, 0, 0, 0, 0, 96, -16, 0, 0, 0, 0, 32, -49, 0, 0, 0, 0, -92, 13, 0, 0, 0, 0, -52, 37, 0, 0, 0, 0, -1, 63, 0, 0, 0, 0, 47, 88, 0, 0, 0, 0, 166, 28)
 }
 point_count = 8
 
