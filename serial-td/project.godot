@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 gamedata="*res://utility/gamedata.gd"
 Global="*res://utility/global.gd"
+ElementalInteraction="*res://utility/elemental_interaction.gd"
 
 [display]
 

@@ -5,12 +5,6 @@ var hp: int = 2
 
 signal enemy_dead(deal_damage: bool, enemy_hp: int)
 
-# Use for elemental interractions?
-var on_fire: bool = false
-var frozen: bool = false
-var shocked: bool = false
-var wet: bool = false
-
 var active_effects = []
 
 func _ready() -> void:
@@ -31,25 +25,21 @@ func _move(delta: float) -> void:
 
 func take_damage(amount: int, damage_type) -> void:
 	var effect
-	match damage_type:
-		gamedata.damage_type.FIRE:
-			if not on_fire and not wet:
-				effect = gamedata.fire.instantiate()
-		gamedata.damage_type.ICE:
-			if not frozen and not on_fire:
-				effect = gamedata.frozen.instantiate()
-		gamedata.damage_type.ELECTRICITY:
-			if not shocked:
-				effect = gamedata.electricfield.instantiate()
-		gamedata.damage_type.WATER:
-			if not wet:
-				effect = gamedata.wet.instantiate()
-
-	for current_effect in active_effects:
-		current_effect._react_to_element(damage_type)
-
-	if effect:
-		_add_effect(effect)
+	if not _find_if_element(damage_type):
+		match damage_type:
+			gamedata.damage_type.FIRE:
+					effect = gamedata.fire.instantiate()
+			gamedata.damage_type.ICE:
+					effect = gamedata.frozen.instantiate()
+			gamedata.damage_type.ELECTRICITY:
+					effect = gamedata.electricfield.instantiate()
+			gamedata.damage_type.WATER:
+					effect = gamedata.wet.instantiate()
+		for current_effect in active_effects:
+			ElementalInteraction._react_to_element(current_effect, self, current_effect.main_element, damage_type)
+			ElementalInteraction._react_to_element(current_effect, self, current_effect.secondary_element, damage_type)
+		if effect:
+			_add_effect(effect)
 
 	hp -= amount
 	if hp < 1:
@@ -60,9 +50,15 @@ func take_damage(amount: int, damage_type) -> void:
 
 func _remove_element(damage_type) -> void:
 	for current_effect in active_effects:
-		if current_effect.element == damage_type:
+		if current_effect.main_element == damage_type or current_effect.secondary_element == damage_type:
 			current_effect._remove_effect();
 
 func _add_effect(effect) -> void:
 	call_deferred("add_child", effect)
 	active_effects.push_back(effect)
+
+func _find_if_element(damage_type) -> bool:
+	for current_effect in active_effects:
+		if current_effect.main_element == damage_type or current_effect.secondary_element == damage_type:
+			return true
+	return false
