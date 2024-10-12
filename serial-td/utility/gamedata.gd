@@ -81,9 +81,6 @@ var upgrades = [
 	[preload("res://upgrades/general/healthbuff.tscn"), 
 	 preload("res://assets/interface_icons/life_heart.png"),
 	 "Gain 40 Health"],
-	[preload("res://upgrades/interactions/iceelectricdamagebuff.tscn"), 
-	 preload("res://assets/effects/iceelectricfieldeffect.png"),
-	 "Increase damage dealt by Ice-Electric field"],
 ]
 
 enum towers {

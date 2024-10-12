@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://ca6edfswd0t2y"]
 
-[ext_resource type="Script" path="res://upgrades/interactions/iceelectricdamagebuff.gd" id="1_bx0b5"]
+[ext_resource type="Script" path="res://effects/iceelectric.gd" id="1_ba5do"]
 [ext_resource type="Texture2D" uid="uid://cui1j51wvjs36" path="res://assets/effects/iceelectricfieldeffect.png" id="2_41h8s"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_w1nof"]
@@ -11,7 +11,7 @@ rotation = 0.785398
 skew = 0.436332
 collision_layer = 2
 collision_mask = 2
-script = ExtResource("1_bx0b5")
+script = ExtResource("1_ba5do")
 
 [node name="RangeCollision" type="CollisionShape2D" parent="."]
 position = Vector2(0.377378, -0.780206)
