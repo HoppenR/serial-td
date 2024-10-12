@@ -9,6 +9,9 @@ signal enemy_dead(deal_damage: bool, enemy_hp: int)
 var on_fire: bool = false
 var frozen: bool = false
 var shocked: bool = false
+var wet: bool = false
+
+var active_effects = []
 
 func _ready() -> void:
 	# Use Kit's `_enemy_dead` handler
@@ -27,19 +30,26 @@ func _move(delta: float) -> void:
 	set_progress(get_progress() + speed * delta)
 
 func take_damage(amount: int, damage_type) -> void:
+	var effect
 	match damage_type:
 		gamedata.damage_type.FIRE:
-			if not on_fire:
-				var fire = gamedata.fire.instantiate()
-				call_deferred("add_child", fire)
+			if not on_fire and not wet:
+				effect = gamedata.fire.instantiate()
 		gamedata.damage_type.ICE:
 			if not frozen and not on_fire:
-				var ice = gamedata.frozen.instantiate()
-				call_deferred("add_child", ice)
+				effect = gamedata.frozen.instantiate()
 		gamedata.damage_type.ELECTRICITY:
 			if not shocked:
-				var field = gamedata.electricfield.instantiate()
-				call_deferred("add_child", field)
+				effect = gamedata.electricfield.instantiate()
+		gamedata.damage_type.WATER:
+			if not wet:
+				effect = gamedata.wet.instantiate()
+
+	for current_effect in active_effects:
+		current_effect._react_to_element(damage_type)
+
+	if effect:
+		_add_effect(effect)
 
 	hp -= amount
 	if hp < 1:
@@ -47,3 +57,12 @@ func take_damage(amount: int, damage_type) -> void:
 		get_parent().enemies_alive.erase(self)
 		queue_free()
 		return
+
+func _remove_element(damage_type) -> void:
+	for current_effect in active_effects:
+		if current_effect.element == damage_type:
+			current_effect._remove_effect();
+
+func _add_effect(effect) -> void:
+	call_deferred("add_child", effect)
+	active_effects.push_back(effect)

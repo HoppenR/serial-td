@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://bx312g05qguu6"]
+
+[ext_resource type="Script" path="res://projectiles/waterprojectile.gd" id="1_8k5tx"]
+[ext_resource type="Texture2D" uid="uid://cye5ih3pdinpl" path="res://assets/projectiles/waterprojectile.png" id="2_thlf2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i0ure"]
+size = Vector2(8, 4)
+
+[node name="WaterProjectile" type="Node2D"]
+script = ExtResource("1_8k5tx")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_thlf2")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, -0.5)
+scale = Vector2(0.25, 0.25)
+shape = SubResource("RectangleShape2D_i0ure")
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

@@ -5,6 +5,9 @@ extends Node
 var electricfield = preload("res://effects/electricfield.tscn")
 var fire = preload("res://effects/fire.tscn")
 var frozen = preload("res://effects/frozen.tscn")
+var wet = preload("res://effects/wet.tscn")
+var electric_wet = preload("res://effects/wetelectric.tscn")
+var electric_ice = preload("res://effects/iceelectric.tscn")
 
 enum damage_type {
 	STANDARD,
@@ -12,6 +15,9 @@ enum damage_type {
 	ICE,
 	ELECTRICITY,
 	WATER,
+	
+	ELECTRICITY_WATER,
+	ELECTRICITY_ICE,
 }
 
 var damage_data = {
@@ -35,6 +41,27 @@ var damage_data = {
 		"duration": 5.0, 
 		"range": 25, 
 		"speed_debuff": 0.8,
+	},
+	damage_type.WATER:  {
+		"damage": 0,
+		"damage_frequency": 0.25,
+		"duration": 5.0, 
+		"range": 0, 
+		"speed_debuff": 1,
+	},
+	damage_type.ELECTRICITY_WATER:  {
+		"damage": 5,
+		"damage_frequency": 0.25,
+		"duration": 10.0, 
+		"range": 0, 
+		"speed_debuff": 0.8,
+	},
+	damage_type.ELECTRICITY_ICE:  {
+		"damage": 5,
+		"damage_frequency": 0.5,
+		"duration": 10.0, 
+		"range": 30, 
+		"speed_debuff": 0.25,
 	},
 }
 
@@ -72,6 +99,9 @@ var upgrades = [
 	[preload("res://upgrades/general/healthbuff.tscn"), 
 	 preload("res://assets/interface_icons/life_heart.png"),
 	 "Gain 40 Health"],
+	[preload("res://upgrades/interactions/iceelectricdamagebuff.tscn"), 
+	 preload("res://assets/effects/iceelectricfieldeffect.png"),
+	 "Increase damage dealt by Ice-Electric field"],
 ]
 
 enum towers {
@@ -81,6 +111,7 @@ enum towers {
 	ICE_T0,
 	FLAME_T0,
 	ELECTRIC_T0,
+	WATER_T0,
 }
 
 var tower_data = {
@@ -127,7 +158,7 @@ var tower_data = {
 		"pierce": 10,
 		"reload_time": 0.01,
 		"bullet_speed": 15,
-		"bullet_lifetime": 2.0,
+		"bullet_lifetime": 0.2,
 	},
 	towers.ICE_T0: {
 		"node": preload("res://towers/ice/icet0.tscn"),
@@ -137,8 +168,8 @@ var tower_data = {
 		"range": 50,
 		"pierce": 10,
 		"reload_time": 2.25,
-		"bullet_speed": 35,
-		"bullet_lifetime": 1.0,
+		"bullet_speed": 40,
+		"bullet_lifetime": 0.5,
 	},
 	towers.ELECTRIC_T0: {
 		"node": preload("res://towers/electric/electrict0.tscn"),
@@ -149,7 +180,18 @@ var tower_data = {
 		"pierce": 3,
 		"reload_time": 1.5,
 		"bullet_speed": 15,
-		"bullet_lifetime": 5.0,
+		"bullet_lifetime": 1.0,
+	},
+	towers.WATER_T0: {
+		"node": preload("res://towers/water/watert0.tscn"),
+		"texture": preload("res://assets/towers/watert0.png"),
+		"damage": 2,
+		"cost": 150,
+		"range": 15,
+		"pierce": 6,
+		"reload_time": 0.01,
+		"bullet_speed": 15,
+		"bullet_lifetime": 0.4,
 	},
 }
 
