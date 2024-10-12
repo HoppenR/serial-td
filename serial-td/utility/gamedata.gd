@@ -1,6 +1,5 @@
 extends Node
 
-
 #Effects
 var electricfield = preload("res://effects/electricfield.tscn")
 var fire = preload("res://effects/fire.tscn")
@@ -15,9 +14,6 @@ enum damage_type {
 	ICE,
 	ELECTRICITY,
 	WATER,
-	
-	ELECTRICITY_WATER,
-	ELECTRICITY_ICE,
 }
 
 var damage_data = {
@@ -48,20 +44,6 @@ var damage_data = {
 		"duration": 5.0, 
 		"range": 0, 
 		"speed_debuff": 1,
-	},
-	damage_type.ELECTRICITY_WATER:  {
-		"damage": 5,
-		"damage_frequency": 0.25,
-		"duration": 10.0, 
-		"range": 0, 
-		"speed_debuff": 0.8,
-	},
-	damage_type.ELECTRICITY_ICE:  {
-		"damage": 5,
-		"damage_frequency": 0.5,
-		"duration": 10.0, 
-		"range": 30, 
-		"speed_debuff": 0.25,
 	},
 }
 
@@ -107,7 +89,6 @@ var upgrades = [
 enum towers {
 	BASE_T0,
 	BASE_T1,
-	BASE_T2,
 	ICE_T0,
 	FLAME_T0,
 	ELECTRIC_T0,
@@ -137,18 +118,6 @@ var tower_data = {
 		"bullet_speed": 25,
 		"bullet_lifetime": 0.8,
 	},
-	#The textures and stuff is not implemented here yet
-	towers.BASE_T2: {
-		"node": preload("res://towers/base/baset1.tscn"),
-		"texture": preload("res://assets/towers/gun2.png"),
-		"damage": 28,
-		"cost": 350,
-		"range": 23,
-		"pierce": 3,
-		"reload_time": 0.1,
-		"bullet_speed": 30,
-		"bullet_lifetime": 1.0,
-	},
 	towers.FLAME_T0: {
 		"node": preload("res://towers/flame/flamet0.tscn"),
 		"texture": preload("res://assets/towers/flamet0.png"),
@@ -163,18 +132,18 @@ var tower_data = {
 	towers.ICE_T0: {
 		"node": preload("res://towers/ice/icet0.tscn"),
 		"texture": preload("res://assets/towers/icet0.png"),
-		"damage": 29,
-		"cost": 600,
+		"damage": 2,
+		"cost": 60,
 		"range": 50,
 		"pierce": 10,
-		"reload_time": 2.25,
+		"reload_time": 1.25,
 		"bullet_speed": 40,
 		"bullet_lifetime": 0.5,
 	},
 	towers.ELECTRIC_T0: {
 		"node": preload("res://towers/electric/electrict0.tscn"),
 		"texture": preload("res://assets/towers/electrict0.png"),
-		"damage": 3,
+		"damage": 1,
 		"cost": 250,
 		"range": 10,
 		"pierce": 3,
@@ -185,7 +154,7 @@ var tower_data = {
 	towers.WATER_T0: {
 		"node": preload("res://towers/water/watert0.tscn"),
 		"texture": preload("res://assets/towers/watert0.png"),
-		"damage": 2,
+		"damage": 1,
 		"cost": 150,
 		"range": 15,
 		"pierce": 6,
