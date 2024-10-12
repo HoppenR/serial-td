@@ -35,10 +35,11 @@ func take_damage(amount: int, damage_type) -> void:
 					effect = gamedata.electricfield.instantiate()
 			gamedata.damage_type.WATER:
 					effect = gamedata.wet.instantiate()
+		var should_add_effect: bool = true
 		for current_effect in active_effects:
-			ElementalInteraction._react_to_element(current_effect, self, current_effect.main_element, damage_type)
-			ElementalInteraction._react_to_element(current_effect, self, current_effect.secondary_element, damage_type)
-		if effect:
+			should_add_effect = (should_add_effect and ElementalInteraction._react_to_element(current_effect, self, current_effect.main_element, damage_type))
+			should_add_effect = (should_add_effect and ElementalInteraction._react_to_element(current_effect, self, current_effect.secondary_element, damage_type))
+		if effect and should_add_effect:
 			_add_effect(effect)
 
 	hp -= amount
