@@ -10,9 +10,10 @@ var element
 var enemy_array = []
 
 func _ready() -> void:
-	element = gamedata.damage_type.ELECTRICITY
+	element = gamedata.damage_type.ELECTRICITY_ICE
 	damage = gamedata.damage_data[element]["damage"]
 	get_parent().shocked = true
+	get_parent().frozen = true
 	get_parent().speed *= gamedata.damage_data[element]["speed_debuff"]
 	$RangeCollision.shape.radius = gamedata.damage_data[element]["range"]
 	projectileload = preload("res://projectiles/electricprojectile.tscn")
@@ -42,6 +43,7 @@ func _remove_effect() -> void:
 	if not my_parent:
 		return
 	my_parent.shocked = false
+	my_parent.frozen = false
 	my_parent.speed /= gamedata.damage_data[element]["speed_debuff"]
 	my_parent.active_effects.erase(self)
 	queue_free()
@@ -51,13 +53,5 @@ func _react_to_element(damage_type) -> void:
 	if not my_parent:
 		return
 	match damage_type:
-		gamedata.damage_type.ICE:
-			my_parent._remove_element(damage_type)
-			var effect = gamedata.electric_ice.instantiate()
-			get_parent()._add_effect(effect)
-			_remove_effect()
-		gamedata.damage_type.WATER:
-			get_parent()._remove_element(damage_type)
-			var effect = gamedata.electric_wet.instantiate()
-			get_parent()._add_effect(effect)
+		gamedata.damage_type.FIRE:
 			_remove_effect()

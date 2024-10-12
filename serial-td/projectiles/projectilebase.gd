@@ -16,14 +16,11 @@ func _physics_process(delta: float) -> void:
 func _start_life() -> void:
 	var timer = Timer.new()
 	add_child(timer)
-	timer.connect("timeout", _kill_self)
+	timer.connect("timeout", queue_free)
 	timer.start(lifetime)
 
 func _shoot() -> void:
 	position += transform.x * speed
-
-func _kill_self() -> void:
-	queue_free()
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
 	pierce -= 1

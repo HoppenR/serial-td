@@ -12,6 +12,7 @@ var base_towers = [
 	gamedata.towers.FLAME_T0,
 	gamedata.towers.ELECTRIC_T0,
 	gamedata.towers.ICE_T0,
+	gamedata.towers.WATER_T0,
 ]
 
 # NOTE: `res://interface/ui_control.gd`

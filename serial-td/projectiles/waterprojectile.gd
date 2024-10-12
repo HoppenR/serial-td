@@ -1,4 +1,4 @@
 extends "res://projectiles/projectilebase.gd"
 
 func _init() -> void:
-	projectile_type = gamedata.damage_type.STANDARD
+	projectile_type = gamedata.damage_type.WATER

@@ -34,15 +34,15 @@ func _shoot() -> void:
 
 	var projectile = projectileload.instantiate()
 
-	add_child(projectile)
-
 	projectile.damage = damage
 	projectile.pierce = pierce
 	projectile.speed = bullet_speed
 	projectile.lifetime = bullet_lifetime
 
+	#projectile.position = position
+
+	add_child(projectile)
 	projectile.look_at(target_position)
-	projectile.global_position = global_position
 
 	var timer = Timer.new()
 	add_child(timer)

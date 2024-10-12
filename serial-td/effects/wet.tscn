@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cspxsywqwg3h2"]
+
+[ext_resource type="Texture2D" uid="uid://xqiu2tt44hyw" path="res://assets/effects/weteffect.png" id="1_t3hmn"]
+[ext_resource type="Script" path="res://effects/wet.gd" id="2_8ob5k"]
+
+[node name="Wet" type="Sprite2D"]
+texture_filter = 1
+texture = ExtResource("1_t3hmn")
+script = ExtResource("2_8ob5k")
