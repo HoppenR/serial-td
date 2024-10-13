@@ -2,6 +2,7 @@ extends PathFollow2D
 
 var speed: int = 150
 var hp: int = 2
+var immunity
 
 signal enemy_dead(deal_damage: bool, enemy_hp: int)
 
@@ -24,6 +25,9 @@ func _move(delta: float) -> void:
 	set_progress(get_progress() + speed * delta)
 
 func take_damage(amount: int, damage_type) -> void:
+	if immunity == damage_type and immunity != gamedata.damage_type.NO_TYPE:
+		return
+	
 	var effect
 	if not _find_if_element(damage_type):
 		match damage_type:

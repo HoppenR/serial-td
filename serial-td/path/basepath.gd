@@ -47,8 +47,9 @@ func _spawn_enemy() -> void:
 	var enemyName = enemyInfo[0]
 	var enemy = gamedata.enemies_from_string[enemyName].instantiate()
 	enemy.z_index = 1
-	enemy.hp = gamedata.enemy_data[enemyName]["hp"] * Global.heat
-	enemy.speed = gamedata.enemy_data[enemyName]["speed"] * Global.heat
+	enemy.hp = gamedata.enemy_data[enemy_var]["hp"] * Global.heat
+	enemy.speed = gamedata.enemy_data[enemy_var]["speed"] * Global.heat
+	enemy.immunity = gamedata.enemy_data[enemy_var]["immunity"]
 	if enemy.speed > 550:
 		enemy.speed = 550
 	add_child(enemy)
