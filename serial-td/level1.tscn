@@ -39,7 +39,7 @@ sources/1 = SubResource("TileSetAtlasSource_ostsc")
 [sub_resource type="Curve2D" id="Curve2D_vsx5i"]
 bake_interval = 1.0
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -39, -132, 0, 0, 0, 0, 47, -90, 0, 0, 0, 0, -94, -17, 0, 0, 0, 0, 16, 39, 0, 0, 0, 0, 97, -1, 0, 0, 0, 0, 110, 6, 0, 0, 0, 0, 28, 48, 0, 0, 0, 0, -67, 97)
+"points": PackedVector2Array(0, 0, 0, 0, -39, -132, 0, 0, 0, 0, 47, -90, 0, 0, 0, 0, -94, -17, 0, 0, 0, 0, 16, 39, 0, 0, 0, 0, 98, -3, 0, 0, 0, 0, 110, 6, 0, 0, 0, 0, 28, 48, 0, 0, 0, 0, -67, 97)
 }
 point_count = 8
 
