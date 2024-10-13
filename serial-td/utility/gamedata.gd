@@ -9,11 +9,13 @@ var electric_wet = preload("res://effects/wetelectric.tscn")
 var electric_ice = preload("res://effects/iceelectric.tscn")
 
 enum damage_type {
+	NO_TYPE,
 	STANDARD,
 	FIRE,
 	ICE,
 	ELECTRICITY,
 	WATER,
+	GRASS,
 }
 
 var damage_data = {
@@ -176,55 +178,79 @@ enum enemies {
 	SAW3,
 	SAW4,
 
+	AXE1,
+	AXE2,
+
 	LAWNMOWER1,
 	LAWNMOWER2,
 	LAWNMOWER3,
 }
 
-
 var enemy_data = {
 	enemies.SAW1: {
+		"immunity": damage_type.NO_TYPE,
 		"node": preload("res://enemy/saw/saw1.tscn"),
 		"hp": 20,
 		"speed": 100,
 		"value": 10,
 	},
 	enemies.SAW2: {
+		"immunity": damage_type.NO_TYPE,
 		"node": preload("res://enemy/saw/saw2.tscn"),
-		"hp": 10,
-		"speed": 300,
-		"value": 30,
+		"hp": 30,
+		"speed": 120,
+		"value": 20,
 	},
 	enemies.SAW3: {
+		"immunity": damage_type.NO_TYPE,
 		"node": preload("res://enemy/saw/saw3.tscn"),
-		"hp": 30,
+		"hp": 60,
+		"speed": 150,
+		"value": 30,
+	},
+	enemies.SAW4: {
+		"immunity": damage_type.NO_TYPE,
+		"node": preload("res://enemy/saw/saw4.tscn"),
+		"hp": 93,
 		"speed": 200,
 		"value": 50,
 	},
-	enemies.SAW4: {
-		"node": preload("res://enemy/saw/saw4.tscn"),
-		"hp": 62,
-		"speed": 150,
-		"value": 100,
+
+	enemies.AXE1: {
+		"immunity": damage_type.ELECTRICITY,
+		"node": preload("res://enemy/axe/axe1.tscn"),
+		"hp": 10,
+		"speed": 170,
+		"value": 20,
+	},
+	enemies.AXE2: {
+		"immunity": damage_type.ELECTRICITY,
+		"node": preload("res://enemy/axe/axe2.tscn"),
+		"hp": 30,
+		"speed": 200,
+		"value": 30,
 	},
 
 	enemies.LAWNMOWER1: {
+		"immunity": damage_type.GRASS,
 		"node": preload("res://enemy/lawnmower/lawnmower1.tscn"),
 		"hp": 101,
 		"speed": 25,
-		"value": 100,
+		"value": 50,
 	},
 	enemies.LAWNMOWER2: {
+		"immunity": damage_type.GRASS,
 		"node": preload("res://enemy/lawnmower/lawnmower2.tscn"),
 		"hp": 301,
 		"speed": 40,
-		"value": 200,
+		"value": 150,
 	},
 	enemies.LAWNMOWER3: {
+		"immunity": damage_type.GRASS,
 		"node": preload("res://enemy/lawnmower/lawnmower3.tscn"),
-		"hp": 901,
+		"hp": 801,
 		"speed": 69,
-		"value": 500,
+		"value": 350,
 	},
 }
 
@@ -301,12 +327,12 @@ var wave_data = {
 	},
 	6: {
 		"enemies": [ 
-					 [enemies.SAW2, 0.3],
-					 [enemies.SAW2, 0.3],
-					 [enemies.SAW2, 0.3],
-					 [enemies.SAW2, 0.3],
-					 [enemies.SAW2, 0.3],
-					 [enemies.SAW2, 0.3],
+					 [enemies.AXE1, 0.3],
+					 [enemies.AXE1, 0.3],
+					 [enemies.AXE1, 0.3],
+					 [enemies.AXE1, 0.3],
+					 [enemies.AXE1, 0.3],
+					 [enemies.AXE1, 0.3],
 					 [enemies.LAWNMOWER2, 0.5],
 					 [enemies.LAWNMOWER2, 0.5],
 				   ],
@@ -337,6 +363,17 @@ var wave_data = {
 	},
 	9: {
 		"enemies": [ 
+					 [enemies.AXE2, 0.1],
+					 [enemies.AXE2, 0.1],
+					 [enemies.AXE2, 0.1],
+					 [enemies.AXE2, 0.1],
+					 [enemies.AXE2, 0.1],
+					 [enemies.AXE2, 0.1],
+					 [enemies.AXE2, 0.1],
+					 [enemies.AXE2, 0.1],
+					 [enemies.AXE2, 0.1],
+					 [enemies.AXE2, 0.1],
+					 [enemies.AXE2, 0.1],
 					 [enemies.SAW4, 0.5],
 					 [enemies.SAW4, 0.5],
 					 [enemies.SAW4, 0.5],
@@ -345,12 +382,19 @@ var wave_data = {
 	},
 	10: {
 		"enemies": [ 
-					 [enemies.SAW2, 0.1],
-					 [enemies.SAW2, 0.1],
-					 [enemies.SAW2, 0.1],
-					 [enemies.SAW2, 0.1],
-					 [enemies.SAW2, 0.1],
-					 [enemies.SAW2, 0.1],
+					 [enemies.LAWNMOWER3, 0.5],
+					 [enemies.AXE2, 0.01],
+					 [enemies.AXE2, 0.01],
+					 [enemies.AXE2, 0.01],
+					 [enemies.AXE2, 0.01],
+					 [enemies.AXE2, 0.01],
+					 [enemies.AXE2, 0.01],
+					 [enemies.AXE2, 0.01],
+					 [enemies.AXE2, 0.01],
+					 [enemies.AXE2, 0.01],
+					 [enemies.AXE2, 0.01],
+					 [enemies.AXE2, 0.01],
+					 [enemies.AXE2, 0.01],
 					 [enemies.SAW4, 0.5],
 					 [enemies.SAW4, 0.5],
 					 [enemies.SAW4, 0.5],
