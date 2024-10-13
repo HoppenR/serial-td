@@ -36,6 +36,7 @@ func _react_to_element(this, target, internal_element, external_element) -> bool
 				match external_element:
 					gamedata.damage_type.FIRE:
 						this._remove_effect()
+						return true
 					gamedata.damage_type.ELECTRICITY:
 						target._remove_element(external_element)
 						this._remove_effect()

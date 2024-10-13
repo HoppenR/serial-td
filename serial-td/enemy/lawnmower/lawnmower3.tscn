@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://uiseq45iohdi"]
+
+[ext_resource type="Script" path="res://enemy/lawnmower/lawnmower3.gd" id="1_t6njt"]
+[ext_resource type="Texture2D" uid="uid://wy4fxk128gah" path="res://assets/enemies/lawnmower3.png" id="2_4003y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_me7oi"]
+size = Vector2(18, 15)
+
+[node name="Lawnmower3" type="PathFollow2D"]
+texture_filter = 1
+rotates = false
+loop = false
+script = ExtResource("1_t6njt")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_4003y")
+
+[node name="Hitbox" type="CharacterBody2D" parent="."]
+collision_layer = 7
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_me7oi")
+one_way_collision_margin = 0.0

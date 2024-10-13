@@ -2,6 +2,6 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	Global.health += 40
+	gamedata.damage_data[gamedata.damage_type.WATER]["damage"] += 2
 	print("Upgrade applied")
 	queue_free()

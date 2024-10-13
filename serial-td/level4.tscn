@@ -1,0 +1,59 @@
+[gd_scene load_steps=10 format=4 uid="uid://dj5xu3inx4c5w"]
+
+[ext_resource type="Texture2D" uid="uid://ci5bilsbdu0fj" path="res://assets/tiles/bridge_tile0.png" id="1_0w21p"]
+[ext_resource type="Texture2D" uid="uid://dlgubinvw8t2v" path="res://assets/tiles/wilted_tile1.png" id="1_remet"]
+[ext_resource type="Texture2D" uid="uid://dm82k0nym4s60" path="res://assets/tiles/bridge_tile1.png" id="3_x8mbw"]
+[ext_resource type="Script" path="res://path/basepath.gd" id="6_e6x1p"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8ndgx"]
+texture = ExtResource("1_0w21p")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/custom_data_0 = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1jroc"]
+texture = ExtResource("1_remet")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/custom_data_0 = true
+0:0/0/custom_data_1 = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xx7o5"]
+texture = ExtResource("3_x8mbw")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/custom_data_0 = true
+
+[sub_resource type="TileSet" id="TileSet_et4lp"]
+tile_shape = 1
+tile_size = Vector2i(32, 16)
+custom_data_layer_0/name = "walkable"
+custom_data_layer_0/type = 1
+custom_data_layer_1/name = "placeable"
+custom_data_layer_1/type = 1
+sources/3 = SubResource("TileSetAtlasSource_1jroc")
+sources/0 = SubResource("TileSetAtlasSource_8ndgx")
+sources/4 = SubResource("TileSetAtlasSource_xx7o5")
+
+[sub_resource type="Curve2D" id="Curve2D_t7ttj"]
+bake_interval = 1.0
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -161, 30, 0, 0, 0, 0, -27, 99, 0, 0, 0, 0, 94, 28, 0, 0, 0, 0, -95, -66, 0, 0, 0, 0, -18, -106, 0, 0, 0, 0, 0, -97, 0, 0, 0, 0, 48, -123)
+}
+point_count = 7
+
+[node name="Level4" type="Node2D"]
+y_sort_enabled = true
+texture_filter = 2
+
+[node name="PlayerTraversal" type="TileMapLayer" parent="."]
+y_sort_enabled = true
+texture_filter = 1
+position = Vector2(224, 144)
+tile_map_data = PackedByteArray("AAD8/woAAwAAAAAAAAD8/wkAAwAAAAAAAAD8/wgAAwAAAAAAAAD8/wcAAwAAAAAAAAD9/wYAAwAAAAAAAAD9/wUAAwAAAAAAAAD+/wQAAwAAAAAAAAD9/wMAAwAAAAAAAAD9/wIAAwAAAAAAAAD9/wEAAwAAAAAAAAD9/wAAAwAAAAAAAAD9////AwAAAAAAAAD+//7/AwAAAAAAAAD9//3/AwAAAAAAAAD+//z/AwAAAAAAAAD+//v/AwAAAAAAAAD+//r/AwAAAAAAAAD+//n/AwAAAAAAAAD///j/AwAAAAAAAAAAAPj/AwAAAAAAAAAAAPn/AwAAAAAAAAABAPr/AwAAAAAAAAABAPv/AwAAAAAAAAACAPz/AwAAAAAAAAABAP3/AwAAAAAAAAACAP7/AwAAAAAAAAACAP//AwAAAAAAAAACAAAAAwAAAAAAAAACAAEAAwAAAAAAAAACAAIAAwAAAAAAAAACAAMAAwAAAAAAAAACAAQAAwAAAAAAAAACAAUAAwAAAAAAAAACAAYAAwAAAAAAAAAAAAgAAwAAAAAAAAD//wcAAwAAAAAAAAAAAAYAAwAAAAAAAAAAAAUAAwAAAAAAAAAAAAQAAwAAAAAAAAAAAAMAAwAAAAAAAAABAAIAAwAAAAAAAAABAAEAAwAAAAAAAAD//wUAAwAAAAAAAAD//wYAAwAAAAAAAAD+/wcAAwAAAAAAAAD9//j/AwAAAAAAAAD9//f/AwAAAAAAAAD+//b/AwAAAAAAAAD9//X/AwAAAAAAAAD9//b/AwAAAAAAAAD8//f/AwAAAAAAAAD8//j/AwAAAAAAAAD8//n/AwAAAAAAAAD8//r/AwAAAAAAAAD7//v/AwAAAAAAAAD8//z/AwAAAAAAAAD7//3/AwAAAAAAAAD7//7/AwAAAAAAAAD7////AwAAAAAAAAD7/wAAAwAAAAAAAAD6/wEAAwAAAAAAAAD7/wIAAwAAAAAAAAD6/wMAAwAAAAAAAAD///L/AwAAAAAAAAD///P/AwAAAAAAAAAAAPL/AwAAAAAAAAAAAPP/AwAAAAAAAAABAPT/AwAAAAAAAAABAPH/AwAAAAAAAAABAPD/AwAAAAAAAAD9//z/AwAAAAAAAAD9//v/AwAAAAAAAAD9//n/AwAAAAAAAAABAPn/AwAAAAAAAAABAPj/AwAAAAAAAAABAPf/AwAAAAAAAAACAPb/AwAAAAAAAAACAPX/AwAAAAAAAAACAPT/AwAAAAAAAAABAPP/AwAAAAAAAAD5//7/AwAAAAAAAAD5////AwAAAAAAAAD6//7/AwAAAAAAAAD6////AwAAAAAAAAADAP7/AwAAAAAAAAADAP//AwAAAAAAAAAEAAAAAwAAAAAAAAAEAP//AwAAAAAAAAD+//T/AAAAAAAAAAD+//P/AAAAAAAAAAAAAAcAAAAAAAAAAAABAAYAAAAAAAAAAAABAAUAAAAAAAAAAAD8/wYABAAAAAAAAAD7/wUABAAAAAAAAAD7/wQABAAAAAAAAAABAAAABAAAAAAAAAAAAP//BAAAAAAAAAAAAP7/BAAAAAAAAAD///3/BAAAAAAAAAD///z/BAAAAAAAAAAAAPH/AAAAAAAAAAACAPL/AwAAAAAAAAD///n/AwAAAAAAAAD+/wwAAwAAAAAAAAD+/wsAAwAAAAAAAAD//wwAAwAAAAAAAAD9/wgABAAAAAAAAAD9/wkABAAAAAAAAAD+/woABAAAAAAAAAD//woAAAAAAAAAAAD//wkAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_et4lp")
+
+[node name="EnemyPath" type="Path2D" parent="."]
+position = Vector2(224, 144)
+curve = SubResource("Curve2D_t7ttj")
+script = ExtResource("6_e6x1p")
