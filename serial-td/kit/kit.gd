@@ -13,6 +13,7 @@ var base_towers = [
 	gamedata.towers.ELECTRIC_T0,
 	gamedata.towers.ICE_T0,
 	gamedata.towers.WATER_T0,
+	gamedata.towers.GRASS_T0,
 ]
 
 # NOTE: `res://interface/ui_control.gd`
@@ -32,6 +33,10 @@ func _ready() -> void:
 	world = get_tree().root.get_node("World")
 	world.connect("stage_changed", _stage_changed)
 	raycast = get_node("Raycast")
+
+func _remove_tutorial() -> void:
+	if $Controls:
+		$Controls.queue_free()
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_down"):
@@ -106,6 +111,7 @@ func _move() -> void:
 	if not tile_data or not tile_data.get_custom_data("walkable") or raycast.is_colliding():
 		return
 
+	_remove_tutorial()
 	moving = true
 	var tween = create_tween()
 	tween.tween_property(self, "position", position + move_offset, 0.1)

@@ -7,6 +7,7 @@ var frozen = preload("res://effects/frozen.tscn")
 var wet = preload("res://effects/wet.tscn")
 var electric_wet = preload("res://effects/wetelectric.tscn")
 var electric_ice = preload("res://effects/iceelectric.tscn")
+var sprouted = preload("res://effects/sprouted.tscn")
 
 enum damage_type {
 	NO_TYPE,
@@ -31,21 +32,28 @@ var damage_data = {
 		"damage_frequency": 2,
 		"duration": 5.0, 
 		"range": 0, 
-		"speed_debuff": 0.25,
+		"speed_debuff": 0.3,
 	},
 	damage_type.ELECTRICITY:  {
 		"damage": 1,
 		"damage_frequency": 0.25,
-		"duration": 5.0, 
+		"duration": 6.0, 
 		"range": 25, 
-		"speed_debuff": 0.8,
+		"speed_debuff": 0.78,
 	},
 	damage_type.WATER:  {
 		"damage": 0,
 		"damage_frequency": 0.25,
 		"duration": 5.0, 
 		"range": 0, 
-		"speed_debuff": 1,
+		"speed_debuff": 0.95,
+	},
+	damage_type.GRASS:  {
+		"damage": 10,
+		"damage_frequency": 1.5,
+		"duration": 10.0, 
+		"range": 0, 
+		"speed_debuff": 0.95,
 	},
 }
 
@@ -101,6 +109,7 @@ enum towers {
 	FLAME_T0,
 	ELECTRIC_T0,
 	WATER_T0,
+	GRASS_T0,
 }
 
 var tower_data = {
@@ -110,7 +119,7 @@ var tower_data = {
 		"damage": 6,
 		"cost": 100,
 		"range": 10,
-		"pierce": 2,
+		"pierce": 3,
 		"reload_time": 0.3,
 		"bullet_speed": 15,
 		"bullet_lifetime": 0.5,
@@ -132,7 +141,7 @@ var tower_data = {
 		"damage": 1,
 		"cost": 300,
 		"range": 10,
-		"pierce": 10,
+		"pierce": 6,
 		"reload_time": 0.01,
 		"bullet_speed": 15,
 		"bullet_lifetime": 0.2,
@@ -144,7 +153,7 @@ var tower_data = {
 		"cost": 500,
 		"range": 50,
 		"pierce": 10,
-		"reload_time": 1.25,
+		"reload_time": 1.75,
 		"bullet_speed": 40,
 		"bullet_lifetime": 0.5,
 	},
@@ -154,9 +163,9 @@ var tower_data = {
 		"damage": 4,
 		"cost": 250,
 		"range": 10,
-		"pierce": 3,
+		"pierce": 2,
 		"reload_time": 1.5,
-		"bullet_speed": 15,
+		"bullet_speed": 20,
 		"bullet_lifetime": 1.0,
 	},
 	towers.WATER_T0: {
@@ -168,6 +177,17 @@ var tower_data = {
 		"pierce": 6,
 		"reload_time": 0.01,
 		"bullet_speed": 15,
+		"bullet_lifetime": 0.4,
+	},
+	towers.GRASS_T0: {
+		"node": preload("res://towers/grass/grasst0.tscn"),
+		"texture": preload("res://assets/towers/grasst0.png"),
+		"damage": 10,
+		"cost": 500,
+		"range": 10,
+		"pierce": 2,
+		"reload_time": 0.8,
+		"bullet_speed": 20,
 		"bullet_lifetime": 0.4,
 	},
 }
@@ -257,7 +277,7 @@ var enemy_data = {
 var wave_data = {
 	1: {
 		"enemies": [ 
-					 [enemies.SAW1, 10],
+					 [enemies.SAW1, 0.3],
 					 [enemies.SAW1, 0.3],
 					 [enemies.SAW1, 0.3],
 				   ],

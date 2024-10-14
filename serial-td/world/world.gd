@@ -29,7 +29,7 @@ func _ready() -> void:
 	levels_node.add_child(lv1)
 
 func _next_level():
-	Global.heat += 0.2
+	Global.heat += 0.3
 	current_level += 1
 
 func get_cell_tile_data(coords: Vector2) -> TileData:

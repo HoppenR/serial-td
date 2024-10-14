@@ -19,7 +19,7 @@ func _ready() -> void:
 	add_child(timer)
 	timer.one_shot = true
 	timer.connect("timeout", _spawn_enemy)
-	timer.start(5.0)
+	timer.start(10.0)
 
 # Probably inefficient to check every frame?
 # Can use enemy dying event instead of _physics_process,
