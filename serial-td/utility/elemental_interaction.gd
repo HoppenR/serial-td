@@ -51,6 +51,21 @@ func _react_to_element(this, target, internal_element, external_element) -> bool
 					gamedata.damage_type.WATER:
 						this._remove_effect()
 						return true
+			gamedata.damage_type.GRASS:
+				match external_element:
+					gamedata.damage_type.ICE:
+						this._remove_effect()
+						return true
+					gamedata.damage_type.FIRE:
+						this._remove_effect()
+						return true
+					gamedata.damage_type.ELECTRICITY:
+						target._remove_element(external_element)
+						return false
+					gamedata.damage_type.WATER:
+						Global.health += 1
+						target._remove_element(external_element)
+						return false
 	return true	
 
 func _init_effect(this) -> void:

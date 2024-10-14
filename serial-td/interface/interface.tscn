@@ -18,22 +18,22 @@ script = ExtResource("1_idbcy")
 [node name="TowerPanel" type="Panel" parent="."]
 layout_mode = 0
 offset_left = 10.0
-offset_top = 782.0
+offset_top = 741.0
 offset_right = 200.0
 offset_bottom = 962.0
 
 [node name="SelectedTower" type="Sprite2D" parent="TowerPanel"]
 texture_filter = 1
-position = Vector2(90, 80)
+position = Vector2(90, 108)
 scale = Vector2(10, 10)
 texture = ExtResource("2_mmdrl")
 
 [node name="CostLabel" type="Label" parent="TowerPanel"]
 layout_mode = 0
-offset_left = 5.0
-offset_top = 155.0
-offset_right = 64.0
-offset_bottom = 178.0
+offset_left = 6.0
+offset_top = 193.0
+offset_right = 65.0
+offset_bottom = 216.0
 theme_override_fonts/font = ExtResource("4_ehfa6")
 text = "[Cost]"
 
@@ -45,14 +45,14 @@ offset_bottom = 23.0
 theme_override_fonts/font = ExtResource("4_ehfa6")
 text = "[SPACE]"
 
-[node name="InfoPanel" type="Panel" parent="."]
+[node name="KitInfoPanel" type="Panel" parent="."]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 4.0
 offset_right = 233.0
 offset_bottom = 56.0
 
-[node name="GoldIcon" type="TextureRect" parent="InfoPanel"]
+[node name="GoldIcon" type="TextureRect" parent="KitInfoPanel"]
 texture_filter = 1
 layout_mode = 0
 offset_left = 110.0
@@ -61,7 +61,7 @@ offset_right = 153.0
 offset_bottom = 47.0
 texture = ExtResource("3_dl7ul")
 
-[node name="GoldLabel" type="Label" parent="InfoPanel/GoldIcon"]
+[node name="GoldLabel" type="Label" parent="KitInfoPanel/GoldIcon"]
 layout_mode = 0
 offset_left = 44.0
 offset_top = 10.0
@@ -71,7 +71,7 @@ theme_override_fonts/font = ExtResource("4_ehfa6")
 theme_override_font_sizes/font_size = 25
 text = "[GOLD]"
 
-[node name="HealthIcon" type="TextureRect" parent="InfoPanel"]
+[node name="HealthIcon" type="TextureRect" parent="KitInfoPanel"]
 texture_filter = 1
 layout_mode = 0
 offset_left = 1.0
@@ -80,7 +80,7 @@ offset_right = 47.0
 offset_bottom = 48.0
 texture = ExtResource("4_jidkx")
 
-[node name="HealthLabel" type="Label" parent="InfoPanel/HealthIcon"]
+[node name="HealthLabel" type="Label" parent="KitInfoPanel/HealthIcon"]
 texture_filter = 1
 layout_mode = 0
 offset_left = 46.0

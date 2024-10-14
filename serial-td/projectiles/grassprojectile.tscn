@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddb0tnvxtam80"]
+
+[ext_resource type="Script" path="res://projectiles/grassprojectile.gd" id="1_n7snl"]
+[ext_resource type="Texture2D" uid="uid://bafeuia5f5fe0" path="res://assets/projectiles/grassprojectile.png" id="2_5gi74"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i0ure"]
+size = Vector2(32, 24)
+
+[node name="GrassProjectile" type="Node2D"]
+script = ExtResource("1_n7snl")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_5gi74")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+scale = Vector2(0.25, 0.25)
+shape = SubResource("RectangleShape2D_i0ure")
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

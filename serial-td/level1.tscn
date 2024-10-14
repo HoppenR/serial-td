@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=4 uid="uid://bto7axc6sujs5"]
+[gd_scene load_steps=20 format=4 uid="uid://ccsnccn5rdtx6"]
 
 [ext_resource type="Texture2D" uid="uid://bttqibk68afj4" path="res://assets/tiles/cookie_tile1.png" id="1_wu2uw"]
 [ext_resource type="Texture2D" uid="uid://bli7tgqrdpmr7" path="res://assets/tiles/cookie_tile2.png" id="2_2fvt3"]
 [ext_resource type="Texture2D" uid="uid://cmw0tv33vpqgq" path="res://assets/tiles/cookie_tile3.png" id="3_tjn75"]
 [ext_resource type="Texture2D" uid="uid://drysweuluyyr7" path="res://assets/tiles/cookie_tile7.png" id="4_bodr8"]
+[ext_resource type="Texture2D" uid="uid://d2un1anetp3s3" path="res://assets/tiles/water_tile1.png" id="4_pk4pr"]
 [ext_resource type="Script" path="res://path/basepath.gd" id="4_togr8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hth1o"]
@@ -25,6 +26,40 @@ texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 0:0/0/custom_data_0 = true
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ig5q7"]
+texture = ExtResource("3_k0pu8")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/custom_data_0 = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_itx8u"]
+texture = ExtResource("4_pk4pr")
+texture_region_size = Vector2i(32, 16)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_txcdm"]
+texture = ExtResource("4_bodr8")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/custom_data_0 = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i34df"]
+texture = ExtResource("3_0f1f8")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/custom_data_0 = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eu6bs"]
+texture = ExtResource("5_1yy4q")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/custom_data_0 = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4qss7"]
+texture = ExtResource("6_rirvu")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/custom_data_0 = true
+
 [sub_resource type="TileSet" id="TileSet_et4lp"]
 tile_shape = 1
 tile_size = Vector2i(32, 16)
@@ -33,8 +68,13 @@ custom_data_layer_0/type = 1
 custom_data_layer_1/name = "placeable"
 custom_data_layer_1/type = 1
 sources/0 = SubResource("TileSetAtlasSource_hth1o")
-sources/2 = SubResource("TileSetAtlasSource_y16ln")
-sources/1 = SubResource("TileSetAtlasSource_ostsc")
+sources/1 = SubResource("TileSetAtlasSource_4dxi2")
+sources/5 = SubResource("TileSetAtlasSource_i34df")
+sources/2 = SubResource("TileSetAtlasSource_ig5q7")
+sources/7 = SubResource("TileSetAtlasSource_eu6bs")
+sources/8 = SubResource("TileSetAtlasSource_4qss7")
+sources/4 = SubResource("TileSetAtlasSource_txcdm")
+sources/3 = SubResource("TileSetAtlasSource_itx8u")
 
 [sub_resource type="Curve2D" id="Curve2D_vsx5i"]
 bake_interval = 1.0

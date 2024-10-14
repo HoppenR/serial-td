@@ -17,6 +17,7 @@ func _ready() -> void:
 	secondary_element = gamedata.damage_type.ICE
 	$RangeCollision.shape.radius = gamedata.damage_data[main_element]["range"]
 	ElementalInteraction._init_effect(self)
+	damage *= 1.3
 
 func _deal_damage() -> void:
 	for i in range(enemy_array.size()):

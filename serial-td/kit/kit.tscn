@@ -1,7 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://dq8hn04occ7x5"]
+[gd_scene load_steps=8 format=3 uid="uid://dq8hn04occ7x5"]
 
 [ext_resource type="Script" path="res://kit/kit.gd" id="1_k5qee"]
 [ext_resource type="Texture2D" uid="uid://bxu2j4r8io6k1" path="res://assets/kit/meow.png" id="2_77736"]
+[ext_resource type="Texture2D" uid="uid://det4t5v4hrk5e" path="res://assets/interface_icons/w_tile.png" id="3_26ckv"]
+[ext_resource type="Texture2D" uid="uid://c8ep3ufiepald" path="res://assets/interface_icons/a_tile.png" id="4_8e5mf"]
+[ext_resource type="Texture2D" uid="uid://b7yx8wxwf02w6" path="res://assets/interface_icons/s_tile.png" id="5_wmkv8"]
+[ext_resource type="Texture2D" uid="uid://dnyg6n2awtxgv" path="res://assets/interface_icons/d_tile.png" id="6_csext"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2s37y"]
 size = Vector2(8, 8)
@@ -12,6 +16,7 @@ position = Vector2(32, -16)
 script = ExtResource("1_k5qee")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
 texture_filter = 1
 position = Vector2(0, 1)
 texture = ExtResource("2_77736")
@@ -21,3 +26,29 @@ shape = SubResource("RectangleShape2D_2s37y")
 
 [node name="Raycast" type="RayCast2D" parent="."]
 target_position = Vector2(16, 16)
+
+[node name="Controls" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="WSprite" type="Sprite2D" parent="Controls"]
+texture_filter = 1
+position = Vector2(16, 0)
+texture = ExtResource("6_csext")
+
+[node name="ASprite" type="Sprite2D" parent="Controls"]
+texture_filter = 1
+position = Vector2(-16, 0)
+texture = ExtResource("3_26ckv")
+
+[node name="SSprite" type="Sprite2D" parent="Controls"]
+texture_filter = 1
+position = Vector2(-16, 16)
+texture = ExtResource("4_8e5mf")
+
+[node name="DSprite" type="Sprite2D" parent="Controls"]
+texture_filter = 1
+position = Vector2(16, 16)
+texture = ExtResource("5_wmkv8")

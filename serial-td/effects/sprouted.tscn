@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cgvfanwibfmt4"]
+
+[ext_resource type="Texture2D" uid="uid://d44fjug7yfhx" path="res://assets/effects/grasseffect.png" id="1_rf3bk"]
+[ext_resource type="Script" path="res://effects/sprouted.gd" id="2_tracl"]
+
+[node name="Sprouted" type="Sprite2D"]
+texture_filter = 1
+texture = ExtResource("1_rf3bk")
+script = ExtResource("2_tracl")
