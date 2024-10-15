@@ -1,0 +1,42 @@
+[gd_scene load_steps=9 format=3 uid="uid://dw8f4cr3w5asu"]
+
+[ext_resource type="Script" path="res://world_roguelike/world.gd" id="1_i8ypk"]
+[ext_resource type="Texture2D" uid="uid://d18btduuf1ib" path="res://assets/tiles/cookie_selected.png" id="2_y0flf"]
+[ext_resource type="Script" path="res://path/highlightmap.gd" id="3_qeh4y"]
+[ext_resource type="PackedScene" uid="uid://dq8hn04occ7x5" path="res://kit/kit.tscn" id="4_p5uk8"]
+[ext_resource type="PackedScene" uid="uid://crkju7uebsnej" path="res://interface/interface.tscn" id="5_sda11"]
+[ext_resource type="Script" path="res://kit/kit_camera.gd" id="6_jy6jp"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y5htk"]
+texture = ExtResource("2_y0flf")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_6w0fv"]
+tile_shape = 1
+tile_size = Vector2i(32, 16)
+sources/0 = SubResource("TileSetAtlasSource_y5htk")
+
+[node name="World" type="Node2D"]
+texture_filter = 2
+script = ExtResource("1_i8ypk")
+
+[node name="Highlight" type="TileMapLayer" parent="."]
+z_index = 1
+y_sort_enabled = true
+texture_filter = 1
+tile_set = SubResource("TileSet_6w0fv")
+script = ExtResource("3_qeh4y")
+
+[node name="Kit" parent="." instance=ExtResource("4_p5uk8")]
+texture_filter = 1
+position = Vector2(96, 56)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Interface" parent="CanvasLayer" instance=ExtResource("5_sda11")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
+position_smoothing_enabled = true
+script = ExtResource("6_jy6jp")

@@ -12,7 +12,6 @@ var visible_level: Node2D:
 
 var current_level: int = 1:
 	set(new_value):
-		# TODO(Christoffer): Crashes at level 4
 		var next_level = load("res://level" + str(new_value) + ".tscn").instantiate()
 		levels_node.add_child(next_level)
 		# NOTE: Only places levels to the right (east)
