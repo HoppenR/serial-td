@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://dio7nok465ddx"]
+
+[ext_resource type="Script" path="res://main_menu/campaign_button.gd" id="1_f341b"]
+[ext_resource type="Script" path="res://main_menu/roguelike_button.gd" id="2_ql7fi"]
+
+[sub_resource type="Shortcut" id="Shortcut_03vvb"]
+
+[node name="MainMenu" type="TextEdit"]
+offset_right = 911.0
+offset_bottom = 485.0
+text = "SERIAL_TD"
+editable = false
+
+[node name="MenuOptions" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 319.0
+offset_top = 206.0
+offset_right = 574.0
+offset_bottom = 277.0
+
+[node name="CampaignButton" type="Button" parent="MenuOptions"]
+layout_mode = 2
+shortcut = SubResource("Shortcut_03vvb")
+text = "CAMPAIGN"
+script = ExtResource("1_f341b")
+
+[node name="RoguelikeButton" type="Button" parent="MenuOptions"]
+layout_mode = 2
+text = "ROGUELIKE"
+script = ExtResource("2_ql7fi")
