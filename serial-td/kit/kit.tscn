@@ -36,19 +36,19 @@ offset_bottom = 40.0
 [node name="WSprite" type="Sprite2D" parent="Controls"]
 texture_filter = 1
 position = Vector2(16, 0)
-texture = ExtResource("6_csext")
+texture = ExtResource("3_26ckv")
 
 [node name="ASprite" type="Sprite2D" parent="Controls"]
 texture_filter = 1
 position = Vector2(-16, 0)
-texture = ExtResource("3_26ckv")
+texture = ExtResource("4_8e5mf")
 
 [node name="SSprite" type="Sprite2D" parent="Controls"]
 texture_filter = 1
 position = Vector2(-16, 16)
-texture = ExtResource("4_8e5mf")
+texture = ExtResource("5_wmkv8")
 
 [node name="DSprite" type="Sprite2D" parent="Controls"]
 texture_filter = 1
 position = Vector2(16, 16)
-texture = ExtResource("5_wmkv8")
+texture = ExtResource("6_csext")

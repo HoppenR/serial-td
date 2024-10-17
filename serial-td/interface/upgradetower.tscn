@@ -1,0 +1,58 @@
+[gd_scene load_steps=4 format=3 uid="uid://p5dxh4y71chd"]
+
+[ext_resource type="Script" path="res://interface/upgradetower.gd" id="1_majd2"]
+[ext_resource type="Texture2D" uid="uid://8kam4krgjexh" path="res://assets/towers/flamet1.png" id="2_d18ij"]
+[ext_resource type="FontFile" uid="uid://42lo6e7kp1eh" path="res://assets/fonts/MinecraftTen.ttf" id="3_ddkhl"]
+
+[node name="UpgradeTower" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -13.0
+offset_top = -48.0
+offset_right = -13.0
+offset_bottom = -48.0
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_majd2")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_top = -6.0
+offset_right = 50.0
+offset_bottom = 70.0
+color = Color(0.162066, 0.162066, 0.162066, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 5.0
+offset_top = 12.0
+offset_right = 46.0
+offset_bottom = 53.0
+texture = ExtResource("2_d18ij")
+
+[node name="InstructionLabel" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 16.0
+offset_top = -6.0
+offset_right = 38.0
+offset_bottom = 11.0
+theme_override_fonts/font = ExtResource("3_ddkhl")
+theme_override_font_sizes/font_size = 12
+text = "[E]"
+horizontal_alignment = 1
+autowrap_mode = 3
+justification_flags = 233
+
+[node name="CostLabel" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 7.0
+offset_top = 50.0
+offset_right = 43.0
+offset_bottom = 69.0
+theme_override_fonts/font = ExtResource("3_ddkhl")
+theme_override_font_sizes/font_size = 13
+text = "$666
+"
+horizontal_alignment = 1

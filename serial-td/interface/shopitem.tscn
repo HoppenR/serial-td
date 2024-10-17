@@ -1,0 +1,54 @@
+[gd_scene load_steps=4 format=3 uid="uid://cukq5wopeeua0"]
+
+[ext_resource type="Script" path="res://interface/shopitem.gd" id="1_vfvon"]
+[ext_resource type="Texture2D" uid="uid://djp6xh0fbala0" path="res://assets/effects/fireeffect.png" id="2_pjw8j"]
+[ext_resource type="FontFile" uid="uid://42lo6e7kp1eh" path="res://assets/fonts/MinecraftTen.ttf" id="3_ifs14"]
+
+[node name="ShopItem" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_vfvon")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_top = 5.0
+offset_right = 60.0
+offset_bottom = 70.0
+color = Color(0.162066, 0.162066, 0.162066, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 12.0
+offset_top = 18.0
+offset_right = 48.0
+offset_bottom = 54.0
+texture = ExtResource("2_pjw8j")
+
+[node name="NameLabel" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 2.0
+offset_top = 56.0
+offset_right = 58.0
+offset_bottom = 67.0
+theme_override_fonts/font = ExtResource("3_ifs14")
+theme_override_font_sizes/font_size = 10
+text = "Baset1
+"
+horizontal_alignment = 1
+autowrap_mode = 3
+justification_flags = 233
+
+[node name="CostLabel" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 12.0
+offset_top = 5.0
+offset_right = 48.0
+offset_bottom = 19.0
+theme_override_fonts/font = ExtResource("3_ifs14")
+theme_override_font_sizes/font_size = 10
+text = "$666
+"
+horizontal_alignment = 1

@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://c5bgqfflob6s7"]
+
+[ext_resource type="Script" path="res://towers/electric/electrict1.gd" id="1_y8kwr"]
+[ext_resource type="Texture2D" uid="uid://b02b6ifl2i0j3" path="res://assets/towers/electrict1.png" id="2_ykf23"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_34apt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g7f6y"]
+size = Vector2(2, 2)
+
+[node name="ElectricT1" type="Node2D"]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_y8kwr")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+z_index = 2
+scale = Vector2(2, 2)
+texture = ExtResource("2_ykf23")
+
+[node name="Range" type="Area2D" parent="."]
+scale = Vector2(5, 5)
+collision_layer = 2
+collision_mask = 2
+
+[node name="RangeCollision" type="CollisionShape2D" parent="Range"]
+rotation = 0.785398
+scale = Vector2(1.25, 1.25)
+skew = 0.436332
+shape = SubResource("CircleShape2D_34apt")
+
+[node name="Hitbox" type="CharacterBody2D" parent="."]
+scale = Vector2(5, 5)
+
+[node name="HitboxCollision" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(1.77636e-15, 3)
+shape = SubResource("RectangleShape2D_g7f6y")
+
+[connection signal="body_entered" from="Range" to="." method="_on_range_body_entered"]
+[connection signal="body_exited" from="Range" to="." method="_on_range_body_exited"]

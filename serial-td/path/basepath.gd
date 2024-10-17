@@ -50,7 +50,7 @@ func _physics_process(delta: float) -> void:
 			current_wave = 1
 			return
 		enemies_to_spawn = gamedata.wave_data[current_wave].enemies.duplicate()
-		timer.start(5.0)
+		timer.start(10.0)
 
 func _spawn_enemy() -> void:
 	if enemies_to_spawn.is_empty():
@@ -63,6 +63,7 @@ func _spawn_enemy() -> void:
 	enemy.hp = gamedata.enemy_data[enemy_var]["hp"] * Global.heat
 	enemy.speed = gamedata.enemy_data[enemy_var]["speed"] * Global.heat
 	enemy.immunity = gamedata.enemy_data[enemy_var]["immunity"]
+	enemy.value = gamedata.enemy_data[enemy_var]["value"]
 	if enemy.speed > 550:
 		enemy.speed = 550
 	add_child(enemy)
