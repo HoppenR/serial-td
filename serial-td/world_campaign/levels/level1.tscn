@@ -1,61 +1,59 @@
-[gd_scene load_steps=20 format=4 uid="uid://ccsnccn5rdtx6"]
+[gd_scene load_steps=20 format=4 uid="uid://bj4mns03qwly"]
 
-[ext_resource type="Texture2D" uid="uid://bttqibk68afj4" path="res://assets/tiles/cookie_tile1.png" id="1_wu2uw"]
-[ext_resource type="Texture2D" uid="uid://bli7tgqrdpmr7" path="res://assets/tiles/cookie_tile2.png" id="2_2fvt3"]
-[ext_resource type="Texture2D" uid="uid://cmw0tv33vpqgq" path="res://assets/tiles/cookie_tile3.png" id="3_tjn75"]
-[ext_resource type="Texture2D" uid="uid://drysweuluyyr7" path="res://assets/tiles/cookie_tile7.png" id="4_bodr8"]
-[ext_resource type="Texture2D" uid="uid://d2un1anetp3s3" path="res://assets/tiles/water_tile1.png" id="4_pk4pr"]
-[ext_resource type="Script" path="res://path/basepath.gd" id="4_togr8"]
+[ext_resource type="Texture2D" uid="uid://bttqibk68afj4" path="res://assets/tiles/cookie_tile1.png" id="1_nebpc"]
+[ext_resource type="Texture2D" uid="uid://cmw0tv33vpqgq" path="res://assets/tiles/cookie_tile3.png" id="2_wjjyl"]
+[ext_resource type="Texture2D" uid="uid://bli7tgqrdpmr7" path="res://assets/tiles/cookie_tile2.png" id="3_7gmer"]
+[ext_resource type="Texture2D" uid="uid://d2un1anetp3s3" path="res://assets/tiles/water_tile1.png" id="4_r2wtb"]
+[ext_resource type="Texture2D" uid="uid://drysweuluyyr7" path="res://assets/tiles/cookie_tile7.png" id="5_nyhwd"]
+[ext_resource type="Texture2D" uid="uid://cbxpdmwer4j6x" path="res://assets/tiles/cookie_tile4.png" id="6_aoqot"]
+[ext_resource type="Texture2D" uid="uid://cjxyy0sa2tlbk" path="res://assets/tiles/cookie_tile5.png" id="7_aqxc0"]
+[ext_resource type="Texture2D" uid="uid://byapsq3sdkw52" path="res://assets/tiles/cookie_tile6.png" id="8_3r7i3"]
+[ext_resource type="Script" path="res://path/basepath.gd" id="9_40i0y"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hth1o"]
-texture = ExtResource("1_wu2uw")
+texture = ExtResource("1_nebpc")
 texture_region_size = Vector2i(32, 32)
 0:0/next_alternative_id = 7
 0:0/0 = 0
 0:0/0/custom_data_0 = true
 0:0/0/custom_data_1 = true
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ostsc"]
-texture = ExtResource("2_2fvt3")
-texture_region_size = Vector2i(32, 32)
-0:0/0 = 0
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y16ln"]
-texture = ExtResource("3_tjn75")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4dxi2"]
+texture = ExtResource("2_wjjyl")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 0:0/0/custom_data_0 = true
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ig5q7"]
-texture = ExtResource("3_k0pu8")
+texture = ExtResource("3_7gmer")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 0:0/0/custom_data_0 = true
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_itx8u"]
-texture = ExtResource("4_pk4pr")
+texture = ExtResource("4_r2wtb")
 texture_region_size = Vector2i(32, 16)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_txcdm"]
-texture = ExtResource("4_bodr8")
+texture = ExtResource("5_nyhwd")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 0:0/0/custom_data_0 = true
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i34df"]
-texture = ExtResource("3_0f1f8")
+texture = ExtResource("6_aoqot")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 0:0/0/custom_data_0 = true
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eu6bs"]
-texture = ExtResource("5_1yy4q")
+texture = ExtResource("7_aqxc0")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 0:0/0/custom_data_0 = true
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4qss7"]
-texture = ExtResource("6_rirvu")
+texture = ExtResource("8_3r7i3")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 0:0/0/custom_data_0 = true
@@ -76,7 +74,7 @@ sources/8 = SubResource("TileSetAtlasSource_4qss7")
 sources/4 = SubResource("TileSetAtlasSource_txcdm")
 sources/3 = SubResource("TileSetAtlasSource_itx8u")
 
-[sub_resource type="Curve2D" id="Curve2D_vsx5i"]
+[sub_resource type="Curve2D" id="Curve2D_t7ttj"]
 bake_interval = 1.0
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -39, -132, 0, 0, 0, 0, 47, -90, 0, 0, 0, 0, -94, -17, 0, 0, 0, 0, 16, 39, 0, 0, 0, 0, 98, -3, 0, 0, 0, 0, 110, 6, 0, 0, 0, 0, 28, 48, 0, 0, 0, 0, -67, 97)
@@ -95,6 +93,7 @@ tile_map_data = PackedByteArray("AAD5/+//AAAAAAAAAAD5//D/AAAAAAAAAAD5//H/AAAAAAA
 tile_set = SubResource("TileSet_et4lp")
 
 [node name="EnemyPath" type="Path2D" parent="."]
+z_index = 1
 position = Vector2(224, 144)
 curve = SubResource("Curve2D_t7ttj")
-script = ExtResource("4_togr8")
+script = ExtResource("9_40i0y")

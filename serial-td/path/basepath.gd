@@ -20,6 +20,19 @@ func _ready() -> void:
 	timer.one_shot = true
 	timer.connect("timeout", _spawn_enemy)
 	timer.start(10.0)
+	# Show path
+	var line = Line2D.new()
+	line.default_color = Color.AQUAMARINE
+	line.points = curve.get_baked_points()
+	line.width = 0.5
+	add_child(line)
+	var line_timer = Timer.new()
+	add_child(line_timer)
+	line_timer.one_shot = true
+	line_timer.timeout.connect(func():
+		line.queue_free()
+	)
+	line_timer.start(7.5)
 
 # Probably inefficient to check every frame?
 # Can use enemy dying event instead of _physics_process,
@@ -30,7 +43,7 @@ func _physics_process(delta: float) -> void:
 	# Check for next wave continuously…
 	if enemies_alive.is_empty() and enemies_to_spawn.is_empty():
 		current_wave += 1
-		if current_wave > 10:
+		if current_wave > 3:
 			timer.stop()
 			is_active = false
 			world.emit_signal("stage_changed")
