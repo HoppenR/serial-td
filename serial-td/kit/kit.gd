@@ -110,9 +110,7 @@ func _place_tower(tower_to_place) -> bool:
 	tower_to_place.global_position = position + place_offset
 	return true
 
-<<<<<<< HEAD
 var move_tween
-=======
 func _force_place_tower(tower_to_place) -> bool:
 	var place_offset: Vector2 = _get_next_tile(previous_input_direction)
 	var tile_data: TileData = world.get_cell_tile_data(Vector2(global_position.x + place_offset.x, global_position.y + place_offset.y + tile_size / 2))
