@@ -15,7 +15,7 @@ var level_direction = Vector2(1, 0)
 
 var current_level: int = 1:
 	set(new_value):
-		if new_value == 2:
+		if new_value == 5:
 			level_direction = Vector2(0, 1)
 			direction_startpos = Vector2(1536, 1536)
 			print("South wrap should be here")
