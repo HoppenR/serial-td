@@ -12,7 +12,7 @@ func _ready() -> void:
 	main_element = gamedata.damage_type.ELECTRICITY
 	secondary_element = gamedata.damage_type.WATER
 	ElementalInteraction._init_effect(self)
-	damage *= 1.3
+	damage *= 2
 
 func _deal_damage() -> void:
 	get_parent().take_damage(damage, main_element)

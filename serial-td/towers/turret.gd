@@ -2,6 +2,7 @@ extends Node2D
 
 var projectileload
 
+var type
 var reload_time: float
 var bullet_speed: int
 var damage: int

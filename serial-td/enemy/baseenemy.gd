@@ -3,6 +3,7 @@ extends PathFollow2D
 var speed: int = 150
 var hp: int = 2
 var immunity
+var value
 
 signal enemy_dead(deal_damage: bool, enemy_hp: int)
 
@@ -50,7 +51,7 @@ func take_damage(amount: int, damage_type) -> void:
 
 	hp -= amount
 	if hp < 1:
-		emit_signal("enemy_dead", false, 0)
+		emit_signal("enemy_dead", false, value)
 		get_parent().enemies_alive.erase(self)
 		queue_free()
 		return

@@ -1,6 +1,8 @@
 extends CharacterBody2D
 
 var upgrade_interface = preload("res://interface/upgradeselection.tscn")
+var tower_upgrade_interface = preload("res://interface/upgradetower.tscn")
+var active_tower_upgrade_interface
 
 var raycast: RayCast2D
 var world: Node2D
@@ -63,9 +65,17 @@ func _process(delta: float) -> void:
 	var highlight_offset: Vector2 = _get_next_tile(previous_input_direction)
 	var highlight_tile: Vector2i = world.get_node("Highlight").local_to_map(Vector2(global_position.x + highlight_offset.x, global_position.y + highlight_offset.y + tile_size / 2))
 	emit_signal("select_tile", highlight_tile)
+	if $Raycast.is_colliding() and not active_tower_upgrade_interface:
+		var node = $Raycast.get_collider().get_parent()
+		if gamedata.tower_data[node.type]["upgrade"] != gamedata.towers.BLANK:
+			active_tower_upgrade_interface = tower_upgrade_interface.instantiate()
+			active_tower_upgrade_interface.tower = gamedata.tower_data[node.type]["upgrade"]
+			active_tower_upgrade_interface.node = node
+			add_child(active_tower_upgrade_interface)
+	
 
 func _input(event) -> void:
-	if event is InputEventMouseButton and event.is_pressed() and not moving:
+	if Input.is_action_just_pressed("ui_interact") and not moving:
 		var tower_var = base_towers[current_tower]
 		var cost = gamedata.tower_data[tower_var]["cost"]
 		if Global.gold >= cost:
@@ -74,12 +84,13 @@ func _input(event) -> void:
 				tower.queue_free()
 				return
 			Global.gold -= cost
-			tower.reload_time = gamedata.tower_data[tower_name]["reload_time"]
-			tower.damage = gamedata.tower_data[tower_name]["damage"]
-			tower.bullet_speed = gamedata.tower_data[tower_name]["bullet_speed"]
-			tower.pierce = gamedata.tower_data[tower_name]["pierce"]
-			tower.range = gamedata.tower_data[tower_name]["range"]
-			tower.bullet_lifetime = gamedata.tower_data[tower_name]["bullet_lifetime"]
+			tower.reload_time = gamedata.tower_data[tower_var]["reload_time"]
+			tower.damage = gamedata.tower_data[tower_var]["damage"]
+			tower.bullet_speed = gamedata.tower_data[tower_var]["bullet_speed"]
+			tower.pierce = gamedata.tower_data[tower_var]["pierce"]
+			tower.range = gamedata.tower_data[tower_var]["range"]
+			tower.bullet_lifetime = gamedata.tower_data[tower_var]["bullet_lifetime"]
+			tower.type = tower_var
 			get_parent().add_child(tower)
 
 # Make exclusive tile type placements for towers,
@@ -99,7 +110,39 @@ func _place_tower(tower_to_place) -> bool:
 	tower_to_place.global_position = position + place_offset
 	return true
 
+<<<<<<< HEAD
 var move_tween
+=======
+func _force_place_tower(tower_to_place) -> bool:
+	var place_offset: Vector2 = _get_next_tile(previous_input_direction)
+	var tile_data: TileData = world.get_cell_tile_data(Vector2(global_position.x + place_offset.x, global_position.y + place_offset.y + tile_size / 2))
+
+	# Change to placeable
+	if not tile_data or not tile_data.get_custom_data("placeable"):
+		return false
+	
+	tower_to_place.global_position = position + place_offset
+	return true
+
+func _fully_place_tower(tower_var) -> bool:
+	var cost = gamedata.tower_data[tower_var]["cost"]
+	if Global.gold >= cost:
+		tower = gamedata.tower_data[tower_var]["node"].instantiate()
+		if not _force_place_tower(tower):
+			tower.queue_free()
+			return false
+		Global.gold -= cost
+		tower.reload_time = gamedata.tower_data[tower_var]["reload_time"]
+		tower.damage = gamedata.tower_data[tower_var]["damage"]
+		tower.bullet_speed = gamedata.tower_data[tower_var]["bullet_speed"]
+		tower.pierce = gamedata.tower_data[tower_var]["pierce"]
+		tower.range = gamedata.tower_data[tower_var]["range"]
+		tower.bullet_lifetime = gamedata.tower_data[tower_var]["bullet_lifetime"]
+		tower.type = tower_var
+		get_parent().add_child(tower)
+		return true
+	return false
+
 func _move() -> void:
 	if moving:
 		return
@@ -115,9 +158,12 @@ func _move() -> void:
 
 	_remove_tutorial()
 	moving = true
-	move_tween = create_tween()
-	move_tween.tween_property(self, "position", position + move_offset, 0.1)
-	move_tween.connect("finished", func(): moving = false)
+	if active_tower_upgrade_interface:
+		active_tower_upgrade_interface.queue_free()
+		active_tower_upgrade_interface = null
+	var tween = create_tween()
+	tween.tween_property(self, "position", position + move_offset, 0.1)
+	tween.connect("finished", func(): moving = false)
 
 func _get_next_tile(direction: Vector2) -> Vector2:
 	if direction == Vector2.RIGHT:
@@ -134,11 +180,11 @@ func _get_next_tile(direction: Vector2) -> Vector2:
 
 # This is connected to `res://enemy/baseenemy.tscn->BaseEnemy` on tree_exiting
 # event, via the corresponding .gd script.
-func _enemy_dead(take_damage: bool, enemy_hp: int) -> void:
+func _enemy_dead(take_damage: bool, value: int) -> void:
 	if take_damage:
-		Global.health -= enemy_hp
+		Global.health -= value 
 	else:
-		Global.gold += 20
+		Global.gold += value 
 
 func _stage_changed() -> void:
 	var next_upgrade = upgrade_interface.instantiate()

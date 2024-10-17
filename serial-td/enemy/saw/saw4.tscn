@@ -16,8 +16,8 @@ script = ExtResource("1_ktoo6")
 texture = ExtResource("2_7af4g")
 
 [node name="Hitbox" type="CharacterBody2D" parent="."]
-collision_layer = 3
-collision_mask = 3
+collision_layer = 6
+collision_mask = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("RectangleShape2D_me7oi")

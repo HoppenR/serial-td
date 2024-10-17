@@ -12,8 +12,8 @@ script = ExtResource("1_lo1ou")
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
 offset_top = 2.0
-offset_right = 152.0
-offset_bottom = 50.0
+offset_right = 150.0
+offset_bottom = 52.0
 color = Color(0.162066, 0.162066, 0.162066, 1)
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -30,8 +30,8 @@ texture_filter = 1
 layout_mode = 0
 offset_left = 56.0
 offset_top = 6.0
-offset_right = 149.0
-offset_bottom = 46.0
+offset_right = 144.0
+offset_bottom = 48.0
 theme_override_fonts/font = ExtResource("3_76ibu")
 theme_override_font_sizes/font_size = 10
 text = "Increase fire damage"

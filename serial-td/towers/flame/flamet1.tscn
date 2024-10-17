@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://ddakk1ykify3r"]
+
+[ext_resource type="Script" path="res://towers/flame/flamet1.gd" id="1_jdlmj"]
+[ext_resource type="Texture2D" uid="uid://8kam4krgjexh" path="res://assets/towers/flamet1.png" id="2_ad0pq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_34apt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4e1m1"]
+size = Vector2(2, 2)
+
+[node name="FlameT1" type="Node2D"]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_jdlmj")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+z_index = 2
+scale = Vector2(2, 2)
+texture = ExtResource("2_ad0pq")
+
+[node name="Range" type="Area2D" parent="."]
+scale = Vector2(5, 5)
+collision_layer = 2
+collision_mask = 2
+
+[node name="RangeCollision" type="CollisionShape2D" parent="Range"]
+rotation = 0.785398
+scale = Vector2(1.25, 1.25)
+skew = 0.436332
+shape = SubResource("CircleShape2D_34apt")
+
+[node name="Hitbox" type="CharacterBody2D" parent="."]
+scale = Vector2(5, 5)
+
+[node name="HitboxCollision" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(1.77636e-15, 3)
+shape = SubResource("RectangleShape2D_4e1m1")
+
+[connection signal="body_entered" from="Range" to="." method="_on_range_body_entered"]
+[connection signal="body_exited" from="Range" to="." method="_on_range_body_exited"]
