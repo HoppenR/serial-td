@@ -12,7 +12,10 @@ func _select_tile(tile_position: Vector2i):
 				last_tile = tile_position
 				set_cell(tile_position, 0, Vector2i(0, 0), 0)
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
+func reset_kit() -> void:
 	var kit_node = get_tree().get_root().get_node("World/Kit")
 	kit_node.connect("select_tile", _select_tile)
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	reset_kit()

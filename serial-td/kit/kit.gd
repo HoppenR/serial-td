@@ -39,6 +39,7 @@ func _remove_tutorial() -> void:
 		$Controls.queue_free()
 
 func _process(delta: float) -> void:
+	print(str(position) + " , " + str(global_position))
 	if Input.is_action_just_pressed("ui_down"):
 		input_direction = Vector2.DOWN
 	elif Input.is_action_just_pressed("ui_up"):
@@ -98,6 +99,7 @@ func _place_tower(tower_to_place) -> bool:
 	tower_to_place.global_position = position + place_offset
 	return true
 
+var move_tween
 func _move() -> void:
 	if moving:
 		return
@@ -113,9 +115,9 @@ func _move() -> void:
 
 	_remove_tutorial()
 	moving = true
-	var tween = create_tween()
-	tween.tween_property(self, "position", position + move_offset, 0.1)
-	tween.connect("finished", func(): moving = false)
+	move_tween = create_tween()
+	move_tween.tween_property(self, "position", position + move_offset, 0.1)
+	move_tween.connect("finished", func(): moving = false)
 
 func _get_next_tile(direction: Vector2) -> Vector2:
 	if direction == Vector2.RIGHT:

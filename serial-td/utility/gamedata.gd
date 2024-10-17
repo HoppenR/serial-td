@@ -402,7 +402,7 @@ var wave_data = {
 	},
 	10: {
 		"enemies": [ 
-					 [enemies.LAWNMOWER3, 0.5],
+					 [enemies.LAWNMOWER2, 0.5],
 					 [enemies.AXE2, 0.01],
 					 [enemies.AXE2, 0.01],
 					 [enemies.AXE2, 0.01],

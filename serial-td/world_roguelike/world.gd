@@ -9,7 +9,7 @@ var current_level_node: Node2D
 
 var current_level: int = 1:
 	set(new_value):
-		var next_level = load("res://level" + str(new_value) + ".tscn").instantiate()
+		var next_level = load("res://world_roguelike/levels/level" + str(new_value) + ".tscn").instantiate()
 		current_level = new_value
 		current_level_node.queue_free()
 		current_level_node = next_level
@@ -18,7 +18,7 @@ var current_level: int = 1:
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	connect("stage_changed", _next_level)
-	var lv1 = preload("res://level1.tscn").instantiate()
+	var lv1 = preload("res://world_roguelike/levels/level1.tscn").instantiate()
 	current_level_node = lv1
 	add_child(lv1)
 
