@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://bwj4gk8tc4tbp"]
+[gd_scene load_steps=10 format=4 uid="uid://y75aen2jjeo8"]
 
 [ext_resource type="Texture2D" uid="uid://ci5bilsbdu0fj" path="res://assets/tiles/bridge_tile0.png" id="1_dudia"]
 [ext_resource type="Texture2D" uid="uid://dlgubinvw8t2v" path="res://assets/tiles/wilted_tile1.png" id="2_1l3tb"]

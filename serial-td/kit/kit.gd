@@ -41,7 +41,6 @@ func _remove_tutorial() -> void:
 		$Controls.queue_free()
 
 func _process(delta: float) -> void:
-	print(str(position) + " , " + str(global_position))
 	if Input.is_action_just_pressed("ui_down"):
 		input_direction = Vector2.DOWN
 	elif Input.is_action_just_pressed("ui_up"):
@@ -141,6 +140,12 @@ func _fully_place_tower(tower_var) -> bool:
 		return true
 	return false
 
+func teleport(pos: Vector2) -> void:
+	moving = false
+	move_tween.stop()
+	position = Vector2(0, 0)
+	global_position = pos + Vector2(96, 56)
+
 func _move() -> void:
 	if moving:
 		return
@@ -159,9 +164,9 @@ func _move() -> void:
 	if active_tower_upgrade_interface:
 		active_tower_upgrade_interface.queue_free()
 		active_tower_upgrade_interface = null
-	var tween = create_tween()
-	tween.tween_property(self, "position", position + move_offset, 0.1)
-	tween.connect("finished", func(): moving = false)
+	move_tween = create_tween()
+	move_tween.tween_property(self, "position", position + move_offset, 0.1)
+	move_tween.connect("finished", func(): moving = false)
 
 func _get_next_tile(direction: Vector2) -> Vector2:
 	if direction == Vector2.RIGHT:
