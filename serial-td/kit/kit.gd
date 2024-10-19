@@ -40,6 +40,10 @@ func _remove_tutorial() -> void:
 	if $Controls:
 		$Controls.queue_free()
 
+func _remove_placehint() -> void:
+	if $PlaceHint:
+		$PlaceHint.queue_free()
+
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_down"):
 		input_direction = Vector2.DOWN
@@ -105,7 +109,8 @@ func _place_tower(tower_to_place) -> bool:
 	# Change to placeable
 	if not tile_data or not tile_data.get_custom_data("placeable") or $Raycast.is_colliding():
 		return false
-	
+
+	_remove_placehint()
 	tower_to_place.global_position = position + place_offset
 	return true
 
