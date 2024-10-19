@@ -36,7 +36,7 @@ var current_level: int = 1:
 			print("Boss wave should start here")
 			# TODO: Start boss wave
 			get_tree().quit()
-		var next_level = load("res://world_campaign/levels/level" + str((new_value-1)%3+1) + ".tscn").instantiate()
+		var next_level = load("res://world_campaign/levels/level" + str(new_value) + ".tscn").instantiate()
 		levels_node.add_child(next_level)
 		if level_direction.x != 0:
 			next_level.global_position = direction_startpos + level_direction * (384 * current_level)

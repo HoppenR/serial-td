@@ -42,7 +42,8 @@ _data = {
 }
 point_count = 7
 
-[node name="Level3" type="Node2D"]
+[node name="Level5" type="Node2D"]
+z_index = 1
 y_sort_enabled = true
 texture_filter = 2
 
@@ -54,6 +55,7 @@ tile_map_data = PackedByteArray("AAD8/woAAwAAAAAAAAD8/wkAAwAAAAAAAAD8/wgAAwAAAAA
 tile_set = SubResource("TileSet_et4lp")
 
 [node name="EnemyPath" type="Path2D" parent="."]
+z_index = 1
 position = Vector2(224, 144)
 curve = SubResource("Curve2D_t7ttj")
 script = ExtResource("4_cujki")

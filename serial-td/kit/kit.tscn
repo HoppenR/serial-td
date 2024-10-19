@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dq8hn04occ7x5"]
+[gd_scene load_steps=10 format=3 uid="uid://dq8hn04occ7x5"]
 
 [ext_resource type="Script" path="res://kit/kit.gd" id="1_k5qee"]
 [ext_resource type="Texture2D" uid="uid://bxu2j4r8io6k1" path="res://assets/kit/meow.png" id="2_77736"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://c8ep3ufiepald" path="res://assets/interface_icons/a_tile.png" id="4_8e5mf"]
 [ext_resource type="Texture2D" uid="uid://b7yx8wxwf02w6" path="res://assets/interface_icons/s_tile.png" id="5_wmkv8"]
 [ext_resource type="Texture2D" uid="uid://dnyg6n2awtxgv" path="res://assets/interface_icons/d_tile.png" id="6_csext"]
+[ext_resource type="Texture2D" uid="uid://d18btduuf1ib" path="res://assets/tiles/cookie_selected.png" id="7_q2g82"]
+[ext_resource type="Texture2D" uid="uid://0fkt2wal8y0u" path="res://assets/interface_icons/e_tile.png" id="8_wekg8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2s37y"]
 size = Vector2(8, 8)
@@ -52,3 +54,17 @@ texture = ExtResource("5_wmkv8")
 texture_filter = 1
 position = Vector2(16, 16)
 texture = ExtResource("6_csext")
+
+[node name="PlaceHint" type="Node2D" parent="."]
+top_level = true
+z_index = 2
+
+[node name="PlaceHintSprite" type="Sprite2D" parent="PlaceHint"]
+texture_filter = 1
+position = Vector2(176, 72)
+texture = ExtResource("7_q2g82")
+
+[node name="ESprite" type="Sprite2D" parent="PlaceHint"]
+texture_filter = 1
+position = Vector2(176, 57)
+texture = ExtResource("8_wekg8")

@@ -6,7 +6,7 @@ extends Control
 @onready var health_text = $KitInfoPanel/HealthIcon/HealthLabel
 
 # NOTE: Indended to be called via signals from `res://kit/kit.gd`
-func _update_selected_tower(currentTower, cost: int):
+func _update_selected_tower(currentTower: int, cost: int):
 	tower.texture = gamedata.tower_data[currentTower]["texture"]
 	tower_cost.text = "Cost: " + str(cost)
 

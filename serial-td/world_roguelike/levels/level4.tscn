@@ -54,6 +54,7 @@ tile_map_data = PackedByteArray("AAD8/woAAwAAAAAAAAD8/wkAAwAAAAAAAAD8/wgAAwAAAAA
 tile_set = SubResource("TileSet_et4lp")
 
 [node name="EnemyPath" type="Path2D" parent="."]
+z_index = 1
 position = Vector2(224, 144)
 curve = SubResource("Curve2D_t7ttj")
 script = ExtResource("6_e6x1p")
