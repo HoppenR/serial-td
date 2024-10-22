@@ -1,9 +1,9 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://cfsc720b322nr"]
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://cfrqfv6v5hrp4"]
 
-[ext_resource type="Texture2D" uid="uid://73ebxrikx4ha" path="res://assets/tiles/fire_world.png" id="1_alum4"]
+[ext_resource type="Texture2D" uid="uid://ykaljiprjh2f" path="res://assets/tiles/electric_world.png" id="1_ay4yc"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r5n4p"]
-texture = ExtResource("1_alum4")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_77pg4"]
+texture = ExtResource("1_ay4yc")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 0:0/0/custom_data_0 = true
@@ -48,7 +48,6 @@ texture_region_size = Vector2i(32, 32)
 4:2/0 = 0
 4:2/0/custom_data_0 = true
 4:3/0 = 0
-4:3/0/custom_data_0 = true
 5:0/0 = 0
 5:0/0/custom_data_0 = true
 5:1/0 = 0
@@ -56,7 +55,6 @@ texture_region_size = Vector2i(32, 32)
 5:2/0 = 0
 5:2/0/custom_data_0 = true
 5:3/0 = 0
-5:3/0/custom_data_0 = true
 6:0/0 = 0
 6:0/0/custom_data_0 = true
 6:1/0 = 0
@@ -73,7 +71,6 @@ texture_region_size = Vector2i(32, 32)
 7:2/0/custom_data_0 = true
 7:3/0 = 0
 7:3/0/custom_data_0 = true
-0:4/0 = 0
 
 [resource]
 tile_shape = 1
@@ -82,4 +79,4 @@ custom_data_layer_0/name = "walkable"
 custom_data_layer_0/type = 1
 custom_data_layer_1/name = "placeable"
 custom_data_layer_1/type = 1
-sources/0 = SubResource("TileSetAtlasSource_r5n4p")
+sources/0 = SubResource("TileSetAtlasSource_77pg4")
