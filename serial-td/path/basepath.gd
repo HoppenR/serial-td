@@ -43,7 +43,7 @@ func _physics_process(delta: float) -> void:
 	# Check for next wave continuously…
 	if enemies_alive.is_empty() and enemies_to_spawn.is_empty():
 		current_wave += 1
-		if current_wave > 0:
+		if current_wave > 10:
 			timer.stop()
 			is_active = false
 			world.emit_signal("stage_changed")

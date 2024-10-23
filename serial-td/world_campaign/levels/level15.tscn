@@ -6,11 +6,11 @@
 [sub_resource type="Curve2D" id="Curve2D_ovmbw"]
 bake_interval = 1.0
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 167, -1, 0, 0, 0, 0, -218, -8)
+"points": PackedVector2Array(0, 0, 0, 0, 161, -48, 0, 0, 0, 0, -156, 111)
 }
 point_count = 2
 
-[node name="Level16" type="Node2D"]
+[node name="Level15" type="Node2D"]
 y_sort_enabled = true
 texture_filter = 2
 
