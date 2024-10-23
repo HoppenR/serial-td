@@ -37,11 +37,11 @@ func _ready() -> void:
 	raycast = get_node("Raycast")
 
 func _remove_tutorial() -> void:
-	if $Controls:
+	if has_node("Controls"):
 		$Controls.queue_free()
 
 func _remove_placehint() -> void:
-	if $PlaceHint:
+	if has_node("PlaceHint"):
 		$PlaceHint.queue_free()
 
 func _process(delta: float) -> void:

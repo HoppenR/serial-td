@@ -10,7 +10,7 @@ _data = {
 }
 point_count = 8
 
-[node name="Level1" type="Node2D"]
+[node name="Level5" type="Node2D"]
 y_sort_enabled = true
 texture_filter = 2
 

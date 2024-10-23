@@ -38,9 +38,10 @@ var current_level: int = 1:
 			cam_node.zoom = Vector2(0.4, 0.4)
 			cam_node.global_position = Vector2i(0, 256*-4)
 			is_bosslevel = true
+			Global.heat += 2.0
 		var next_level = load("res://world_campaign/levels/level" + str(new_value) + ".tscn").instantiate()
-		levels_node.add_child(next_level)
 		next_level.global_position = direction_startpos + level_direction * Vector2(384 * current_level, 256 * current_level)
+		levels_node.add_child(next_level)
 		current_level = new_value
 
 # Called when the node enters the scene tree for the first time.
