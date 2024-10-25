@@ -20,16 +20,19 @@ var is_bosslevel: bool = false
 var current_level: int = 1:
 	set(new_value):
 		if new_value == 5: # 5
+			kit_node.get_node("Sprite2D").texture = load("res://assets/kit/cat_bl.webp")
 			kit_node.teleport(Vector2(384*4, 256*4))
 			cam_node.global_position = Vector2(384*4, 256*4)
 			level_direction = Vector2(0, -1)
 			direction_startpos = Vector2(384*4, 256*(4+4))
 		elif new_value == 9: # 9
+			kit_node.get_node("Sprite2D").texture = load("res://assets/kit/cat_yl.webp")
 			kit_node.teleport(Vector2(384*8, 0))
 			cam_node.global_position = Vector2(384*8, 0)
 			level_direction = Vector2(-1, 0)
 			direction_startpos = Vector2(384*(8+8), 0)
 		elif new_value == 13: # 13
+			kit_node.get_node("Sprite2D").texture = load("res://assets/kit/cat_pi.webp")
 			kit_node.teleport(Vector2(384*4, 256*-4))
 			cam_node.global_position = Vector2(384*4, 256*-4)
 			level_direction = Vector2(0, 1)
@@ -51,13 +54,15 @@ func _ready() -> void:
 	connect("stage_changed", _next_level)
 	var lv1 = preload("res://world_campaign/levels/level1.tscn").instantiate()
 	visible_level = lv1
+	kit_node.get_node("Sprite2D").texture = load("res://assets/kit/cat_gr.webp")
 	levels_node.add_child(lv1)
 
 func _next_level():
 	if current_level == 18:
 		print("You won!")
 		get_tree().paused = true
-	Global.heat += 0.3
+	Global.heat += 0.05
+	Global.gold += 1000
 	var arrow = load("res://world_campaign/arrow.tscn").instantiate()
 	arrow.global_position = direction_startpos + level_direction * Vector2(384 * (current_level-1), 256 * (current_level-1))
 	# Center the arrow

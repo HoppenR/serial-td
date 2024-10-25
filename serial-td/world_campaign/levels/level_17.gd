@@ -12,6 +12,7 @@ func _create_path(levels: Node2D, number: int) -> void:
 	var path = Path2D.new()
 	var curve = Curve2D.new()
 	path.set_script(BASE_PATH_SCRIPT)
+	path.is_bosslevel = true
 	path.position = Vector2(225, 144)
 	var path_levels: Array[Node2D] = [
 		levels.get_node("Level" + str(number * 4 + 4)),
@@ -19,6 +20,7 @@ func _create_path(levels: Node2D, number: int) -> void:
 		levels.get_node("Level" + str(number * 4 + 2)),
 		levels.get_node("Level" + str(number * 4 + 1)),
 	]
+	curve.add_point(Vector2(0, 0))
 	for cur_level in path_levels:
 		var level_offset = cur_level.global_position - global_position
 		var cur_path = cur_level.get_node("EnemyPath")

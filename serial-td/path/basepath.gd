@@ -8,8 +8,10 @@ var timer
 var enemies_alive = []
 var enemies_to_spawn = []
 var waitForEnemies = false
+var debug = true
 
 var current_wave: int = 1
+var is_bosslevel = false # Set externally
 
 var is_active = true
 
@@ -43,13 +45,16 @@ func _physics_process(delta: float) -> void:
 	# Check for next wave continuously…
 	if enemies_alive.is_empty() and enemies_to_spawn.is_empty():
 		current_wave += 1
-		if current_wave > 10:
+		if current_wave == 11 and is_bosslevel:
+			enemies_to_spawn = gamedata.wave_data["boss"].enemies.duplicate()
+		elif current_wave > 10:
 			timer.stop()
 			is_active = false
 			world.emit_signal("stage_changed")
 			current_wave = 1
 			return
-		enemies_to_spawn = gamedata.wave_data[current_wave].enemies.duplicate()
+		else:
+			enemies_to_spawn = gamedata.wave_data[current_wave].enemies.duplicate()
 		timer.start(10.0)
 
 func _spawn_enemy() -> void:
