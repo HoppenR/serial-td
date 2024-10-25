@@ -14,7 +14,7 @@ var health: int = 100:
 			emit_signal("health_changed", health)
 
 signal gold_changed(new_gold: int)
-var gold: int = 500:
+var gold: int = 2000:
 	set(new_value):
 		if gold != new_value:
 			gold = new_value

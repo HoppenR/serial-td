@@ -166,9 +166,8 @@ func _move() -> void:
 
 	_remove_tutorial()
 	moving = true
-	if active_tower_upgrade_interface:
+	if active_tower_upgrade_interface and is_instance_valid(active_tower_upgrade_interface):
 		active_tower_upgrade_interface.queue_free()
-		active_tower_upgrade_interface = null
 	move_tween = create_tween()
 	move_tween.tween_property(self, "position", position + move_offset, 0.1)
 	move_tween.connect("finished", func(): moving = false)
