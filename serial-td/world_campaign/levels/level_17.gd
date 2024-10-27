@@ -26,7 +26,7 @@ func _create_path(levels: Node2D, number: int) -> void:
 		var cur_path = cur_level.get_node("EnemyPath")
 		var cur_curve = cur_path.curve
 		for point_idx in range(cur_curve.get_point_count()):
-			var point = cur_curve.get_point_position(point_idx) + level_offset
-			curve.add_point(point, Vector2(), Vector2())
+			var point: Vector2 = cur_curve.get_point_position(point_idx) + level_offset
+			curve.add_point(point)
 	path.curve = curve
 	add_child(path)

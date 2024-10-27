@@ -9,6 +9,17 @@ var world: Node2D
 
 var current_tower: int = 0
 
+const down_frame_xoff = 0
+const left_frame_xoff = 32
+const right_frame_xoff = 64
+const up_frame_xoff = 96
+
+# Decides which Kit, pink, blue, yellow, green
+#                    154   186   218     250
+#var frame_yoff: int = 154
+#var frame_xoff: int = 0
+const kits_yoff = 154
+
 var base_towers = [
 	gamedata.towers.BASE_T0,
 	gamedata.towers.FLAME_T0,
@@ -30,11 +41,15 @@ var moving: bool = false
 var tile_size: int = 16
 var tower_placement_range: int = 32
 var tower
+@onready var sprite: Sprite2D = get_node("Sprite2D")
+@onready var texture: AtlasTexture = sprite.texture
+const texture_size = Vector2(32, 30)
 
 func _ready() -> void:
 	world = get_tree().root.get_node("World")
 	world.connect("stage_changed", _stage_changed)
 	raycast = get_node("Raycast")
+	texture.region = Rect2(Vector2(0, kits_yoff), texture_size)
 
 func _remove_tutorial() -> void:
 	if has_node("Controls"):
@@ -47,11 +62,15 @@ func _remove_placehint() -> void:
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_down"):
 		input_direction = Vector2.DOWN
+		texture.region.position.x = 0
 	elif Input.is_action_just_pressed("ui_up"):
+		texture.region.position.x = 96
 		input_direction = Vector2.UP
 	elif Input.is_action_just_pressed("ui_left"):
+		texture.region.position.x = 32
 		input_direction = Vector2.LEFT
 	elif Input.is_action_just_pressed("ui_right"):
+		texture.region.position.x = 64
 		input_direction = Vector2.RIGHT
 	
 	if Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down"):
