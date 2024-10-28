@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bkf7bdj6wok13"]
 
 [ext_resource type="Script" path="res://enemy/lawnmower/lawnmower2.gd" id="1_ecvda"]
-[ext_resource type="Texture2D" uid="uid://b85gvcaiq066b" path="res://assets/enemies/lawnmower.png" id="2_ij78f"]
+[ext_resource type="Texture2D" uid="uid://ckah43aj8wb34" path="res://assets/enemies/toxic_gloop_muk.png" id="2_csvxe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_me7oi"]
 size = Vector2(16, 11)
@@ -13,7 +13,9 @@ loop = false
 script = ExtResource("1_ecvda")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-texture = ExtResource("2_ij78f")
+texture_filter = 1
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("2_csvxe")
 
 [node name="Hitbox" type="CharacterBody2D" parent="."]
 collision_layer = 6

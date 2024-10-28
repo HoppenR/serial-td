@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://beivyuxh8rsi8"]
 
 [ext_resource type="Script" path="res://enemy/axe/axe1.gd" id="1_j3x88"]
-[ext_resource type="Texture2D" uid="uid://du50h38h1lffb" path="res://assets/enemies/axe.png" id="2_0s4pk"]
+[ext_resource type="Texture2D" uid="uid://ckg2p1rdg3cxg" path="res://assets/enemies/tree monster.png" id="2_j81cu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_me7oi"]
 size = Vector2(12, 15)
@@ -13,7 +13,8 @@ loop = false
 script = ExtResource("1_j3x88")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-texture = ExtResource("2_0s4pk")
+texture_filter = 1
+texture = ExtResource("2_j81cu")
 
 [node name="Hitbox" type="CharacterBody2D" parent="."]
 collision_layer = 6

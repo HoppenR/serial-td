@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dul11vupw0tok"]
 
-[ext_resource type="Script" path="res://enemy/saw/saw1.gd" id="1_hbw76"]
-[ext_resource type="Texture2D" uid="uid://dfkxmvkcu6n65" path="res://assets/enemies/saw3.png" id="2_f4m2o"]
+[ext_resource type="Script" path="res://enemy/saw/saw3.gd" id="1_uvdyt"]
+[ext_resource type="Texture2D" uid="uid://bcmv5eg0f5bpu" path="res://assets/enemies/excavator.png" id="2_jh1mx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_me7oi"]
 size = Vector2(15, 14)
@@ -10,10 +10,10 @@ size = Vector2(15, 14)
 texture_filter = 1
 rotates = false
 loop = false
-script = ExtResource("1_hbw76")
+script = ExtResource("1_uvdyt")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-texture = ExtResource("2_f4m2o")
+texture = ExtResource("2_jh1mx")
 
 [node name="Hitbox" type="CharacterBody2D" parent="."]
 collision_layer = 6
