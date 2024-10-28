@@ -47,7 +47,7 @@ func _physics_process(delta: float) -> void:
 		current_wave += 1
 		if current_wave == 11 and is_bosslevel:
 			enemies_to_spawn = gamedata.wave_data["boss"].enemies.duplicate()
-		elif current_wave > 1:
+		elif current_wave > 10:
 			timer.stop()
 			is_active = false
 			world.emit_signal("stage_changed")
@@ -55,7 +55,7 @@ func _physics_process(delta: float) -> void:
 			return
 		else:
 			enemies_to_spawn = gamedata.wave_data[current_wave].enemies.duplicate()
-		timer.start(10.0)
+		timer.start(4.0)
 
 func _spawn_enemy() -> void:
 	if enemies_to_spawn.is_empty():
