@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cvwu700lgky5g"]
 
 [ext_resource type="Script" path="res://enemy/saw/saw4.gd" id="1_v7mh7"]
-[ext_resource type="Texture2D" uid="uid://c7cq6mfwsekvy" path="res://assets/enemies/toxic_rat.png" id="2_v4l4y"]
+[ext_resource type="Texture2D" uid="uid://cppqt1d3gfvs4" path="res://assets/enemies/toxic froggy.png" id="2_wa4ga"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_me7oi"]
 size = Vector2(16, 14)
@@ -13,8 +13,8 @@ loop = false
 script = ExtResource("1_v7mh7")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-scale = Vector2(0.8, 0.8)
-texture = ExtResource("2_v4l4y")
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("2_wa4ga")
 
 [node name="Hitbox" type="CharacterBody2D" parent="."]
 collision_layer = 6

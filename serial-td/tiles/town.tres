@@ -1,6 +1,7 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://dkwqp8iyrk1sj"]
+[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://dkwqp8iyrk1sj"]
 
 [ext_resource type="Texture2D" uid="uid://bttseqlch5hm5" path="res://assets/tiles/town.png" id="1_cei4l"]
+[ext_resource type="Texture2D" uid="uid://cgal53ijityr5" path="res://assets/enemies/sprite_trashcan.png" id="2_g0vys"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2nsln"]
 texture = ExtResource("1_cei4l")
@@ -10,6 +11,11 @@ texture_region_size = Vector2i(32, 32)
 0:0/0/custom_data_1 = true
 1:0/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ubi05"]
+texture = ExtResource("2_g0vys")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
 [resource]
 tile_shape = 1
 tile_size = Vector2i(32, 16)
@@ -18,3 +24,4 @@ custom_data_layer_0/type = 1
 custom_data_layer_1/name = "placeable"
 custom_data_layer_1/type = 1
 sources/0 = SubResource("TileSetAtlasSource_2nsln")
+sources/1 = SubResource("TileSetAtlasSource_ubi05")
