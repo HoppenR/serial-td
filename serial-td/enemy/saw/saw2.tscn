@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://d0djn2avenrl8"]
 
 [ext_resource type="Script" path="res://enemy/saw/saw2.gd" id="1_84uwx"]
-[ext_resource type="Texture2D" uid="uid://c22ikm4ftdjqb" path="res://assets/enemies/skull_slime.png" id="2_xc0ko"]
+[ext_resource type="Texture2D" uid="uid://dq6e3t2g8vosf" path="res://assets/enemies/skull slime.png" id="2_sfdn4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_me7oi"]
 size = Vector2(14, 8)
@@ -13,8 +13,8 @@ loop = false
 script = ExtResource("1_84uwx")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_xc0ko")
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_sfdn4")
 
 [node name="Hitbox" type="CharacterBody2D" parent="."]
 collision_layer = 6

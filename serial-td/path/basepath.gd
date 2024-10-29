@@ -36,6 +36,14 @@ func _ready() -> void:
 	)
 	line_timer.start(7.5)
 
+var wavemax = 10
+func _input(event):
+	if Input.is_action_just_pressed("debug_skip"):
+		if wavemax == 10:
+			wavemax = 1
+		else:
+			wavemax = 10
+
 # Probably inefficient to check every frame?
 # Can use enemy dying event instead of _physics_process,
 # won't need `is_active` then, either
@@ -47,7 +55,7 @@ func _physics_process(delta: float) -> void:
 		current_wave += 1
 		if current_wave == 11 and is_bosslevel:
 			enemies_to_spawn = gamedata.wave_data["boss"].enemies.duplicate()
-		elif current_wave > 10:
+		elif current_wave > wavemax:
 			timer.stop()
 			is_active = false
 			world.emit_signal("stage_changed")

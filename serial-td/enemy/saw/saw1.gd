@@ -3,6 +3,9 @@ extends "res://enemy/baseenemy.gd"
 var previous_position = Vector2(0, 0)
 
 func _ready():
+	var kit_node = get_tree().get_root().get_node("World/Kit")
+	$Hitbox.add_collision_exception_with(kit_node)
+	connect("enemy_dead", kit_node._enemy_dead)
 	$Sprite.texture = $Sprite.texture.duplicate()
 
 func _process(delta):

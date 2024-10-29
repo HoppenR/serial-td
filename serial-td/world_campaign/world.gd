@@ -62,7 +62,7 @@ func _next_level():
 		print("You won!")
 		get_tree().paused = true
 	Global.heat += 0.05
-	Global.gold += 1000
+	#Global.gold += 1000
 	var arrow = load("res://world_campaign/arrow.tscn").instantiate()
 	arrow.global_position = direction_startpos + level_direction * Vector2(384 * (current_level-1), 256 * (current_level-1))
 	# Center the arrow

@@ -8,7 +8,7 @@
 [sub_resource type="Curve2D" id="Curve2D_ovmbw"]
 bake_interval = 1.0
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 159, 31, 0, 0, 0, 0, 32, -32, 0, 0, 0, 0, -48, 7, 0, 0, 0, 0, -34, 15, 0, 0, 0, 0, -143, 72, 0, 0, 0, 0, -128, 80, 0, 0, 0, 0, -193, 112)
+"points": PackedVector2Array(0, 0, 0, 0, -191, 111, 0, 0, 0, 0, -132, 79, 0, 0, 0, 0, -145, 70, 0, 0, 0, 0, -32, 15, 0, 0, 0, 0, -45, 4, 0, 0, 0, 0, 32, -34, 0, 0, 0, 0, 161, 32)
 }
 point_count = 7
 
@@ -48,5 +48,5 @@ script = ExtResource("2_clbm3")
 [node name="Decoration" type="TileMapLayer" parent="."]
 z_index = 3
 texture_filter = 1
-tile_map_data = PackedByteArray("AAAGABoAAAAAAAAAAAABAA8AAAAAAAAAAAAJAAcAAAAAAAAAAAAFAAYAAAAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAAGABoAAAAAAAAAAAABAA8AAAAAAAAAAAAJAAcAAAAAAAAAAAAFAAYAAAAAAAAAAAAKABoAAAAAAAAAAAAHAAcAAQAAAAAAAAACAAgAAQAAAAAAAAA=")
 tile_set = SubResource("TileSet_jcyxd")

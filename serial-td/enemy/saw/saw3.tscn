@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dul11vupw0tok"]
 
 [ext_resource type="Script" path="res://enemy/saw/saw3.gd" id="1_uvdyt"]
-[ext_resource type="Texture2D" uid="uid://bcmv5eg0f5bpu" path="res://assets/enemies/excavator.png" id="2_jh1mx"]
+[ext_resource type="Texture2D" uid="uid://c7cq6mfwsekvy" path="res://assets/enemies/toxic_rat.png" id="2_hyvic"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_me7oi"]
 size = Vector2(15, 14)
@@ -13,7 +13,8 @@ loop = false
 script = ExtResource("1_uvdyt")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-texture = ExtResource("2_jh1mx")
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_hyvic")
 
 [node name="Hitbox" type="CharacterBody2D" parent="."]
 collision_layer = 6
