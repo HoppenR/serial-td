@@ -12,7 +12,7 @@ point_count = 9
 
 [node name="Level6" type="Node2D"]
 y_sort_enabled = true
-texture_filter = 2
+texture_filter = 1
 
 [node name="PlayerTraversal" type="TileMapLayer" parent="."]
 y_sort_enabled = true
